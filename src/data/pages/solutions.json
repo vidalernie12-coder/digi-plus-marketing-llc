@@ -101,6 +101,16 @@
             "description": "Streamline your message directly into listeners' favorite podcasts, radio, or music with strategic <strong><a href='/solutions/branding-awareness/streaming-audio' style='text-decoration: none; color: inherit;'>streaming audio ads</a></strong> that captivate at the perfect moment."
           },
           {
+            "icon": "player-play",
+            "title": "Pre-Roll Ads",
+            "description": "<strong><a href='/solutions/branding-awareness/pre-roll-ads' style='text-decoration: none; color: inherit;'>Pre-Roll ads</a></strong> appear before videos found on your target audience's favorite websites. These non-skippable ads are perfect for helping you increase brand trust and visibility."
+          },
+          {
+            "icon": "brand-youtube",
+            "title": "YouTube Ads",
+            "description": "Reach a global audience with stunning visuals with <strong><a href='/solutions/branding-awareness/youtube-advertising' style='text-decoration: none; color: inherit;'>YouTube advertising</a></strong>."
+          },
+          {
             "icon": "tools",
             "title": "Design Services",
             "description": "Our skilled designers transform your vision into exceptional <strong><a href='/solutions/foundational/design-services' style='text-decoration: none; color: inherit;'>graphic design</a></strong>, from logos and rebrands to captivating flyers, shaping your brand identity and marketing."
@@ -115,7 +125,7 @@
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
         "variant": "full",
-        "mapUrl": "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s41+Pulaski+St,+Bloomfield,+NJ+07003!6i12",
+        "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
         "locations": [
           {
             "name": "Bloomfield",

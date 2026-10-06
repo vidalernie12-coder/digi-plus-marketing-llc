@@ -6,27 +6,28 @@
    ============================================ */
 @theme {
   /* Your Brand Colors - ONLY 4 COLORS */
-  --color-primary-dark: #082323;
-  --color-primary: #0d3b3b;
-  --color-primary-light: #14b8a6;
+  /* DG+ Marketing: logo purple + logo orange accent */
+  --color-primary-dark: #2f1a3b;
+  --color-primary: #4b2e5c;
+  --color-primary-light: #df7c46;
   --color-neutral: #ffffff;
 
   /* Auto-generated shades for hover states */
-  --color-primary-darker: #051818;
-  --color-primary-lighter: #0f766e;
+  --color-primary-darker: #1e1027;
+  --color-primary-lighter: #c0612b;
   --color-neutral-dark: #f5f5f5;
   --color-neutral-darker: #e5e5e5;
 
   /* Map to Tailwind color system */
   --color-primary-50: var(--color-neutral);
-  --color-primary-100: #e0f2f1;
-  --color-primary-200: #b2dfdb;
-  --color-primary-300: #80cbc4;
+  --color-primary-100: #efe8f3;
+  --color-primary-200: #d9c9e2;
+  --color-primary-300: #b79cc8;
   --color-primary-400: var(--color-primary-lighter);
   --color-primary-500: var(--color-primary);
-  --color-primary-600: #0a2f2f;
-  --color-primary-700: #082323;
-  --color-primary-800: #051818;
+  --color-primary-600: #3f2650;
+  --color-primary-700: #2f1a3b;
+  --color-primary-800: #1e1027;
   --color-primary-900: var(--color-primary-darker);
 
   /* Map blue to primary (for existing components) */

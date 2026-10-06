@@ -27,7 +27,9 @@
           "items": [
             { "label": "Connected TV (OTT Ads)", "href": "/solutions/branding-awareness/connected-tv" },
             { "label": "Display (Geofencing)", "href": "/solutions/branding-awareness/display-geofencing" },
-            { "label": "Streaming Audio", "href": "/solutions/branding-awareness/streaming-audio" }
+            { "label": "Streaming Audio", "href": "/solutions/branding-awareness/streaming-audio" },
+            { "label": "Pre-Roll Ads", "href": "/solutions/branding-awareness/pre-roll-ads" },
+            { "label": "YouTube Advertising", "href": "/solutions/branding-awareness/youtube-advertising" }
           ]
         }
       ]

@@ -8,9 +8,9 @@
     {
       "discriminant": "heroHome",
       "value": {
-        "badge": "Premium Marketing Solutions",
-        "title": "Local Advertising and Digital Marketing Pros in {city}",
-        "subtitle": "Helping Businesses Get Noticed, On Screens and Online",
+        "badge": "{city}, {state} Local Marketing",
+        "title": "Amplify Your Brand Where It Matters Most",
+        "subtitle": "Be seen where your customers eat, work, shop, and play.",
         "variant": "cards",
         "cards": [
           {
@@ -67,8 +67,8 @@
     {
       "discriminant": "featuresWithButton",
       "value": {
-        "title": "Local Advertising Solutions for {city} Businesses",
-        "description": "As your trusted <strong>{city} marketing pros</strong>, our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>billboard network</a></strong> gives you access to high-traffic locations where your ideal customers spend time. From gyms and restaurants to retail stores and office buildings, we help you get noticed in the moments that matter.",
+        "title": "Why Indoor Billboards?",
+        "description": "Captivate your audience with <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor digital billboard ads</a></strong> across {city}. These dynamic digital displays are a powerful marketing medium for engaging your target audience. Each indoor billboard is strategically placed to deliver your brand story with vibrant visuals to your niche audience.",
         "buttonText": "Explore Our Digital Marketing Services",
         "buttonHref": "/solutions",
         "features": [
@@ -104,8 +104,8 @@
       "value": {
         "variant": "image-card",
         "badge": "Local Advertising That Reaches Your Audience",
-        "title": "{city}'s Premier Venue Partner Network",
-        "description": "Our <strong>digital marketing pros</strong> have built exclusive partnerships with {city}'s most popular venues and businesses. Our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen network</a></strong> reaches customers when they're relaxed, engaged, and ready to take action, whether they're working out, dining, shopping, or waiting for service.",
+        "title": "Venue Partner Network",
+        "description": "Our mission is to help local businesses like yours reach their audience. Every month, millions of consumers see our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screens</a></strong> and remember them.<br><br>Join the network of {city} businesses that are prioritizing hyper-local advertising!",
         "image": "/images/venue-partner-optimized.avif",
         "imagePosition": "right",
         "buttonText": "View Venue Partners",
@@ -215,7 +215,7 @@
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
         "variant": "full",
-        "mapUrl": "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s41+Pulaski+St,+Bloomfield,+NJ+07003!6i12",
+        "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
         "locations": [
           {
             "name": "Bloomfield",

@@ -36,6 +36,8 @@ ${siteConfig.business.name} is a full-service digital marketing agency based in 
 - Connected TV & OTT Ads: Non-skippable streaming TV ads — [/solutions/branding-awareness/connected-tv](${siteConfig.seo.siteUrl}/solutions/branding-awareness/connected-tv)
 - Display Advertising & Geofencing: Location-targeted digital ads — [/solutions/branding-awareness/display-geofencing](${siteConfig.seo.siteUrl}/solutions/branding-awareness/display-geofencing)
 - Streaming Audio Ads: Podcast and music streaming advertising — [/solutions/branding-awareness/streaming-audio](${siteConfig.seo.siteUrl}/solutions/branding-awareness/streaming-audio)
+- Pre-Roll Ads: Non-skippable 15 or 30 second online video ads — [/solutions/branding-awareness/pre-roll-ads](${siteConfig.seo.siteUrl}/solutions/branding-awareness/pre-roll-ads)
+- YouTube Advertising: Targeted in-stream video ads on YouTube — [/solutions/branding-awareness/youtube-advertising](${siteConfig.seo.siteUrl}/solutions/branding-awareness/youtube-advertising)
 
 ## Service Areas
 

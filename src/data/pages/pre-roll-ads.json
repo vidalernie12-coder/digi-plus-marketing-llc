@@ -1,0 +1,198 @@
+{
+  "navOrder": 16,
+  "navLabel": "Pre-Roll Ads",
+  "title": "Pre-Roll Advertising",
+  "description": "Create a memorable brand experience with engaging online video content. Non-skippable 15 or 30 second pre-roll video ads targeted to your ideal audience.",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Branding & Awareness",
+        "title": "Pre-Roll Advertising",
+        "subtitle": "Create a memorable brand experience with engaging online video content.",
+        "buttonText": "Get In Touch",
+        "buttonHref": "/contact-us",
+        "image": "/images/pre-roll.avif"
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "variant": "two-column",
+        "title": "Pre-Roll",
+        "description": "Pre-Roll ads are short videos that appear before online videos. Lasting 15 to 30 seconds, these non-skippable ads effectively tell your unique brand story.",
+        "image": "/images/advertising-content.avif",
+        "imagePosition": "right",
+        "background": "primary-dark"
+      }
+    },
+    {
+      "discriminant": "cta",
+      "value": {
+        "variant": "card",
+        "title": "Pre-Roll Ads can Increase Your Brand Awareness and Traffic",
+        "description": "Pre-Roll advertising helps your brand stand out in a competitive digital market. With online video consumption continuing to grow, Pre-Roll ads provide direct access to highly targeted audiences. They work especially well alongside <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong>, <strong><a href='/solutions/lead-gen/social-media-advertising' style='text-decoration: none; color: inherit;'>Social Media Advertising</a></strong>, or <strong><a href='/solutions/branding-awareness/connected-tv' style='text-decoration: none; color: inherit;'>CTV | OTT</a></strong> campaigns.",
+        "buttonText": "Learn More",
+        "buttonHref": "/contact-us"
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "badge": "Why Pre-Roll",
+        "title": "Benefits of Pre-Roll Advertising",
+        "variant": "overlay",
+        "cards": [
+          {
+            "icon": "target",
+            "title": "Powerful Targeting",
+            "description": "Pre-Roll video ads can be targeted to viewers' habits, demographics, and interests. Through options of online behavior, interests, location, and keywords, we can precisely target the ideal audience.",
+            "image": "/images/reach-more-people.avif"
+          },
+          {
+            "icon": "eye",
+            "title": "Guaranteed Views",
+            "description": "Our non-skippable Pre-Roll ads appear at the beginning of online video content, ensuring your story is more likely to be seen than ads that appear in the middle or at the end of a video.",
+            "image": "/images/advertising.avif"
+          },
+          {
+            "icon": "award",
+            "title": "Improve Brand Awareness",
+            "description": "Adding Pre-Roll ads into your marketing plan helps reinforce your business's values and messages, boosting customer confidence and brand recognition.",
+            "image": "/images/brand-image.avif"
+          },
+          {
+            "icon": "sparkles",
+            "title": "Captivating Visuals",
+            "description": "Immersive video visuals capture your viewers' attention at the most crucial moment of their online journey.",
+            "image": "/images/amazing-creative.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "title": "Steps for Pre-Roll",
+        "description": "From strategy to reporting, we handle every step of your Pre-Roll campaign.",
+        "variant": "cards",
+        "cards": [
+          {
+            "icon": "users",
+            "title": "On-Boarding Meeting",
+            "description": "We gather important information about your target audience, campaign goals, and budget to discuss the right strategy for your campaign.",
+            "image": "/images/on-boarding.avif"
+          },
+          {
+            "icon": "video",
+            "title": "Ad Creation & Approval",
+            "description": "Our creative team will build an engaging video tailored to your brand, complete with voiceover and editing. You'll review and approve the ad before launch.",
+            "image": "/images/ad-creation.avif"
+          },
+          {
+            "icon": "rocket",
+            "title": "Deployment",
+            "description": "We strategically place your ads in front of your target audience, optimizing delivery using demographics and analytics.",
+            "image": "/images/ad-deployment.avif"
+          },
+          {
+            "icon": "chart-bar",
+            "title": "Reporting",
+            "description": "We provide comprehensive analytics tracking and break down key metrics to help you understand the efficacy of your campaigns, along with recommendations.",
+            "image": "/images/reporting.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Our Marketing Service Approach is Simple",
+        "description": "We believe great marketing shouldn't be complicated. Here's how we help businesses grow.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "ear",
+            "title": "We Listen",
+            "description": "We take time to understand your business, goals, and challenges before recommending solutions."
+          },
+          {
+            "icon": "chess",
+            "title": "We Strategize",
+            "description": "Every business is different. We create custom strategies tailored to your unique needs and budget."
+          },
+          {
+            "icon": "player-play",
+            "title": "We Execute",
+            "description": "From production to launch, we handle everything so you can focus on running your business."
+          },
+          {
+            "icon": "chart-dots",
+            "title": "We Measure",
+            "description": "We track results and provide clear reports so you always know what's working."
+          },
+          {
+            "icon": "settings",
+            "title": "We Optimize",
+            "description": "Marketing isn't set-it-and-forget-it. We continuously improve to maximize your exposure."
+          },
+          {
+            "icon": "headset",
+            "title": "We Support",
+            "description": "Questions? Updates? We're here whenever you need us with friendly, responsive support."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "title": "Common Questions Asked About Pre-Roll",
+        "faqs": [
+          {
+            "question": "How long are pre-roll ads?",
+            "answer": "All pre-roll ads are either 15 or 30 seconds."
+          },
+          {
+            "question": "How effective are pre-roll ads?",
+            "answer": "Pre-roll video is one of the most effective forms of digital advertising. We optimize every campaign to maximize your return on investment based on your targeting strategy and your viewers' interests."
+          },
+          {
+            "question": "Can I use Pre-Roll and CTV | OTT advertising together?",
+            "answer": "Yes! A multi-channel campaign covering Pre-Roll and OTT advertising maximizes ROI across digital platforms, especially when combined with <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>foundational marketing</a></strong>."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "badge": "Service Areas",
+        "title": "We Put Local Brands on the Map",
+        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
+        "variant": "full",
+        "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
+        "locations": [
+          {
+            "name": "Bloomfield",
+            "href": "/"
+          },
+          {
+            "name": "Montclair",
+            "href": "/locations/montclair"
+          },
+          {
+            "name": "Verona",
+            "href": "/locations/verona"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Pre-Roll Video Advertising | Non-Skippable Video Ads",
+    "description": "Tell your brand story with non-skippable 15 or 30 second pre-roll video ads, precisely targeted by interests, location, and online behavior.",
+    "keywords": "pre-roll advertising {city}, pre-roll video ads {city}, online video advertising {city}, non-skippable video ads, video ad campaigns {state}"
+  }
+}

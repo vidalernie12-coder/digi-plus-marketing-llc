@@ -45,6 +45,29 @@ export default defineConfig({
   // pages stay static (output defaults to 'static').
   adapter: vercel(),
   site: SITE_URL,
+  // Canonical URLs have no trailing slash. "never" also makes Vercel 308
+  // "/x/" -> "/x", so old WordPress links like "/design/" reach the 301s below.
+  trailingSlash: "never",
+  // 301s from the previous WordPress site (dgplusnj.com) so old links and
+  // search rankings carry over to the new routes.
+  redirects: {
+    "/venue-partner": "/indoor-billboards/become-a-venue-partner",
+    "/host": "/indoor-billboards/become-a-venue-partner",
+    "/screen-advertising": "/indoor-billboards/screen-advertising",
+    "/website-design": "/solutions/foundational/website-design",
+    "/google-business-profile": "/solutions/foundational/google-business-profile",
+    "/social-media-management": "/solutions/foundational/social-media-management",
+    "/design": "/solutions/foundational/design-services",
+    "/social-media-ads": "/solutions/lead-gen/social-media-advertising",
+    "/pay-per-click-ppc": "/solutions/lead-gen/pay-per-click",
+    "/ppc-pay-per-click": "/solutions/lead-gen/pay-per-click",
+    "/connected-tv-ott-ads": "/solutions/branding-awareness/connected-tv",
+    "/geofencing": "/solutions/branding-awareness/display-geofencing",
+    "/streaming-audio": "/solutions/branding-awareness/streaming-audio",
+    "/pre-roll-advertising": "/solutions/branding-awareness/pre-roll-ads",
+    "/youtube-ads": "/solutions/branding-awareness/youtube-advertising",
+    "/privacy-policy": "/privacy",
+  },
   integrations: [
     mdx(),
     icon(),

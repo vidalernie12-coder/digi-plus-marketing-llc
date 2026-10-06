@@ -52,14 +52,21 @@ const NO_PAGE_PATHS = new Set([
   "/solutions/branding-awareness",
   "/indoor-billboards",
 ]);
+// Slugs whose title-cased form reads wrong (brand casing, hyphenated terms).
+const CRUMB_NAMES: Record<string, string> = {
+  "youtube-advertising": "YouTube Advertising",
+  "pre-roll-ads": "Pre-Roll Ads",
+};
 const segments = pathname === "/" ? [] : pathname.split("/").filter(Boolean);
 const crumbs: Array<{ name: string; url?: string }> = [{ name: "Home", url: "/" }];
 segments.forEach((seg: string, i: number) => {
   const path = "/" + segments.slice(0, i + 1).join("/");
-  const name = seg
-    .split("-")
-    .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(" ");
+  const name =
+    CRUMB_NAMES[seg] ??
+    seg
+      .split("-")
+      .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
   // Last crumb is always non-linked (current page); intermediate crumbs link
   // unless no landing page exists at their path.
   const isLast = i === segments.length - 1;

@@ -113,6 +113,18 @@
               "description": "Strategic streaming audio ads that captivate at the perfect moment.",
               "href": "/solutions/branding-awareness/streaming-audio",
               "icon": "tabler:headphones"
+            },
+            {
+              "title": "Pre-Roll Ads",
+              "description": "Non-skippable video ads that play before your audience's favorite online videos.",
+              "href": "/solutions/branding-awareness/pre-roll-ads",
+              "icon": "tabler:player-play"
+            },
+            {
+              "title": "YouTube Advertising",
+              "description": "Reach a highly engaged audience on the world's largest video platform.",
+              "href": "/solutions/branding-awareness/youtube-advertising",
+              "icon": "tabler:brand-youtube"
             }
           ]
         }

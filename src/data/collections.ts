@@ -12,6 +12,8 @@ import socialMediaAdvertisingData from "~/data/pages/social-media-advertising.js
 import connectedTvData from "~/data/pages/connected-tv.json";
 import displayGeofencingData from "~/data/pages/display-geofencing.json";
 import streamingAudioData from "~/data/pages/streaming-audio.json";
+import preRollAdsData from "~/data/pages/pre-roll-ads.json";
+import youtubeAdvertisingData from "~/data/pages/youtube-advertising.json";
 
 // Indoor billboards imports
 import becomeAVenuePartnerData from "~/data/pages/become-a-venue-partner.json";
@@ -33,6 +35,8 @@ export function getSolutionsData() {
     toEntry("branding-awareness/connected-tv", connectedTvData),
     toEntry("branding-awareness/display-geofencing", displayGeofencingData),
     toEntry("branding-awareness/streaming-audio", streamingAudioData),
+    toEntry("branding-awareness/pre-roll-ads", preRollAdsData),
+    toEntry("branding-awareness/youtube-advertising", youtubeAdvertisingData),
   ];
 }
 

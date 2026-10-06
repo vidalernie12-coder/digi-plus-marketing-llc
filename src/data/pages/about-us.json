@@ -9,7 +9,7 @@
       "value": {
         "badge": "Learn About Our Story",
         "title": "About Us",
-        "subtitle": "{business} - Built for local businesses.",
+        "subtitle": "Unleash the Power of Digital Marketing!",
         "buttonText": "Get In Touch",
         "buttonHref": "/contact-us",
         "image": "/images/about-us-partner.avif"
@@ -21,7 +21,7 @@
         "badge": "Who We Are",
         "variant": "image-card",
         "title": "Empowering {city} Businesses",
-        "description": "Based at 41 Pulaski St in {city}, we bring big-agency marketing expertise to local businesses across {city}, Montclair, and Verona. We're passionate about helping local businesses thrive through innovative <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>digital billboard advertising</a></strong>, <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong>, and <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>multichannel campaigns</a></strong>.<br><br>Our team combines strategic thinking with creative execution to deliver marketing solutions that actually work. We understand that every business is unique, which is why we take the time to learn about your goals, your audience, and your challenges before recommending any strategy. From small local shops to growing enterprises, we've helped {city} businesses increase their visibility, engage their customers, and drive real results.<br><br>Beyond business, we're committed to our community, building relationships and supporting local non-profits and charitable organizations. We believe in giving back to the community that has given us so much. Together, let's build something great, our strategy, your brand!",
+        "description": "At {business} we're passionate about empowering local businesses to thrive in the digital age. We understand that in today's competitive digital landscape, effective marketing strategies are essential for your success. That's where we come in.<br><br>Our journey began with a simple yet powerful idea: to harness the potential of <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor digital billboards</a></strong> and help local businesses reach their full potential. With a focus on innovation, creativity, and results, we've become a trusted partner for businesses across {city}, {state}.<br><br>While we specialize in indoor digital billboards, our expertise extends far beyond that. From <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong> to robust <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>multichannel campaigns</a></strong>, we offer a full suite of services designed to elevate your brand and drive results.<br><br>Our strategy, your brand. Together, let's build something great.",
         "image": "/images/about-us-team.avif",
         "imagePosition": "left",
         "background": "gray"
@@ -31,7 +31,7 @@
       "discriminant": "valueCards",
       "value": {
         "badge": "Why Choose Us",
-        "title": "What Sets Us Apart",
+        "title": "5 Reasons To Choose Us",
         "variant": "overlay",
         "cards": [
           {
@@ -74,7 +74,7 @@
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
         "variant": "full",
-        "mapUrl": "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s41+Pulaski+St,+Bloomfield,+NJ+07003!6i12",
+        "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
         "locations": [
           {
             "name": "Bloomfield",

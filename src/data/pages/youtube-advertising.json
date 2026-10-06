@@ -1,0 +1,198 @@
+{
+  "navOrder": 17,
+  "navLabel": "YouTube Advertising",
+  "title": "YouTube Advertising",
+  "description": "Strategically place ads on the world's largest video-sharing platform. Targeted YouTube in-stream ads that increase your brand visibility.",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Branding & Awareness",
+        "title": "YouTube Advertising",
+        "subtitle": "Reach a global audience with stunning visuals with YouTube advertising.",
+        "buttonText": "Get In Touch",
+        "buttonHref": "/contact-us",
+        "image": "/images/social-media-creative.avif"
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "variant": "two-column",
+        "title": "YouTube",
+        "description": "Strategically place ads on the world's largest video-sharing platform, YouTube. Leveraging engaging in-stream ads, you'll have the power to showcase your brand message, services, or products to a precise audience. Increase your brand visibility with YouTube Advertising.",
+        "image": "/images/boost-visibility.avif",
+        "imagePosition": "right",
+        "background": "primary-dark"
+      }
+    },
+    {
+      "discriminant": "cta",
+      "value": {
+        "variant": "card",
+        "title": "Become Memorable with YouTube Advertising",
+        "description": "Advertising on YouTube allows you to connect with a highly engaged audience in the immersive environment of the world's largest video platform. Cut through a noisy digital landscape with the platform's robust targeting options and flexible ad formats. This powerful advertising method is the perfect way to increase brand awareness and works well as an addition to lead-generating and Foundational products such as <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>Pay-Per-Click</a></strong> and <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong> management.",
+        "buttonText": "Learn More",
+        "buttonHref": "/contact-us"
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "badge": "Why YouTube",
+        "title": "Drive Brand Visibility with YouTube Advertising",
+        "variant": "overlay",
+        "cards": [
+          {
+            "icon": "target",
+            "title": "Targeted Audiences",
+            "description": "YouTube's extensive audience allows us to target your campaigns based on interest, behavior, location, and more. You can be certain you're reaching audiences that are most likely to engage.",
+            "image": "/images/reach-more-people.avif"
+          },
+          {
+            "icon": "message",
+            "title": "Flexible Messaging",
+            "description": "YouTube's diverse ad formats, including skippable in-stream ads, non-skippable ads, display ads, and sponsored content, offer flexibility and creativity to effectively convey brand messages and drive action.",
+            "image": "/images/increase-engagement.avif"
+          },
+          {
+            "icon": "devices",
+            "title": "Visibility on All Devices",
+            "description": "YouTube's availability on various devices ensures that advertising messages reach audiences seamlessly across smartphones, tablets, computers, and smart TVs, enabling consistent brand exposure and engagement across all devices.",
+            "image": "/images/connected-tv-content.avif"
+          },
+          {
+            "icon": "award",
+            "title": "Increased Brand Awareness",
+            "description": "YouTube advertising offers you the opportunity to showcase your brand story through video content, increasing brand recognition and recall among viewers through memorable visuals and messaging.",
+            "image": "/images/brand-image.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "title": "Your Pathway to Visibility with YouTube Advertising",
+        "description": "From strategy to reporting, we handle every step of your YouTube campaign.",
+        "variant": "cards",
+        "cards": [
+          {
+            "icon": "users",
+            "title": "On-Boarding Meeting",
+            "description": "We start by understanding your objectives and target audience. This will help us ensure that we're on target with both your ad creation and reach parameters.",
+            "image": "/images/on-boarding.avif"
+          },
+          {
+            "icon": "palette",
+            "title": "Creative Development",
+            "description": "Our team will craft compelling video ads tailored to your brand's messaging and audience preferences. You'll have the ability to review and approve the ad before launch.",
+            "image": "/images/creative-development.avif"
+          },
+          {
+            "icon": "rocket",
+            "title": "Launch",
+            "description": "With your approval, we deploy your ads across targeted YouTube channels and videos, reaching your desired audience at scale.",
+            "image": "/images/campaign-launch.avif"
+          },
+          {
+            "icon": "chart-bar",
+            "title": "Reporting",
+            "description": "We provide detailed reports on the performance of your YouTube ads, offering actionable insights to optimize future campaigns and drive better results.",
+            "image": "/images/reporting.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Our Marketing Service Approach is Simple",
+        "description": "We believe great marketing shouldn't be complicated. Here's how we help businesses grow.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "ear",
+            "title": "We Listen",
+            "description": "We take time to understand your business, goals, and challenges before recommending solutions."
+          },
+          {
+            "icon": "chess",
+            "title": "We Strategize",
+            "description": "Every business is different. We create custom strategies tailored to your unique needs and budget."
+          },
+          {
+            "icon": "player-play",
+            "title": "We Execute",
+            "description": "From production to launch, we handle everything so you can focus on running your business."
+          },
+          {
+            "icon": "chart-dots",
+            "title": "We Measure",
+            "description": "We track results and provide clear reports so you always know what's working."
+          },
+          {
+            "icon": "settings",
+            "title": "We Optimize",
+            "description": "Marketing isn't set-it-and-forget-it. We continuously improve to maximize your exposure."
+          },
+          {
+            "icon": "headset",
+            "title": "We Support",
+            "description": "Questions? Updates? We're here whenever you need us with friendly, responsive support."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "title": "Common Questions Asked About YouTube Advertising",
+        "faqs": [
+          {
+            "question": "Who is my target audience on YouTube?",
+            "answer": "Your target audience on YouTube depends on factors such as demographics, interests, and online behavior."
+          },
+          {
+            "question": "How do I measure the success of my YouTube advertising campaigns?",
+            "answer": "Success metrics for YouTube advertising campaigns include views, watch time, click-through rates (CTR), and conversions."
+          },
+          {
+            "question": "What are the best practices for integrating YouTube advertising into my overall marketing strategy?",
+            "answer": "YouTube Advertising is a powerful medium for increasing brand awareness with a global audience. YouTube advertising should be an addition to Foundation Marketing Products and Lead Generation solutions. Let us help you determine if YouTube advertising is right for you."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "badge": "Service Areas",
+        "title": "We Put Local Brands on the Map",
+        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
+        "variant": "full",
+        "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
+        "locations": [
+          {
+            "name": "Bloomfield",
+            "href": "/"
+          },
+          {
+            "name": "Montclair",
+            "href": "/locations/montclair"
+          },
+          {
+            "name": "Verona",
+            "href": "/locations/verona"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "YouTube Advertising | Targeted Video Ads",
+    "description": "Reach a highly engaged audience on the world's largest video platform with targeted YouTube in-stream ads that build brand awareness.",
+    "keywords": "YouTube advertising {city}, YouTube ads {city}, video advertising {state}, in-stream video ads, YouTube marketing agency {city}"
+  }
+}
