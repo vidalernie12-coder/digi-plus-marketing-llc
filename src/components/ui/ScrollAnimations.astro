@@ -1,0 +1,42 @@
+---
+// Scroll Animation Component
+// Add this once to your layout to enable fade-in animations
+---
+
+<script>
+  function initScrollAnimations() {
+    const sections = document.querySelectorAll(".fade-in-section, .slide-in-left, .slide-in-right, .scale-in");
+
+    if (!sections.length) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-100px", // Trigger 100px before element enters viewport
+      threshold: 0, // Trigger as soon as any part enters the trigger zone
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          // Optional: stop observing after animation
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollAnimations);
+  } else {
+    initScrollAnimations();
+  }
+
+  // Re-initialize after Astro page transitions
+  document.addEventListener("astro:after-swap", initScrollAnimations);
+</script>

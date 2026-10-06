@@ -1,0 +1,174 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  eyebrow?: string;
+  features: Feature[];
+  background?: "white" | "light" | "primary";
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  features,
+  background = "white",
+  ctaText,
+  ctaLink,
+} = Astro.props;
+
+// Determine grid columns based on feature count (max 3 columns)
+const getGridCols = (count: number) => {
+  if (count === 1) return "grid-cols-1 max-w-md mx-auto";
+  if (count === 2) return "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto";
+  if (count === 3) return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+  if (count === 4) return "grid-cols-1 md:grid-cols-2"; // 2x2 grid, full width
+  // For 5+ features, use 3 columns (will wrap naturally)
+  return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+};
+
+const gridCols = getGridCols(features.length);
+
+const bgClasses = {
+  white: "bg-white",
+  light: "bg-neutral",
+  primary: "bg-primary",
+};
+
+const textColorClasses = {
+  white: "text-primary",
+  light: "text-primary",
+  primary: "text-white",
+};
+
+const descriptionColorClasses = {
+  white: "text-primary-dark",
+  light: "text-primary-dark",
+  primary: "text-neutral",
+};
+---
+
+<section class={`py-16 md:py-24 ${bgClasses[background]} fade-in-section`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      {
+        eyebrow && (
+          <div class="flex justify-center mb-4">
+            <div
+              class={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${background === "primary" ? "bg-white/10 border border-white/20" : "bg-primary/5 border border-primary-light/30"}`}
+            >
+              <span
+                class={`w-2 h-2 rounded-full ${background === "primary" ? "bg-white" : "bg-primary-light"}`}
+              />
+              <span
+                class={`section-eyebrow ${background === "primary" ? "text-white" : "text-primary"}`}
+              >
+                {eyebrow}
+              </span>
+            </div>
+          </div>
+        )
+      }
+
+      <h2 class={`section-title mb-6 ${textColorClasses[background]}`}>
+        {title}
+      </h2>
+
+      {
+        description && (
+          <p
+            class={`section-description ${descriptionColorClasses[background]}`}
+            set:html={description}
+          />
+        )
+      }
+    </div>
+
+    <!-- Features Grid -->
+    <div class={`grid ${gridCols} gap-8`}>
+      {
+        features.map((feature) => (
+          <div
+            class={`group relative p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 ${
+              background === "primary"
+                ? "bg-white/5 hover:bg-white/10 border border-white/10"
+                : "bg-white hover:shadow-xl border-2 border-primary-light/20 hover:border-primary-light"
+            }`}
+          >
+            {/* Icon */}
+            <div
+              class={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
+                background === "primary"
+                  ? "bg-white/10"
+                  : "bg-primary text-white"
+              }`}
+            >
+              <Icon
+                name={feature.icon}
+                class={`w-8 h-8 ${background === "primary" ? "text-white" : ""}`}
+              />
+            </div>
+
+            {/* Content */}
+            <h3
+              class={`text-xl font-bold mb-3 ${
+                background === "primary" ? "text-white" : "text-primary"
+              }`}
+            >
+              {feature.title}
+            </h3>
+
+            <p
+              class={`text-base leading-relaxed ${
+                background === "primary" ? "text-neutral" : "text-primary-dark"
+              }`}
+              set:html={feature.description}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- CTA Button -->
+    {
+      ctaText && ctaLink && (
+        <div class="mt-12 text-center">
+          <a
+            href={ctaLink}
+            class={`inline-flex items-center gap-2 px-8 py-4 text-base font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0 ${
+              background === "primary"
+                ? "bg-white text-primary hover:bg-neutral"
+                : "bg-primary text-white hover:bg-primary-darker"
+            }`}
+          >
+            {ctaText}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

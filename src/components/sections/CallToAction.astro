@@ -1,0 +1,140 @@
+---
+interface Action {
+  text: string;
+  href: string;
+  variant?: "primary" | "secondary" | "outline";
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  actions?: Action[];
+  background?: "light" | "dark" | "primary";
+}
+
+const { title, subtitle, actions = [], background = "primary" } = Astro.props;
+
+const bgClasses = {
+  light: "bg-gradient-to-br from-neutral via-primary-light/20 to-white",
+  dark: "bg-primary-dark",
+  primary: "bg-primary-dark",
+};
+
+const textColorClasses = {
+  light: "text-primary",
+  dark: "text-white",
+  primary: "text-white",
+};
+
+const subtitleColorClasses = {
+  light: "text-primary-dark",
+  dark: "text-neutral",
+  primary: "text-neutral",
+};
+---
+
+<section class="relative py-12 md:py-16 fade-in-section">
+  <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Card Container -->
+    <div
+      class={`${background === "light" ? "bg-gradient-to-br from-neutral via-primary-light/20 to-white shadow-xl" : "bg-primary-dark shadow-2xl"} rounded-2xl p-6 md:p-10 relative overflow-hidden`}
+    >
+      <!-- Top Accent Bar -->
+      <div
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-light via-primary to-primary-dark"
+      >
+      </div>
+
+      <!-- Icon -->
+      <div class="flex justify-center mb-4">
+        <div
+          class={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg ${background === "light" ? "bg-primary text-white" : "bg-white text-primary"}`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="text-center space-y-4">
+        <h2
+          class={`text-2xl md:text-3xl lg:text-4xl font-bold leading-tight ${textColorClasses[background]}`}
+        >
+          {title}
+        </h2>
+
+        {
+          subtitle && (
+            <p
+              class={`cta-subtitle text-base md:text-lg leading-relaxed max-w-3xl mx-auto ${subtitleColorClasses[background]}`}
+              set:html={subtitle}
+            />
+          )
+        }
+
+        <!-- Actions -->
+        {
+          actions.length > 0 && (
+            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center pt-2">
+              {actions.map((action) => {
+                const isPrimary =
+                  action.variant === "primary" || !action.variant;
+                const isSecondary = action.variant === "secondary";
+                const isOutline = action.variant === "outline";
+
+                let buttonClasses =
+                  "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm md:text-base font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0";
+
+                if (isPrimary) {
+                  buttonClasses +=
+                    background === "light"
+                      ? " bg-primary-dark text-white hover:bg-primary-darker"
+                      : " bg-white text-primary-dark hover:bg-gray-50";
+                } else if (isSecondary) {
+                  buttonClasses +=
+                    " bg-primary text-white hover:bg-primary-dark";
+                } else if (isOutline) {
+                  buttonClasses +=
+                    background === "light"
+                      ? " bg-white/50 backdrop-blur-sm text-primary border-2 border-primary-light hover:border-primary hover:bg-white/70"
+                      : " bg-transparent text-white border-2 border-white/30 hover:border-white hover:bg-white/10";
+                }
+
+                return (
+                  <a href={action.href} class={buttonClasses}>
+                    {action.text}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                );
+              })}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

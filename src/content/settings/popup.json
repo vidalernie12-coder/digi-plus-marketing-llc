@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "title": "Get a Free Scan",
+  "description": "Find out how your business can improve its online presence with a free digital scan.",
+  "buttonText": "Ask for a Free Scan",
+  "buttonHref": "/contact-us",
+  "image": "",
+  "delay": 5
+}

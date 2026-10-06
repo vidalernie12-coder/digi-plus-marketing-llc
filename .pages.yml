@@ -1,0 +1,894 @@
+# =============================================================================
+# Pages CMS config for progressive-section-template
+# https://pagescms.org/docs/configuration
+# =============================================================================
+#
+# HOW THIS PROJECT LOADS CONTENT (differs from the standard getCollection() model)
+# --------------------------------------------------------------------------------
+# Nothing here is read via Astro's getCollection(). Every page/section/settings
+# JSON file is statically imported by hand and dispatched at render time:
+#   - Each src/pages/**/*.astro route `import`s its page's JSON directly (or via
+#     src/data/collections.ts for the solutions/indoor-billboards [slug] routes).
+#   - Each import is run through localizeData() (src/config/site.ts), which does a
+#     recursive {city}/{state}/{business}/{phone}/... token replacement. So the
+#     literal "{city}" you see stored in the JSON is intentional template text —
+#     don't "fix" it in the CMS.
+#   - Sections render through src/components/sections/SectionRenderer.astro, which
+#     switches on each section's `discriminant` and sorts by `order` (defaulting to
+#     0, i.e. it otherwise preserves array order). There is NO content.config.ts /
+#     Zod schema in this repo — the field lists below were derived by reading the
+#     real JSON (the union of keys actually present across all 22 page + 4 location
+#     files) and cross-checking each against its section component's props.
+#
+# THE SECTION SHAPE — why blocks wrap their fields in a `value` object
+# --------------------------------------------------------------------------------
+# This is the one big structural difference from the pages-yml-sample.yml skeleton.
+# The sample site stored sections FLAT: { "section": "Hero", "title": ..., ... }.
+# THIS site stores them NESTED:          { "discriminant": "hero", "value": { ... } }.
+# Pages CMS `type: block` writes a block's fields as *siblings* of its blockKey,
+# so a naive `blockKey: discriminant` would flatten our data and break the round
+# trip. The fix: every block below has blockKey `discriminant` plus a single
+# `value` field of `type: object` that holds that block's real sub-fields. That
+# reproduces { discriminant, value: {...} } exactly and keeps per-type schemas.
+#
+# BLOCK NAMES FOLLOW THE DATA, NOT THE COMPONENTS
+# --------------------------------------------------------------------------------
+# The block names are the exact `discriminant` strings that appear in the JSON
+# (hero, heroHome, content, features, featuresWithButton, valueCards, cta, faq,
+# locations, network, contact) — lowercase, as stored. SectionRenderer maps
+# several of them onto shared/renamed components (e.g. `content` → ContentWithImage
+# / ContentWithKeypoints / BoostVisibility depending on `variant`; `cta` → CTALight
+# or CallToAction; `featuresWithButton` → ServicesGrid), and also accepts legacy
+# PascalCase aliases that no real JSON uses. We wire only the discriminants the
+# data actually contains.
+#
+# rich-text vs text: nearly every section renders its `description` (and faq
+# answers, feature/card descriptions, legalSections content) via `set:html`, and
+# the real JSON contains inline HTML — <strong> and <a href=... style="..."> links.
+# Those fields are therefore `rich-text`. NOTE: the styled links use inline
+# style="" attributes; the WYSIWYG toolbar can't reproduce them, so use the
+# rich-text editor's Source/HTML tab when editing links that must stay styled.
+#
+# navOrder / navLabel (CMS-only backfill — the site never reads these)
+# --------------------------------------------------------------------------------
+# Added to every page/location JSON purely to drive the CMS list order/labels.
+# `navOrder` follows the real navbar.json link sequence: Home, About Us, then
+# Indoor Billboards' 3 items, then Solutions' 9 megamenu items in menu order,
+# then the Contact Us CTA button, then footer-only legal pages (Privacy, Terms).
+# Locations are ordered alphabetically (the /locations index sorts that way).
+# `navLabel` is the short nav label, used as the list's primary column because a
+# page's SEO `title` legitimately differs from its nav label (home.json's title is
+# a full SEO headline; its nav label is just "Home"). Both are plain backfilled
+# data — nothing in the Astro site reads them.
+#
+# NO COLOR WIDGETS
+# --------------------------------------------------------------------------------
+# Brand colors live in site.json (business/colors) and feed the Tailwind build.
+# Pages CMS has no color-swatch widget and editing hex here wouldn't retint the
+# compiled CSS reliably, so colors are exposed as plain strings under Site
+# Settings only; there is no theme/color builder.
+#
+# EXCLUDED ON PURPOSE (can't be a git-file-edited CMS field)
+# --------------------------------------------------------------------------------
+#   - Case Studies (src/pages/about-us/case-studies/*.astro) — sourced live at
+#     request time from a Supabase Edge Function (src/lib/case-studies.ts), not a
+#     git-tracked file. Those routes are prerender=false. Pages CMS can't manage
+#     them. The FAQs / MapSection / grid copy on those two routes is also hardcoded
+#     in the .astro files, not JSON, so it's intentionally not exposed.
+#   - /locations/index.astro and /indoor-billboards (the section landing) — the
+#     locations index Hero + card grid is hardcoded in the .astro (it only reads
+#     the location files for the card list), so it's not CMS-editable; the per-city
+#     pages under it ARE (see the Location Pages collection).
+#   - Features.astro is an EMPTY file and ContentWithVideo.astro is imported by
+#     SectionRenderer only under discriminants no JSON uses — dead paths, nothing
+#     to wire.
+#   - NetworksSection (`network` discriminant) IS wired — real content exists for
+#     it in connected-tv.json — even though it's used on only one page.
+#   - The site-wide bottom CTA banner ("Ready to Grow Your Business?") is hardcoded
+#     in src/layouts/BaseLayout.astro (rendered on every page via showGlobalCTA,
+#     default on; off for 404). It's not sourced from any JSON, so it isn't CMS-
+#     editable — to make it editable it would need to move into a singleton and be
+#     read by the layout. Left hardcoded for now.
+#
+# POPUP (wired during this rebuild)
+# --------------------------------------------------------------------------------
+# popup.json was previously orphaned (nothing imported it) while PopupModal.astro
+# rendered on the homepage with hardcoded copy. As part of this rebuild the modal
+# was refactored to take enabled/title/description/image props (and its formerly
+# hardcoded body paragraph now renders {description}); index.astro sources those
+# from popup.json and shows the floating trigger + modal only when `enabled`. The
+# JSON `delay` is in SECONDS (converted to ms in the route). It's exposed as the
+# "Popup Modal" singleton below. Default stays enabled (matches prior behavior).
+# =============================================================================
+
+media:
+  input: public/images
+  output: /images
+
+settings:
+  content:
+    merge: true
+
+# Reusable icon picker. SectionRenderer prefixes these with "tabler:" (and remaps
+# a few names), so store the bare tabler name. This is the set of icons actually
+# used across the section JSON plus common extras.
+components:
+  icon-select:
+    label: Icon
+    type: select
+    options:
+      values:
+        - check
+        - target
+        - clock
+        - zap
+        - google
+        - monitor
+        - share
+        - share2
+        - tv
+        - palette
+        - rocket
+        - users
+        - star
+        - award
+        - shield
+        - phone
+        - mail
+        - map-pin
+        - mappin
+        - megaphone
+        - trending
+        - settings
+        - tools
+        - wrench
+        - handshake
+        - sparkles
+        - message
+        - heart
+        - dollar
+        - circledot
+        - refresh
+
+content:
+  # ===========================================================================
+  # SINGLETONS (type: file) — one per global JSON file
+  # ===========================================================================
+
+  - name: site-settings
+    label: Site Settings
+    type: file
+    path: src/content/settings/site.json
+    format: json
+    fields:
+      - name: business
+        label: Business Info
+        type: object
+        fields:
+          - { name: name, label: Business Name, type: string, required: true }
+          - { name: fullName, label: Business Full Name, type: string, required: false }
+          - { name: tagline, label: Tagline, type: string, required: false }
+          - { name: description, label: Description, type: text, required: false }
+      - name: location
+        label: Location
+        type: object
+        fields:
+          - { name: city, label: City, type: string, required: true }
+          - { name: state, label: "State (abbrev., e.g. CO)", type: string, required: false }
+          - { name: stateFull, label: "State (full, e.g. Colorado)", type: string, required: false }
+          - { name: address, label: Address, type: string, required: false }
+          - { name: fullAddress, label: Full Address, type: string, required: false }
+      - name: contact
+        label: Contact
+        type: object
+        fields:
+          - { name: email, label: Email, type: string, required: true }
+          - { name: phone, label: "Phone (digits only)", type: string, required: false }
+          - { name: phoneFormatted, label: "Phone (formatted)", type: string, required: false }
+      - name: colors
+        label: Brand Colors
+        type: object
+        # Displayed for reference only — these feed the Tailwind build, not a live
+        # theme. See the header note on why there's no color widget.
+        fields:
+          - { name: primary, label: Primary Color, type: string, required: false, description: "Hex code, e.g. #1a2b5c" }
+          - { name: secondary, label: Secondary Color, type: string, required: false }
+          - { name: tertiary, label: Tertiary Color, type: string, required: false }
+          - { name: quaternary, label: Quaternary Color, type: string, required: false }
+      - name: logo
+        label: Logo
+        type: object
+        fields:
+          - { name: src, label: "Logo (full color)", type: image, required: false }
+          - { name: whiteSrc, label: "Logo (white, for dark backgrounds)", type: image, required: false }
+          - { name: alt, label: Logo Alt Text, type: string, required: false }
+      - name: social
+        label: Social Media
+        type: object
+        fields:
+          - { name: facebook, label: Facebook URL, type: string, required: false }
+          - { name: instagram, label: Instagram URL, type: string, required: false }
+          - { name: linkedin, label: LinkedIn URL, type: string, required: false }
+          - { name: youtube, label: YouTube URL, type: string, required: false }
+          - { name: twitter, label: Twitter/X URL, type: string, required: false }
+      - name: seo
+        label: SEO
+        type: object
+        fields:
+          - { name: siteName, label: Site Name, type: string, required: false }
+          - { name: defaultTitle, label: Default Page Title, type: string, required: false }
+          - { name: defaultDescription, label: Default Description, type: text, required: false }
+          - { name: keywords, label: Default Keywords, type: text, required: false }
+          - { name: siteUrl, label: Site URL, type: string, required: false }
+          - { name: ogImage, label: Default OG Image, type: image, required: false }
+          - { name: twitterHandle, label: Twitter Handle, type: string, required: false }
+      - name: analytics
+        label: Analytics
+        type: object
+        fields:
+          - { name: googleAnalyticsId, label: Google Analytics ID, type: string, required: false }
+
+  - name: popup-modal
+    label: Popup Modal
+    type: file
+    path: src/content/settings/popup.json
+    format: json
+    fields:
+      - { name: enabled, label: Enable Popup, type: boolean, default: true, description: "When off, the homepage consultation popup and its floating trigger button are not rendered." }
+      - { name: title, label: Title, type: string, required: false, description: "Headline shown at the top of the popup." }
+      - { name: description, label: Description, type: text, required: false }
+      - { name: buttonText, label: Button Text, type: string, required: false, description: "Used for both the popup's CTA button and the floating trigger button." }
+      - { name: buttonHref, label: Button Link, type: string, required: false }
+      - { name: image, label: Image, type: image, required: false, description: "Left-panel image (desktop). Leave blank to use the default." }
+      - { name: delay, label: "Auto-open delay (seconds)", type: number, default: 5, description: "Seconds before the popup auto-opens on desktop. 0 disables auto-open (the floating button still works)." }
+
+  - name: navbar
+    label: Navbar
+    type: file
+    path: src/content/settings/navbar.json
+    format: json
+    fields:
+      - name: navItems
+        label: Nav Items
+        type: block
+        blockKey: type
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {fields.title}"
+        blocks:
+          - name: link
+            label: Link
+            fields:
+              - { name: title, label: Title, type: string, required: true }
+              - { name: href, label: Link, type: string, required: true }
+          - name: dropdown
+            label: Dropdown
+            fields:
+              - { name: title, label: Title, type: string, required: true }
+              - { name: href, label: "Link (optional)", type: string, required: false }
+              - name: items
+                label: Dropdown Items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index}. {fields.title}"
+                fields:
+                  - { name: title, label: Title, type: string, required: true }
+                  - { name: description, label: Description, type: string, required: false }
+                  - { name: href, label: Link, type: string, required: true }
+                  - { name: icon, label: "Icon (tabler name, e.g. tabler:device-tv)", type: string, required: false }
+          - name: megamenu
+            label: Mega Menu
+            fields:
+              - { name: title, label: Title, type: string, required: true }
+              - { name: href, label: "Link (optional)", type: string, required: false }
+              - name: sections
+                label: Mega Menu Sections
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index}. {fields.label}"
+                fields:
+                  - { name: label, label: Section Label, type: string, required: true }
+                  - name: items
+                    label: Items
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: "{index}. {fields.title}"
+                    fields:
+                      - { name: title, label: Title, type: string, required: true }
+                      - { name: description, label: Description, type: string, required: false }
+                      - { name: href, label: Link, type: string, required: true }
+                      - { name: icon, label: "Icon (tabler name)", type: string, required: false }
+              - name: featured
+                label: Featured Items
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index}. {fields.title}"
+                fields:
+                  - { name: title, label: Title, type: string, required: true }
+                  - { name: description, label: Description, type: string, required: false }
+                  - { name: href, label: Link, type: string, required: true }
+                  - { name: thumbnail, label: Thumbnail, type: image, required: false }
+      - name: ctaButton
+        label: CTA Button
+        type: object
+        fields:
+          - { name: text, label: Button Text, type: string, required: false }
+          - { name: href, label: Button Link, type: string, required: false }
+
+  - name: footer
+    label: Footer
+    type: file
+    path: src/content/settings/footer.json
+    format: json
+    fields:
+      - { name: description, label: Footer Description, type: text, required: false }
+      - name: columns
+        label: Footer Columns
+        type: block
+        blockKey: type
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {fields.title}"
+        blocks:
+          - name: links
+            label: "Links Column"
+            fields:
+              - { name: title, label: Column Title, type: string, required: true }
+              - name: links
+                label: Links
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index}. {fields.label}"
+                fields:
+                  - { name: label, label: Label, type: string, required: true }
+                  - { name: href, label: Link, type: string, required: true }
+                  - { name: hasChildren, label: "Has children (styling flag)", type: boolean, required: false }
+                  - { name: child, label: "Is child (styling flag)", type: boolean, required: false }
+          - name: accordion
+            label: "Accordion Column"
+            fields:
+              - { name: title, label: Column Title, type: string, required: true }
+              - { name: href, label: "Title Link (optional)", type: string, required: false }
+              - name: sections
+                label: Sections
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{index}. {fields.label}"
+                fields:
+                  - { name: label, label: Section Label, type: string, required: true }
+                  - name: items
+                    label: Items
+                    type: object
+                    list:
+                      collapsible:
+                        collapsed: true
+                        summary: "{index}. {fields.label}"
+                    fields:
+                      - { name: label, label: Label, type: string, required: true }
+                      - { name: href, label: Link, type: string, required: true }
+          - name: contact
+            label: "Contact Column"
+            fields:
+              - { name: title, label: Column Title, type: string, required: true }
+      - name: bottomLinks
+        label: "Bottom Links (Legal)"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{index}. {fields.label}"
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: href, label: Link, type: string, required: true }
+
+  # ===========================================================================
+  # PAGES — grouped in the sidebar. Real, editable per-page content collections.
+  # Site Pages holds the &section_blocks anchor (it appears first); Location
+  # Pages aliases it (*section_blocks) since both render the same section set.
+  # ===========================================================================
+
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: site-pages
+        label: Site Pages
+        type: collection
+        path: src/data/pages
+        format: json
+        filename: "{primary}.json"
+        subfolders: false
+        view:
+          primary: navLabel
+          fields:
+            - navLabel
+            - title
+            - navOrder
+          sort:
+            - navOrder
+            - navLabel
+          default:
+            sort: navOrder
+            order: asc
+        fields:
+          # --- CMS-only ordering/label helpers (not read by the site) ---
+          - { name: navOrder, label: Nav Order, type: number, required: false, description: "CMS list order only — follows the real navbar sequence. Not rendered on the site." }
+          - { name: navLabel, label: Nav Label, type: string, required: false, description: "Short label for the CMS list. Not rendered on the site." }
+          # --- Real page-level fields (union of keys across all page JSON) ---
+          - { name: title, label: Page Title (SEO H1), type: string, required: true }
+          - { name: description, label: Meta Description, type: text, required: false }
+          - { name: keywords, label: SEO Keywords, type: text, required: false }
+          - name: sections
+            label: Page Sections
+            type: block
+            blockKey: discriminant
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{index}. {fields.discriminant}"
+            # Anchor: shared verbatim by the Location Pages collection below.
+            blocks: &section_blocks
+              # -------------------------------------------------------------
+              # hero — Hero.astro (image + eyebrow/title/subtitle + one CTA)
+              # -------------------------------------------------------------
+              - name: hero
+                label: "Hero"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: subtitle, label: Subtitle, type: rich-text, required: false, description: "Renders as HTML. Use the Source tab for styled links." }
+                      - { name: buttonText, label: Button Text, type: string, required: false }
+                      - { name: buttonHref, label: Button Link, type: string, required: false }
+                      - { name: image, label: Image, type: image, required: false }
+                      - { name: imageAlt, label: Image Alt Text, type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # heroHome — HeroHome.astro (homepage hero + sliding card gallery)
+              # -------------------------------------------------------------
+              - name: heroHome
+                label: "Hero (Homepage)"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: subtitle, label: Subtitle, type: rich-text, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        options:
+                          values: [cards]
+                      - name: cards
+                        label: Gallery Cards
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.title}"
+                        fields:
+                          - { name: title, label: Title, type: string, required: false }
+                          - { name: description, label: Description, type: text, required: false }
+                          - { name: image, label: Image, type: image, required: false }
+                          - { name: href, label: Link, type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # content — ContentWithImage / ContentWithKeypoints / BoostVisibility
+              # (the variant + presence of `features` decides which renders)
+              # -------------------------------------------------------------
+              - name: content
+                label: "Content With Image"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        description: "image-card / two-column = image + keypoints; simple = image + icon feature cards."
+                        options:
+                          values: [image-card, two-column, simple]
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false, description: "Renders as HTML. Use the Source tab for styled links." }
+                      - { name: image, label: Image, type: image, required: false }
+                      - { name: imageAlt, label: Image Alt Text, type: string, required: false }
+                      - name: imagePosition
+                        label: Image Position
+                        type: select
+                        required: false
+                        options:
+                          values: [left, right]
+                      - name: background
+                        label: Background
+                        type: select
+                        required: false
+                        options:
+                          values: [white, gray, primary-dark]
+                      - { name: buttonText, label: Button Text, type: string, required: false }
+                      - { name: buttonHref, label: Button Link, type: string, required: false }
+                      - name: features
+                        label: "Features / Keypoints"
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.text}"
+                        fields:
+                          - { name: icon, component: icon-select, required: false }
+                          - { name: text, label: "Text (\"Title. Description.\" for the simple variant)", type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # features — FeaturesSection.astro (icon feature grid + optional CTA)
+              # -------------------------------------------------------------
+              - name: features
+                label: "Features Section"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        options:
+                          values: [default]
+                      - { name: columns, label: Columns, type: number, required: false, description: "Grid columns, e.g. 3 or 4." }
+                      - name: features
+                        label: Features
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.title}"
+                        fields:
+                          - { name: icon, component: icon-select, required: false }
+                          - { name: title, label: Title, type: string, required: false }
+                          - { name: description, label: Description, type: rich-text, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # featuresWithButton — ServicesGrid.astro (dark linked service cards)
+              # -------------------------------------------------------------
+              - name: featuresWithButton
+                label: "Services Grid"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - { name: buttonText, label: Button Text, type: string, required: false }
+                      - { name: buttonHref, label: Button Link, type: string, required: false }
+                      - name: features
+                        label: Service Cards
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.title}"
+                        fields:
+                          - { name: icon, component: icon-select, required: false }
+                          - { name: title, label: Title, type: string, required: false }
+                          - { name: description, label: Description, type: text, required: false }
+                          - { name: href, label: Link, type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # valueCards — FeaturesWithImage.astro (image cards; carousel/grid)
+              # -------------------------------------------------------------
+              - name: valueCards
+                label: "Value Cards (Features With Image)"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        description: "overlay = image-overlay carousel; cards = static grid."
+                        options:
+                          values: [overlay, cards]
+                      - name: cards
+                        label: Cards
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.title}"
+                        fields:
+                          - { name: icon, component: icon-select, required: false }
+                          - { name: title, label: Title, type: rich-text, required: false, description: "Renders as HTML (supports \"Step N<br>\" prefixes)." }
+                          - { name: description, label: Description, type: rich-text, required: false }
+                          - { name: image, label: Image, type: image, required: false }
+                          - name: imageFit
+                            label: Image Fit
+                            type: select
+                            required: false
+                            options:
+                              values: [cover, contain]
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # cta — CallToAction.astro, or CTALight.astro when variant = card
+              # -------------------------------------------------------------
+              - name: cta
+                label: "Call To Action"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        description: "card = light centered CTA (CTALight); bold / banner = dark CTA (CallToAction)."
+                        options:
+                          values: [card, bold, banner]
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false, description: "Renders as HTML. Use the Source tab for styled links." }
+                      - { name: buttonText, label: Button Text, type: string, required: false }
+                      - { name: buttonHref, label: Button Link, type: string, required: false }
+                      - { name: image, label: Image, type: image, required: false }
+                      - { name: imageAlt, label: Image Alt Text, type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # faq — FAQs.astro (accordion of question/answer pairs)
+              # -------------------------------------------------------------
+              - name: faq
+                label: "FAQs"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        options:
+                          values: [accordion]
+                      - name: faqs
+                        label: FAQs
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.question}"
+                        fields:
+                          - { name: question, label: Question, type: string, required: false }
+                          - { name: answer, label: Answer, type: rich-text, required: false, description: "Renders as HTML. Use the Source tab for styled links." }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # locations — MapSection.astro (embedded map + linked location list)
+              # -------------------------------------------------------------
+              - name: locations
+                label: "Map / Locations"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: badge, label: Eyebrow / Badge, type: string, required: false }
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        description: "full = full-width map; overlay = card overlay."
+                        options:
+                          values: [full, overlay]
+                      - { name: mapUrl, label: Map Embed URL, type: string, required: false, description: "Google Maps embed src URL." }
+                      - name: locations
+                        label: Locations
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.name}"
+                        fields:
+                          - { name: name, label: Name, type: string, required: false }
+                          - { name: href, label: Link, type: string, required: false }
+                          - { name: description, label: Description, type: string, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # network — NetworksSection.astro (brand-logo carousels)
+              # -------------------------------------------------------------
+              - name: network
+                label: "Networks"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - name: networks
+                        label: Networks
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.title}"
+                        fields:
+                          - { name: title, label: Title, type: string, required: false }
+                          - { name: itemsPerView, label: Items Per View, type: number, required: false }
+                          - name: brands
+                            label: Brands
+                            type: object
+                            list:
+                              collapsible:
+                                collapsed: true
+                                summary: "{index}. {fields.name}"
+                            fields:
+                              - { name: name, label: Name, type: string, required: false }
+                              - { name: logo, label: Logo, type: image, required: false }
+                      - { name: order, label: Order, type: number, required: false }
+              # -------------------------------------------------------------
+              # contact — FormSection.astro (contact form + contact details)
+              # -------------------------------------------------------------
+              - name: contact
+                label: "Contact Form"
+                fields:
+                  - name: value
+                    label: " "
+                    type: object
+                    fields:
+                      - name: variant
+                        label: Variant
+                        type: select
+                        required: false
+                        options:
+                          values: [split]
+                      - { name: title, label: Title, type: string, required: false }
+                      - { name: description, label: Description, type: rich-text, required: false }
+                      - { name: secondaryDescription, label: Secondary Description, type: text, required: false }
+                      - { name: submitText, label: Submit Button Text, type: string, required: false }
+                      - { name: submitAction, label: Submit Action (form endpoint URL), type: string, required: false }
+                      - name: contactInfo
+                        label: Contact Info
+                        type: object
+                        description: "Phone/email/location shown beside the form. Tokens like {phone} pull from Site Settings."
+                        fields:
+                          - { name: phoneFormatted, label: "Phone (formatted)", type: string, required: false }
+                          - { name: phone, label: "Phone (digits, for tel: link)", type: string, required: false }
+                          - { name: email, label: Email, type: string, required: false }
+                          - { name: location, label: Location, type: string, required: false }
+                      - name: formFields
+                        label: Form Fields
+                        type: object
+                        list:
+                          collapsible:
+                            collapsed: true
+                            summary: "{index}. {fields.label}"
+                        fields:
+                          - { name: id, label: ID, type: string, required: false }
+                          - { name: name, label: Name (form key), type: string, required: false }
+                          - { name: label, label: Label, type: string, required: false }
+                          - name: type
+                            label: Field Type
+                            type: select
+                            required: false
+                            options:
+                              values: [text, email, tel, number, textarea, select, checkbox, radio]
+                          - { name: placeholder, label: Placeholder, type: string, required: false }
+                          - { name: required, label: Required, type: boolean, required: false }
+                          - name: width
+                            label: Width
+                            type: select
+                            required: false
+                            options:
+                              values: [full, half]
+                          - { name: rows, label: "Rows (for textarea)", type: number, required: false }
+                          - name: options
+                            label: "Options (for select/radio)"
+                            type: string
+                            list: true
+                      - { name: order, label: Order, type: number, required: false }
+          # --- Legal body sections (privacy.json / terms.json only) ---
+          - name: legalSections
+            label: Legal Sections
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{index}. {fields.title}"
+            fields:
+              - { name: title, label: Heading, type: string, required: false }
+              - { name: content, label: Content, type: rich-text, required: false, description: "Renders as HTML." }
+          # --- Per-page SEO metadata override ---
+          - name: metadata
+            label: SEO Metadata
+            type: object
+            fields:
+              - { name: title, label: Meta Title, type: string, required: false }
+              - { name: description, label: Meta Description, type: text, required: false }
+              - { name: keywords, label: Keywords, type: text, required: false }
+              - { name: noindex, label: "No-index (hide from search engines)", type: boolean, required: false }
+              - name: openGraph
+                label: Open Graph
+                type: object
+                fields:
+                  - { name: type, label: OG Type, type: string, required: false }
+                  - name: images
+                    label: OG Images
+                    type: object
+                    list: true
+                    fields:
+                      - { name: url, label: Image URL, type: string, required: false }
+
+      - name: location-pages
+        label: Location Pages
+        type: collection
+        path: src/data/locations
+        format: json
+        filename: "{primary}.json"
+        subfolders: false
+        view:
+          primary: title
+          fields:
+            - title
+            - city
+            - navOrder
+          sort:
+            - navOrder
+            - title
+          default:
+            sort: navOrder
+            order: asc
+        fields:
+          - { name: navOrder, label: Nav Order, type: number, required: false, description: "CMS list order only. Not rendered on the site." }
+          - { name: title, label: Page Title (SEO H1), type: string, required: true }
+          - { name: city, label: City, type: string, required: true, description: "Replaces the {location} token throughout this page." }
+          - { name: description, label: Meta Description, type: text, required: false }
+          - { name: keywords, label: SEO Keywords, type: text, required: false }
+          - name: sections
+            label: Page Sections
+            type: block
+            blockKey: discriminant
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{index}. {fields.discriminant}"
+            blocks: *section_blocks
+          - name: metadata
+            label: SEO Metadata
+            type: object
+            fields:
+              - { name: title, label: Meta Title, type: string, required: false }
+              - { name: description, label: Meta Description, type: text, required: false }
+              - { name: keywords, label: Keywords, type: text, required: false }

@@ -1,0 +1,187 @@
+---
+interface Action {
+  text: string;
+  href: string;
+  variant?: "primary" | "secondary";
+}
+
+interface Props {
+  title?: string;
+  tagline?: string;
+  eyebrow?: string;
+  subtitle?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  image?: string;
+  background?: string;
+  actions?: Action[];
+}
+
+const {
+  title,
+  tagline,
+  eyebrow,
+  subtitle,
+  description,
+  ctaText,
+  ctaLink,
+  secondaryCtaText,
+  secondaryCtaLink,
+  image,
+  actions = [],
+} = Astro.props;
+
+// Support both naming conventions
+const displayEyebrow = eyebrow || tagline;
+const displayDescription = description || subtitle;
+---
+
+<section class="relative overflow-hidden -mt-16 sm:-mt-24 pt-24 sm:pt-32 pb-16 md:pt-40 md:pb-24">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class={`grid grid-cols-1 ${image ? "lg:grid-cols-2" : ""} gap-12 lg:gap-16 items-center`}
+    >
+      <!-- Content Column -->
+      <div class={!image ? "max-w-4xl mx-auto text-center" : ""}>
+        {
+          displayEyebrow && (
+            <div
+              class={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary-light/30 mb-6`}
+            >
+              <span class="w-2 h-2 rounded-full bg-primary-light" />
+              <span class="section-eyebrow text-primary">{displayEyebrow}</span>
+            </div>
+          )
+        }
+
+        {title && <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-primary mb-6">{title}</h1>}
+
+        {/* Accent line */}
+        <div
+          class={`w-20 h-1 bg-primary-light rounded-full mb-6 ${!image ? "mx-auto" : ""}`}
+        >
+        </div>
+
+        {
+          displayDescription && (
+            <p
+              class={`section-description text-primary-dark mb-8 ${!image ? "max-w-3xl mx-auto" : ""}`}
+            >
+              {displayDescription}
+            </p>
+          )
+        }
+
+        {
+          (ctaText || secondaryCtaText || actions.length > 0) && (
+            <div
+              class={`flex flex-col sm:flex-row gap-4 ${!image ? "justify-center" : ""}`}
+            >
+              {/* Support actions array (from dynamic pages) */}
+              {actions.length > 0 &&
+                actions.map((action) => (
+                  <a
+                    href={action.href}
+                    class={`group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold rounded-full transition-all duration-300 ${
+                      action.variant === "secondary"
+                        ? "border-2 border-primary-light !text-primary hover:bg-primary-light/10 shadow-md hover:shadow-lg"
+                        : "bg-primary-dark !text-white hover:bg-primary-darker shadow-lg hover:shadow-xl"
+                    }`}
+                    style={
+                      action.variant === "secondary"
+                        ? ""
+                        : "color: white !important;"
+                    }
+                  >
+                    <span
+                      class={
+                        action.variant === "secondary"
+                          ? "text-primary"
+                          : "text-white"
+                      }
+                    >
+                      {action.text}
+                    </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
+                ))}
+
+              {/* Support direct props (from static pages) */}
+              {actions.length === 0 && ctaText && ctaLink && (
+                <a
+                  href={ctaLink}
+                  class="group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold rounded-full transition-all duration-300 bg-primary-dark !text-white hover:bg-primary-darker shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0"
+                  style="color: white !important;"
+                >
+                  <span class="text-white">{ctaText}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+              )}
+              {actions.length === 0 && secondaryCtaText && secondaryCtaLink && (
+                <a
+                  href={secondaryCtaLink}
+                  class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold rounded-full transition-all duration-300 border-2 border-primary-light !text-primary hover:bg-primary-light/10 shadow-md hover:shadow-lg hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0"
+                >
+                  <span class="text-primary">{secondaryCtaText}</span>
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Image Column -->
+      {
+        image && (
+          <div class="relative group">
+            {/* Background shape */}
+            <div class="absolute inset-0 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6 bg-primary-light/30" />
+
+            {/* Image container */}
+            <div class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+              <img
+                src={image}
+                alt={title || "Hero image"}
+                class="w-full h-auto max-h-[500px] object-cover"
+                loading="eager"
+              />
+
+              {/* Corner accent */}
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-primary opacity-30"
+                style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

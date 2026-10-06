@@ -1,0 +1,203 @@
+{
+  "navOrder": 8,
+  "navLabel": "Google Business Profile",
+  "title": "Google Business Profile",
+  "description": "Optimize your local presence and get found by customers searching for your services.",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Foundational",
+        "title": " Google Business Profile Optimization Service for Better Local Rankings",
+        "subtitle": "Boost the performance of your Google Business Profile so you appear on more relevant search result pages.",
+        "buttonText": "Get In Touch",
+        "buttonHref": "/contact-us",
+        "image": "/images/google-business-profile.avif"
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "variant": "two-column",
+        "title": "Google Business Profile Management",
+        "description": "Our Google Business Profile Management service offers a dedicated account specialists who expertly optimize your profile. They will handle everything from weekly posts to photo uploads. With us, your Google presence will be professionally managed, leaving you to focus on what you do best - running your business. <strong>Looking to maximize your online visibility?</strong> Pair GBP management with a professional <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong> for the ultimate digital presence.",
+        "image": "/images/google-business-profile-content.jpg",
+        "imagePosition": "left",
+        "background": "primary-dark"
+      }
+    },
+    {
+      "discriminant": "cta",
+      "value": {
+        "variant": "card",
+        "title": "Google Business Profile has a Huge Impact on Your Local SEO",
+        "description": "Our Google Business Profile is often a customer's first online exposure to your business. A properly managed profile drives local visibility, engagement, and credibility. This foundational marketing tool is crucial to maximizing the success of your business and any supplemental marketing efforts such as <strong><a href='/solutions/branding-awareness/connected-tv' style='text-decoration: none; color: inherit;'>CTV/OTT</a></strong>, <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>Pay-Per-Click</a></strong>, or <strong><a href='/solutions/branding-awareness/display-geofencing' style='text-decoration: none; color: inherit;'>Display Advertising</a></strong>.",
+        "buttonText": "Explore Our Digital Ad Services",
+        "buttonHref": "/contact-us"
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Boosting Visibility With Google Business Profile",
+        "description": "Whatever stage you're at, we have the expertise to take your Google Business Profile to the next level. <strong>Want to amplify your local presence?</strong> Combine GBP optimization with our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor billboard advertising</a></strong> to dominate your local market.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "world",
+            "title": "Dedicated Specialist",
+            "description": "A dedicated specialist will work alongside you to make sure your Google Business Profile is up to date and optimized. With regular report calls, you'll be looped into the important information."
+          },
+          {
+            "icon": "search",
+            "title": "Posting",
+            "description": "To boost the performance of your Google Business Profile, we'll post your unique content up to 20 times per month. This helps to boost local search visibility, build trust, and encourage potential customers to engage with you online. Need help creating engaging content? Check out our <strong><a href='/solutions/foundational/design-services' style='text-decoration: none; color: inherit;'>design services</a></strong>."
+          },
+          {
+            "icon": "refresh",
+            "title": "Review Management",
+            "description": "Effective review management is crucial for building trust and maintaining a positive online reputation. We'll answer with keyword-rich text that speaks in your brand voice."
+          },
+          {
+            "icon": "users",
+            "title": "Optimization",
+            "description": "We'll optimize your online presence by claiming and verifying your business listings, incorporating relevant keywords into descriptions, categories, and services. This helps to maintain consistent information across Google Maps and other directories to provide potential customers with accurate business data."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "title": "Steps to Setting Up Your Google Business Profile",
+        "variant": "cards",
+        "cards": [
+          {
+            "icon": "sparkles",
+            "title": "Step 1<br>On-Boarding",
+            "description": "We'll gather essential business information, claim and verify ownership of your listing across platforms.",
+            "image": "/images/on-boarding.avif"
+          },
+          {
+            "icon": "palette",
+            "title": "Step 2<br>Accessibility",
+            "description": "We'll ensure your Google Business Profile is visible, up-to-date, and accurately represents important business details such as address and hours of operation.",
+            "image": "/images/accessibility.avif"
+          },
+          {
+            "icon": "rocket",
+            "title": "Step 3<br>Management",
+            "description": "We'll actively manage and post fresh content, offers, and updates to keep your listing active and engaging for customers.",
+            "image": "/images/management.avif"
+          },
+          {
+            "icon": "trending",
+            "title": "Step 4<br>Report Calls and Continued Optimization",
+            "description": "You'll receive regular reports on your profile's performance. We'll continually refine and update your listing based on data and algorithm changes.",
+            "image": "/images/report-calls.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Our Marketing Service Approach is Simple",
+        "description": "We believe great marketing shouldn't be complicated. Here's how we help businesses grow.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "ear",
+            "title": "We Listen",
+            "description": "We take time to understand your business, goals, and challenges before recommending solutions."
+          },
+          {
+            "icon": "chess",
+            "title": "We Strategize",
+            "description": "Every business is different. We create custom strategies tailored to your unique needs and budget."
+          },
+          {
+            "icon": "player-play",
+            "title": "We Execute",
+            "description": "From design to launch, we handle everything so you can focus on running your business."
+          },
+          {
+            "icon": "chart-dots",
+            "title": "We Measure",
+            "description": "We track results and provide clear reports so you always know what's working."
+          },
+          {
+            "icon": "settings",
+            "title": "We Optimize",
+            "description": "Marketing isn't set-it-and-forget-it. We continuously improve to maximize your exposure."
+          },
+          {
+            "icon": "headset",
+            "title": "We Support",
+            "description": "Questions? Updates? We're here whenever you need us with friendly, responsive support."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "title": "Common Questions About Google Business Profile",
+        "description": "Get answers to the most common questions about our Google Business Profile services.",
+        "faqs": [
+          {
+            "question": "Why should I claim my listing?",
+            "answer": "By claiming your profile, you gain control over the information displayed by Google. Without claiming your listing, Google may inaccurately present details about your business, potentially leading to misinformation and missed sales opportunities."
+          },
+          {
+            "question": "What if I do not have access to the previous owner's account for the business?",
+            "answer": "Regaining access can take some extra steps such as providing additional documentation to prove your ownership. We have experience working with Google to get new owners properly verified, ensuring you have full control of your digital presence."
+          },
+          {
+            "question": "How important is it to have a Google Business Profile?",
+            "answer": "Having a claimed Google Business Profile is essential to business success. An optimized profile impacts visibility in Google Search and Maps, builds trust and credibility with potential customers, and drives more foot traffic to your <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong>."
+          },
+          {
+            "question": "How can I get more reviews on my Google Business Profile?",
+            "answer": "We help you implement review generation strategies and respond professionally to all reviews. Want to drive more customers to leave reviews? Our <strong><a href='/solutions/foundational/social-media-management' style='text-decoration: none; color: inherit;'>social media management</a></strong> and <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC campaigns</a></strong> can drive more engaged customers to your business."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "badge": "Service Areas",
+        "title": "We Put Local Brands on the Map",
+        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
+        "variant": "full",
+        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "locations": [
+          {
+            "name": "Aurora",
+            "href": "/locations/aurora"
+          },
+          {
+            "name": "Arvada",
+            "href": "/locations/arvada"
+          },
+          {
+            "name": "Lakewood",
+            "href": "/locations/lakewood"
+          },
+          {
+            "name": "Centennial",
+            "href": "/locations/centennial"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Google Business Profile Optimization | {business}",
+    "description": "Stand out in local search and maps in {city}. We optimize and manage your profile to drive traffic, calls, and customers.",
+    "keywords": "Google Business Profile optimization {city}, Google My Business management, local SEO {city}, Google Maps optimization, GBP management {city}, local search optimization, Google listing optimization"
+  }
+}

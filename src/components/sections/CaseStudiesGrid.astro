@@ -1,0 +1,311 @@
+---
+// Case Studies grid — a presentation-only SECTION component, built the same way
+// as the template's other sections (eyebrow pill + section-title header, the
+// max-w-7xl container, the border-l-4 border-primary-light card DNA). It takes
+// data props only; the route fetches and passes them in.
+import type { CaseStudy } from "~/lib/case-studies";
+
+interface Props {
+  studies: CaseStudy[];
+  categories: string[];
+  /** Base URL these cards link under, e.g. "/about-us/case-studies". */
+  basePath: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  studies,
+  categories,
+  basePath,
+  eyebrow = "Proven Results",
+  title = "Case Studies",
+  description = "Real results from real local businesses.",
+} = Astro.props;
+
+// Filter pills: "All" first, then each distinct category.
+// Filtering is client-side (this page is statically pre-rendered), so all cards
+// render up front and a script toggles them — see the <script> at the bottom.
+const filters = ["All", ...categories];
+---
+
+<section class="py-16 md:py-24 bg-neutral fade-in-section">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      {
+        eyebrow && (
+          <div class="flex justify-center mb-4">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary-light/30">
+              <span class="w-2 h-2 rounded-full bg-primary-light" />
+              <span class="section-eyebrow text-primary">{eyebrow}</span>
+            </div>
+          </div>
+        )
+      }
+      <h2 class="section-title text-primary mb-6">{title}</h2>
+      {description && <p class="section-description text-primary-dark">{description}</p>}
+    </div>
+
+    <!-- Filter pills (client-side; "All" active by default) -->
+    {
+      filters.length > 1 && (
+        <nav
+          class="flex flex-wrap justify-center gap-3 mb-12"
+          aria-label="Filter case studies by category"
+          data-cs-filters
+        >
+          {filters.map((cat) => {
+            const active = cat === "All";
+            return (
+              <button
+                type="button"
+                data-filter={cat}
+                aria-pressed={active ? "true" : "false"}
+                class={`cs-pill inline-flex items-center px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
+                  active
+                    ? "bg-primary text-white shadow-md"
+                    : "bg-white text-primary-dark border-2 border-primary-light/20 hover:border-primary-light hover:text-primary"
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </nav>
+      )
+    }
+
+    <!-- Grid -->
+    {
+      studies.length === 0 ? (
+        <div class="max-w-md mx-auto text-center rounded-2xl border-2 border-primary-light/20 bg-white py-16 px-8">
+          <p class="text-lg font-bold text-primary mb-2">No case studies yet</p>
+          <p class="text-primary-dark">
+            Check back soon — new success stories are on the way.
+          </p>
+        </div>
+      ) : (
+        <>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          data-cs-grid
+        >
+          {studies.map((cs) => (
+            <a
+              href={`${basePath}/${cs.slug}`}
+              data-card
+              data-category={cs.category ?? ""}
+              class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border-2 border-primary-light/20 border-l-4 border-l-primary-light shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary-light"
+            >
+              {/* Thumbnail */}
+              <div class="relative aspect-[16/10] overflow-hidden bg-neutral-dark">
+                {cs.thumbnail_url ? (
+                  <img
+                    src={cs.thumbnail_url}
+                    alt={cs.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center text-primary-light/40">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-14 h-14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M3 21h18" />
+                      <path d="M5 21V7l8-4v18" />
+                      <path d="M19 21V11l-6-4" />
+                      <path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+
+              {/* Body */}
+              <div class="flex flex-1 flex-col p-6">
+                {cs.category && (
+                  <span class="inline-flex self-start items-center px-3 py-1 mb-3 rounded-full bg-primary/5 border border-primary-light/30 text-xs font-bold uppercase tracking-wider text-primary">
+                    {cs.category}
+                  </span>
+                )}
+
+                <h3 class="text-xl font-bold text-primary leading-snug mb-2 transition-colors group-hover:text-primary-dark">
+                  {cs.title}
+                </h3>
+
+                {cs.challenge_summary && (
+                  <p class="text-sm leading-relaxed text-primary-dark/80 line-clamp-3">
+                    {cs.challenge_summary}
+                  </p>
+                )}
+
+                {/* Read link */}
+                <div class="mt-auto pt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                  Read case study
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Shown by the script when a filter matches no studies */}
+        <div
+          class="max-w-md mx-auto text-center rounded-2xl border-2 border-primary-light/20 bg-white py-16 px-8 hidden"
+          data-cs-empty
+        >
+          <p class="text-lg font-bold text-primary mb-2">Nothing here yet</p>
+          <p class="text-primary-dark">
+            No case studies under <span data-cs-empty-cat class="font-bold">this category</span> yet.
+          </p>
+          <button
+            type="button"
+            data-cs-reset
+            class="inline-flex items-center gap-2 mt-6 text-sm font-bold text-primary hover:text-primary-dark transition-colors cursor-pointer"
+          >
+            View all case studies
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        </>
+      )
+    }
+  </div>
+</section>
+
+<script is:inline>
+  // Client-side category filter. The page is statically pre-rendered, so the
+  // ?category= query string can't be read server-side — we filter the already
+  // rendered cards here instead, keep the active pill in sync, and reflect the
+  // choice in the URL (so links/refresh restore the filter). No page reload.
+  //
+  // Inline (is:inline) so it ships verbatim in the HTML and can't be tree-shaken.
+  // Written in plain JS for the same reason (no TS stripping on inline scripts).
+  (function () {
+    function initCaseStudyFilters() {
+      var navs = document.querySelectorAll("[data-cs-filters]");
+      for (var n = 0; n < navs.length; n++) {
+        (function (nav) {
+          var section = nav.closest("section");
+          if (!section || section.dataset.csInit === "1") return;
+          section.dataset.csInit = "1";
+
+          var pills = Array.prototype.slice.call(
+            nav.querySelectorAll("[data-filter]")
+          );
+          var cards = Array.prototype.slice.call(
+            section.querySelectorAll("[data-card]")
+          );
+          var empty = section.querySelector("[data-cs-empty]");
+          var emptyCat = section.querySelector("[data-cs-empty-cat]");
+          var resetBtn = section.querySelector("[data-cs-reset]");
+
+          var ACTIVE = ["bg-primary", "text-white", "shadow-md"];
+          var IDLE = [
+            "bg-white",
+            "text-primary-dark",
+            "border-2",
+            "border-primary-light/20",
+            "hover:border-primary-light",
+            "hover:text-primary",
+          ];
+
+          var validCats = {};
+          pills.forEach(function (p) {
+            validCats[p.getAttribute("data-filter")] = true;
+          });
+
+          function setActive(cat) {
+            pills.forEach(function (p) {
+              var on = p.getAttribute("data-filter") === cat;
+              p.setAttribute("aria-pressed", on ? "true" : "false");
+              (on ? IDLE : ACTIVE).forEach(function (c) {
+                p.classList.remove(c);
+              });
+              (on ? ACTIVE : IDLE).forEach(function (c) {
+                p.classList.add(c);
+              });
+            });
+          }
+
+          function apply(rawCat, pushUrl) {
+            var cat = validCats[rawCat] ? rawCat : "All";
+            var shown = 0;
+            cards.forEach(function (card) {
+              var match =
+                cat === "All" || card.getAttribute("data-category") === cat;
+              card.classList.toggle("hidden", !match);
+              if (match) shown++;
+            });
+
+            setActive(cat);
+            if (empty) empty.classList.toggle("hidden", shown !== 0);
+            if (emptyCat && cat !== "All") emptyCat.textContent = cat;
+
+            if (pushUrl) {
+              var url = new URL(window.location.href);
+              if (cat === "All") url.searchParams.delete("category");
+              else url.searchParams.set("category", cat);
+              history.replaceState({}, "", url);
+            }
+          }
+
+          pills.forEach(function (pill) {
+            pill.addEventListener("click", function () {
+              apply(pill.getAttribute("data-filter") || "All", true);
+            });
+          });
+          if (resetBtn)
+            resetBtn.addEventListener("click", function () {
+              apply("All", true);
+            });
+
+          // Apply the initial filter from ?category= (deep links / refresh).
+          var initial =
+            new URL(window.location.href).searchParams.get("category") || "All";
+          apply(initial, false);
+        })(navs[n]);
+      }
+    }
+
+    initCaseStudyFilters();
+    // Re-run after client-side navigations (astro:transitions ClientRouter).
+    if (!window.__csFiltersBound) {
+      window.__csFiltersBound = true;
+      document.addEventListener("astro:page-load", initCaseStudyFilters);
+    }
+  })();
+</script>

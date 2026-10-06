@@ -1,0 +1,395 @@
+---
+// Case Study DETAIL page (under About Us). One published study, addressed by
+// slug. Under static output, getStaticPaths pre-renders one page per published
+// study at build time (a fresh publish needs a rebuild). Styled to this
+// template: eyebrow pills, primary/teal accents, the border-l-4 card DNA.
+import PageLayout from "~/layouts/PageLayout.astro";
+import MapSection from "~/components/sections/MapSection.astro";
+import FAQs from "~/components/sections/FAQs.astro";
+import { getCaseStudy } from "~/lib/case-studies";
+import type { CaseStudy } from "~/lib/case-studies";
+
+const basePath = "/about-us/case-studies";
+
+// Coverage-area locations, mirrored from the home page map section.
+const coverageLocations = [
+  { name: "Aurora", url: "/locations/aurora" },
+  { name: "Arvada", url: "/locations/arvada" },
+  { name: "Lakewood", url: "/locations/lakewood" },
+  { name: "Centennial", url: "/locations/centennial" },
+];
+
+// Shared FAQ content for the case studies pages.
+const caseStudyFaqs = [
+  {
+    question: "How long does it take to see results?",
+    answer:
+      "Most campaigns begin showing measurable movement within the first 30 to 60 days. The strongest gains tend to compound over the following months as data accumulates and targeting is refined.",
+  },
+  {
+    question: "Can these results be replicated for my business?",
+    answer:
+      "Yes. While every business is different, the strategy behind our work is repeatable. We combine audience research, precise targeting, and continuous optimization, then tailor it to each client's goals and market.",
+  },
+  {
+    question: "How do we get started?",
+    answer:
+      "Reach out for a free consultation. We'll review your current marketing, identify the biggest opportunities, and put together a tailored plan with no obligation.",
+  },
+];
+
+// Server-rendered so a freshly published study appears immediately (no rebuild).
+// Cached at the CDN edge for 60s.
+export const prerender = false;
+Astro.response.headers.set("Cache-Control", "public, max-age=0, s-maxage=60, stale-while-revalidate=300");
+
+// Live fetch this study by slug on each request (server-rendered).
+const cs = (await getCaseStudy(Astro.params.slug!)) as CaseStudy | null;
+if (!cs) return Astro.redirect("/404");
+
+// ── Logo guard ───────────────────────────────────────────────────────────────
+// Some studies have no real client logo; the API returns the generic NTV house
+// logo (or a hotlink-protected URL) as a stand-in. Don't render that as the
+// client's brand. Layer 1: blocklist known house-logo URLs. Layer 2: an onerror
+// on the <img> hides it and reveals the placeholder if the URL fails to load.
+const HOUSE_LOGO_BLOCKLIST = [
+  "/2025/02/New-Project-300x71.png",
+];
+const rawLogo = cs.client_logo_url?.trim() || "";
+const hasRealLogo =
+  rawLogo.length > 0 &&
+  !HOUSE_LOGO_BLOCKLIST.some((frag) => rawLogo.includes(frag));
+
+const metadata = {
+  title: `${cs.title} — Case Study`,
+  description:
+    cs.challenge_summary ||
+    cs.results_summary ||
+    `Case study: ${cs.title}.`,
+  image: cs.hero_image_url || cs.thumbnail_url || undefined,
+};
+
+// Building glyph reused for the logo placeholder + as an SVG below.
+---
+
+<PageLayout metadata={metadata} showGlobalCTA={true}>
+  <article class="py-12 md:py-20 bg-neutral">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Back link -->
+      <a
+        href={basePath}
+        class="inline-flex items-center gap-2 text-sm font-bold text-primary-dark/70 hover:text-primary transition-colors mb-8"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m12 19-7-7 7-7" />
+          <path d="M19 12H5" />
+        </svg>
+        All case studies
+      </a>
+
+      <!-- Header: logo + category + title -->
+      <header class="text-center max-w-3xl mx-auto mb-12">
+        <div class="flex justify-center mb-6">
+          {
+            hasRealLogo ? (
+              <>
+                <img
+                  src={cs.client_logo_url!}
+                  alt={cs.title}
+                  class="max-h-20 max-w-[240px] w-auto object-contain"
+                  data-logo
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';"
+                />
+                <span
+                  class="hidden items-center gap-3 px-5 py-3 rounded-xl bg-neutral-dark border-2 border-primary-light/20"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-7 h-7 text-primary-light"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 21h18" />
+                    <path d="M5 21V7l8-4v18" />
+                    <path d="M19 21V11l-6-4" />
+                    <path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01" />
+                  </svg>
+                  <span class="text-sm font-bold text-primary">
+                    {cs.industry ?? "Case Study"}
+                  </span>
+                </span>
+              </>
+            ) : (
+              <span class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-neutral-dark border-2 border-primary-light/20">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-7 h-7 text-primary-light"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7l8-4v18" />
+                  <path d="M19 21V11l-6-4" />
+                  <path d="M9 9v.01M9 12v.01M9 15v.01M9 18v.01" />
+                </svg>
+                <span class="text-sm font-bold text-primary">
+                  {cs.industry ?? "Case Study"}
+                </span>
+              </span>
+            )
+          }
+        </div>
+
+        {
+          cs.category && (
+            <div class="flex justify-center mb-4">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary-light/30">
+                <span class="w-2 h-2 rounded-full bg-primary-light" />
+                <span class="section-eyebrow text-primary">{cs.category}</span>
+              </div>
+            </div>
+          )
+        }
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-primary">
+          {cs.title}
+        </h1>
+        <div class="w-20 h-1 bg-primary-light rounded-full mx-auto mt-6"></div>
+      </header>
+
+      <!-- HERO + SIDEBAR -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6 lg:gap-8 mb-14">
+        {
+          cs.hero_image_url && (
+            <div class="rounded-2xl overflow-hidden shadow-lg min-h-[280px]">
+              <img
+                src={cs.hero_image_url}
+                alt={cs.title}
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+          )
+        }
+        <aside
+          class={`rounded-2xl bg-white border-2 border-primary-light/20 border-l-4 border-l-primary-light p-7 ${!cs.hero_image_url ? "lg:col-span-2" : ""}`}
+        >
+          <dl class="space-y-5">
+            {
+              cs.industry && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wider text-primary-light mb-1">
+                    Industry
+                  </dt>
+                  <dd class="text-primary-dark">{cs.industry}</dd>
+                </div>
+              )
+            }
+            {
+              cs.challenge_summary && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wider text-primary-light mb-1">
+                    Challenge
+                  </dt>
+                  <dd class="text-primary-dark leading-relaxed">
+                    {cs.challenge_summary}
+                  </dd>
+                </div>
+              )
+            }
+            {
+              cs.results_summary && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wider text-primary-light mb-1">
+                    Results
+                  </dt>
+                  <dd class="text-primary-dark leading-relaxed">
+                    {cs.results_summary}
+                  </dd>
+                </div>
+              )
+            }
+            {
+              cs.website_url && (
+                <div>
+                  <dt class="text-xs font-bold uppercase tracking-wider text-primary-light mb-1">
+                    Website
+                  </dt>
+                  <dd>
+                    <a
+                      href={cs.website_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 font-bold text-primary hover:text-primary-dark transition-colors break-all"
+                    >
+                      {cs.website_url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-3.5 h-3.5 flex-shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                      </svg>
+                    </a>
+                  </dd>
+                </div>
+              )
+            }
+          </dl>
+        </aside>
+      </div>
+
+      <!-- STAT BAND -->
+      {
+        cs.stats.length > 0 && (
+          <div class="rounded-2xl bg-primary text-white px-6 py-10 md:px-10 mb-16">
+            <div
+              class={`grid gap-8 text-center ${
+                cs.stats.length === 1
+                  ? "grid-cols-1"
+                  : cs.stats.length === 2
+                    ? "grid-cols-2"
+                    : cs.stats.length === 3
+                      ? "grid-cols-1 sm:grid-cols-3"
+                      : "grid-cols-2 lg:grid-cols-4"
+              }`}
+            >
+              {cs.stats.map((s) => (
+                <div>
+                  <div class="text-4xl md:text-5xl font-bold text-primary-light leading-none">
+                    {s.value}
+                  </div>
+                  <div class="mt-3 text-xs font-bold uppercase tracking-wider text-white/80">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- ABOUT + GALLERY -->
+      {
+        cs.about_business && (
+          <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16">
+            {cs.gallery.length > 0 && (
+              <div class="flex flex-col gap-4 order-last lg:order-first">
+                {cs.gallery.map((url) => (
+                  <img
+                    src={url}
+                    alt=""
+                    loading="lazy"
+                    class="w-full rounded-2xl object-cover shadow-lg"
+                  />
+                ))}
+              </div>
+            )}
+            <div class={cs.gallery.length === 0 ? "lg:col-span-2 max-w-3xl" : ""}>
+              <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">
+                About the Business
+              </h2>
+              <p class="text-primary-dark leading-relaxed whitespace-pre-line">
+                {cs.about_business}
+              </p>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- BODY SECTIONS -->
+      {
+        (cs.challenge_body || cs.solution_body || cs.results_body) && (
+          <div class="space-y-10 max-w-3xl mx-auto">
+            {cs.challenge_body && (
+              <section class="border-l-4 border-primary-light pl-6">
+                <h2 class="text-2xl font-bold text-primary mb-3">The Challenge</h2>
+                <p class="text-primary-dark leading-relaxed whitespace-pre-line">
+                  {cs.challenge_body}
+                </p>
+              </section>
+            )}
+            {cs.solution_body && (
+              <section class="border-l-4 border-primary-light pl-6">
+                <h2 class="text-2xl font-bold text-primary mb-3">The Solution</h2>
+                <p class="text-primary-dark leading-relaxed whitespace-pre-line">
+                  {cs.solution_body}
+                </p>
+              </section>
+            )}
+            {cs.results_body && (
+              <section class="border-l-4 border-primary-light pl-6">
+                <h2 class="text-2xl font-bold text-primary mb-3">The Results</h2>
+                <p class="text-primary-dark leading-relaxed whitespace-pre-line">
+                  {cs.results_body}
+                </p>
+              </section>
+            )}
+          </div>
+        )
+      }
+
+      <!-- Footer nav back to grid -->
+      <div class="mt-16 pt-10 border-t border-primary-light/20 text-center">
+        <a
+          href={basePath}
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold rounded-full bg-primary-dark !text-white hover:bg-primary-darker shadow-lg hover:shadow-xl transition-all duration-300"
+          style="color: white !important;"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m12 19-7-7 7-7" />
+            <path d="M19 12H5" />
+          </svg>
+          <span class="text-white">View all case studies</span>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <MapSection
+    eyebrow="Where We Work"
+    title="Our Coverage Area"
+    description="Explore the locations where we help local businesses grow."
+    mapUrl="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1"
+    locations={coverageLocations}
+    background="white"
+  />
+
+  <FAQs
+    title="Frequently Asked Questions"
+    faqs={caseStudyFaqs}
+    background="light"
+  />
+</PageLayout>

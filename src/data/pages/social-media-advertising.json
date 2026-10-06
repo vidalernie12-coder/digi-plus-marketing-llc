@@ -1,0 +1,197 @@
+{
+  "navOrder": 12,
+  "navLabel": "Social Media Advertising",
+  "title": "Social Media Advertising",
+  "description": "Professional social media advertising services to drive targeted traffic and conversions.",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Lead Generation",
+        "title": "Social Media Advertising",
+        "subtitle": "Drive engagement and growth with Social Media Advertising.",
+        "buttonText": "Get In Touch",
+        "buttonHref": "/contact-us",
+        "image": "/images/social-media-advertising.avif"
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "variant": "two-column",
+        "title": "Social Media Ads",
+        "description": "Social Media Advertising (SMA) allows you to position your brand on the platforms your audience loves most. With engaging visuals and thoughtful messaging, you can tailor your ads to match your target audience's behavioral patterns for maximum impact and lead generation.",
+        "image": "/images/advertising-content.avif",
+        "imagePosition": "right",
+        "background": "primary-dark"
+      }
+    },
+    {
+      "discriminant": "cta",
+      "value": {
+        "variant": "card",
+        "title": "Social Media Ads are Essential in Your Marketing Mix",
+        "description": "With unparalleled demographic information, engaging visuals, and powerful retargeting features, Social Media Advertising is one of the most effective forms of marketing available. By leveraging SMA, you can effectively generate leads and engage with your audience on the world's most powerful social platforms. Leverage SMA alongside <strong><a href='/solutions/branding-awareness/display-geofencing' style='text-decoration: none; color: inherit;'>Display Ads</a></strong>, <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong>, or <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>Pay-Per-Click</a></strong>.",
+        "buttonText": "Learn More",
+        "buttonHref": "/contact-us"
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Why You Need To Incorporate Social Media Ads",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "users",
+            "title": "Demographic Research",
+            "description": "Your dedicated specialist will identify platform algorithms to target your ideal customer."
+          },
+          {
+            "icon": "settings",
+            "title": "Expert Implementation and Management",
+            "description": "Your dedicated campaign manager will guide the performance of your social media advertising campaign to ensure optimization and placement."
+          },
+          {
+            "icon": "palette",
+            "title": "Creative",
+            "description": "As part of your advertising campaign, we'll strategically design your ad to engage your target audience effectively. With up to three rounds of possible revisions, we can ensure that your ad aligns with your brand."
+          },
+          {
+            "icon": "report-analytics",
+            "title": "Reporting",
+            "description": "We will provide detailed, insightful report calls to give you a comprehensive understanding of your strategy and its performance."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "valueCards",
+      "value": {
+        "title": "Steps On Social Media Ads",
+        "variant": "cards",
+        "cards": [
+          {
+            "icon": "users",
+            "title": "Step 1<br>On-Boarding Meeting",
+            "description": "During the onboarding phase, we'll work closely with you to understand your brand, goals, and target audience, laying the foundation for a successful social media ad strategy.",
+            "image": "/images/on-boarding.avif"
+          },
+          {
+            "icon": "palette",
+            "title": "Step 2<br>Insights & Creative Development",
+            "description": "As our creative team produces your ad, your strategist gathers deep insights into your industry landscape, your target audience, and emerging trends.",
+            "image": "/images/content-development.avif"
+          },
+          {
+            "icon": "rocket",
+            "title": "Step 3<br>Execution",
+            "description": "Once you've approved your ad, we will begin pushing out your campaign. During the lifetime of your campaign, we will continuously optimize your campaign to maximize impact and drive leads.",
+            "image": "/images/execution.jpeg"
+          },
+          {
+            "icon": "report-analytics",
+            "title": "Step 4<br>Reporting",
+            "description": "At the end of your campaign, we will provide you with a thorough report of the campaign's performance, delivering comprehensive insights and metrics for tracking progress and refining future strategies.",
+            "image": "/images/reporting.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Our Marketing Service Approach is Simple",
+        "description": "We believe great marketing shouldn't be complicated. Here's how we help businesses grow.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "ear",
+            "title": "We Listen",
+            "description": "We take time to understand your business, goals, and challenges before recommending solutions."
+          },
+          {
+            "icon": "chess",
+            "title": "We Strategize",
+            "description": "Every business is different. We create custom strategies tailored to your unique needs and budget."
+          },
+          {
+            "icon": "player-play",
+            "title": "We Execute",
+            "description": "From design to launch, we handle everything so you can focus on running your business."
+          },
+          {
+            "icon": "chart-dots",
+            "title": "We Measure",
+            "description": "We track results and provide clear reports so you always know what's working."
+          },
+          {
+            "icon": "settings",
+            "title": "We Optimize",
+            "description": "Marketing isn't set-it-and-forget-it. We continuously improve to maximize your exposure."
+          },
+          {
+            "icon": "headset",
+            "title": "We Support",
+            "description": "Questions? Updates? We're here whenever you need us with friendly, responsive support."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "title": "Common Questions Asked About Social Media Advertising",
+        "faqs": [
+          {
+            "question": "How much do social media ads cost?",
+            "answer": "The costs of advertising on platforms like Meta and LinkedIn may vary due to several factors such as the day of the week, demographics, and time of day. <strong><a href='/contact-us' style='text-decoration: none; color: inherit;'>Contact us</a></strong> for current pricing and questions regarding your social media ad needs."
+          },
+          {
+            "question": "How do you ensure our ads reach the right audience?",
+            "answer": "We utilize targeting tools provided by social media platforms to pinpoint your ideal audience based on demographics, interests, and behaviors. We continuously analyze and optimize ad performance to ensure maximum reach and engagement."
+          },
+          {
+            "question": "How do you develop engaging content and creative assets for our social media ads?",
+            "answer": "We research your target audience and industry trends to create content that resonates. Our team uses compelling visuals and persuasive copywriting to craft engaging assets that drive interactions."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "badge": "Service Areas",
+        "title": "We Put Local Brands on the Map",
+        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
+        "variant": "full",
+        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "locations": [
+          {
+            "name": "Aurora",
+            "href": "/locations/aurora"
+          },
+          {
+            "name": "Arvada",
+            "href": "/locations/arvada"
+          },
+          {
+            "name": "Lakewood",
+            "href": "/locations/lakewood"
+          },
+          {
+            "name": "Centennial",
+            "href": "/locations/centennial"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Social Media Advertising | Targeted Ads That Convert",
+    "description": "Reach your audience on Facebook, Instagram & more with data-driven social media advertising. Drive traffic, leads, & revenue with strategic campaigns.",
+    "keywords": "social media advertising {city}, Facebook ads {city}, Instagram ads {city}, social media ads management, paid social advertising, social media ad campaigns {city}, Meta ads {city}"
+  }
+}

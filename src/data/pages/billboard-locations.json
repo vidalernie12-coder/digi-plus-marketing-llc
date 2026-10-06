@@ -1,0 +1,97 @@
+{
+  "navOrder": 5,
+  "navLabel": "Indoor Billboard Locations",
+  "title": "Locations",
+  "description": "Our network of indoor digital billboards is located within retail and restaurant venues across your local community.",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Indoor Billboard Network",
+        "title": "Our Network Partners",
+        "subtitle": "Check out where you could be seen in the community with our screen advertising network.",
+        "buttonText": "Start Advertising",
+        "buttonHref": "/indoor-billboards/screen-advertising",
+        "image": "/images/hero-locations.avif"
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "title": "Our Locations",
+        "description": "Our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screens</a></strong> can be found in many popular locations throughout the community. Our screens offer a unique format - keeping you in front of your customers in your business, even when other ads are playing. Interested in hosting a screen? <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>Become a venue partner</a></strong>.",
+        "variant": "full",
+        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "locations": [
+          {
+            "name": "Aurora",
+            "href": "/locations/aurora"
+          },
+          {
+            "name": "Arvada",
+            "href": "/locations/arvada"
+          },
+          {
+            "name": "Lakewood",
+            "href": "/locations/lakewood"
+          },
+          {
+            "name": "Centennial",
+            "href": "/locations/centennial"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "features",
+      "value": {
+        "title": "Ready to Get Started?",
+        "description": "Whether you want to advertise or host a screen, we've got you covered.",
+        "columns": 3,
+        "variant": "default",
+        "features": [
+          {
+            "icon": "tv",
+            "title": "Start Advertising",
+            "description": "Ready to get your brand in front of thousands of local customers? <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>Learn how our screen advertising network</a></strong> can boost your visibility and drive results."
+          },
+          {
+            "icon": "building-store",
+            "title": "Host a Screen",
+            "description": "Own a high-traffic venue? <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>Partner with us to monetize your space</a></strong> and promote your business across our entire network of locations."
+          },
+          {
+            "icon": "phone",
+            "title": "Contact Our Team",
+            "description": "Have questions about our network or want to learn more? <strong><a href='/contact-us' style='text-decoration: none; color: inherit;'>Get in touch with our team</a></strong> for a free consultation and personalized recommendations."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "title": "Indoor Digital Billboard Network Common Questions",
+        "faqs": [
+          {
+            "question": "Where are your screens located?",
+            "answer": "Our indoor digital billboards are placed in popular high-traffic venues across {city}, including restaurants, gyms, salons, and retail stores. Check the map above to see our current locations."
+          },
+          {
+            "question": "How do I get my ad on your screens?",
+            "answer": "It's easy! Reach out to our team and we'll walk you through the options, create your custom motion ad, and get you live across the <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen advertising network</a></strong> locations that best match your target audience."
+          },
+          {
+            "question": "Can my business host a screen?",
+            "answer": "If you run a high-traffic venue, absolutely. Venue partners enjoy discounted screen advertising, cross-network promotion, and more. Learn how to <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>become a venue partner</a></strong>."
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Indoor Billboard Locations in {city} | {business}",
+    "description": "See where your ads could appear across our indoor digital billboard network in {city}, including high-traffic restaurants, bars, gyms, & venues.",
+    "keywords": "indoor billboard locations {city}, digital signage locations {city}, screen advertising venues {city}, billboard network locations, {city} advertising venues, high traffic advertising locations"
+  }
+}

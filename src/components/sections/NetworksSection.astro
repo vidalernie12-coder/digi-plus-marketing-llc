@@ -1,0 +1,114 @@
+---
+import LogoSlider from "./LogoSlider.astro";
+
+interface Network {
+  title: string;
+  brands: Array<{
+    name: string;
+    logo: string;
+  }>;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  networks?: Network[];
+}
+
+const {
+  title = "Our Network Partners",
+  subtitle = "Connected to the platforms that matter",
+  description = "We work with leading networks to deliver your message to the right audience at the right time.",
+  networks = [
+    {
+      title: "Streaming Platforms",
+      brands: [
+        {
+          name: "Netflix",
+          logo: "https://via.placeholder.com/150x60/E50914/FFFFFF?text=Netflix",
+        },
+        {
+          name: "Hulu",
+          logo: "https://via.placeholder.com/150x60/1CE783/FFFFFF?text=Hulu",
+        },
+        {
+          name: "Disney+",
+          logo: "https://via.placeholder.com/150x60/113CCF/FFFFFF?text=Disney+",
+        },
+        {
+          name: "HBO Max",
+          logo: "https://via.placeholder.com/150x60/7B2CBF/FFFFFF?text=HBO+Max",
+        },
+        {
+          name: "Paramount+",
+          logo: "https://via.placeholder.com/150x60/0064FF/FFFFFF?text=Paramount+",
+        },
+      ],
+    },
+    {
+      title: "Audio Networks",
+      brands: [
+        {
+          name: "Spotify",
+          logo: "https://via.placeholder.com/150x60/1DB954/FFFFFF?text=Spotify",
+        },
+        {
+          name: "Pandora",
+          logo: "https://via.placeholder.com/150x60/3668FF/FFFFFF?text=Pandora",
+        },
+        {
+          name: "iHeartRadio",
+          logo: "https://via.placeholder.com/150x60/C6002B/FFFFFF?text=iHeart",
+        },
+        {
+          name: "SiriusXM",
+          logo: "https://via.placeholder.com/150x60/000000/FFFFFF?text=SiriusXM",
+        },
+      ],
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="py-12 md:py-20 bg-white fade-in-section">
+  <div class="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-20">
+      {
+        title && (
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            {title}
+          </h2>
+        )
+      }
+      {
+        subtitle && (
+          <p class="text-lg md:text-xl text-gray-600 mb-4 leading-relaxed">
+            {subtitle}
+          </p>
+        )
+      }
+      {
+        description && (
+          <p class="text-lg text-gray-600 leading-relaxed">{description}</p>
+        )
+      }
+    </div>
+
+    <!-- Networks Sliders with Arrows -->
+    <div class="space-y-12">
+      {
+        networks.map((network) => (
+          <LogoSlider
+            title={network.title}
+            brands={network.brands}
+            itemsPerView={3}
+            autoplay={false}
+            speed={5}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

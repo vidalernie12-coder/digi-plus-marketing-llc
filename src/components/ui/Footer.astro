@@ -1,0 +1,380 @@
+---
+import { Icon } from "astro-icon/components";
+import { footerConfig } from "~/config/navigation";
+import { siteConfig } from "~/config/site";
+
+// Transform footerConfig.columns into the template-expected format
+const hydratedLinks = footerConfig.columns.map((col: any) => {
+  if (col.type === "accordion") {
+    return {
+      title: col.title,
+      href: col.href,
+      groups: col.sections.map((s: any) => ({
+        title: s.label,
+        links: s.items.map((item: any) => ({
+          text: item.label,
+          href: item.href,
+        })),
+      })),
+    };
+  }
+  if (col.type === "links") {
+    return {
+      title: col.title,
+      links: col.links.map((item: any) => ({
+        text: item.label,
+        href: item.href,
+        child: item.child,
+        hasChildren: item.hasChildren,
+      })),
+    };
+  }
+  if (col.type === "contact") {
+    return {
+      title: col.title,
+      links: [
+        { text: siteConfig.contact.phoneFormatted, href: `tel:${siteConfig.contact.phone}` },
+        { text: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
+        {
+          text: siteConfig.location.fullAddress,
+          href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.location.fullAddress)}`,
+        },
+      ],
+    };
+  }
+  return col;
+});
+
+// Social icons. Rendered as non-clickable placeholders for now; wire up
+// hrefs from siteConfig.social once the profile URLs are available.
+const socialIconMap: Record<string, string> = {
+  facebook: "tabler:brand-facebook",
+  instagram: "tabler:brand-instagram",
+  linkedin: "tabler:brand-linkedin",
+  youtube: "tabler:brand-youtube",
+};
+const socialLinks = Object.keys(socialIconMap).map((platform) => ({
+  href: (siteConfig.social as Record<string, string>)[platform] || "",
+  icon: socialIconMap[platform],
+  ariaLabel: platform.charAt(0).toUpperCase() + platform.slice(1),
+}));
+
+const secondaryLinks = footerConfig.bottomLinks.map((link: any) => ({
+  text: link.label,
+  href: link.href,
+}));
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary-dark">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <!-- Top Section: Logo + Tagline + Social -->
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 pb-12 border-b border-white/20"
+    >
+      <div class="lg:col-span-2">
+        <a href="/" class="inline-block mb-6 group">
+          <img
+            src={siteConfig.logo.whiteSrc}
+            alt={siteConfig.logo.alt}
+            height="80"
+            class="h-20 w-auto transition-transform group-hover:scale-105"
+          />
+        </a>
+        <p class="text-white text-base leading-relaxed max-w-xl">
+          {siteConfig.business.description}
+        </p>
+      </div>
+
+      <!-- Social Links -->
+      {
+        socialLinks.length > 0 && (
+          <div class="flex lg:justify-end items-start">
+            <div>
+              <div class="text-white font-semibold mb-4 text-sm uppercase tracking-wider" role="heading" aria-level="2">
+                Connect With Us
+              </div>
+              <div class="flex gap-3">
+                {socialLinks.map((link) => (
+                  <span
+                    aria-label={link.ariaLabel}
+                    class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white"
+                  >
+                    <Icon name={link.icon} class="w-4 h-4" />
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Links Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+      {
+        hydratedLinks.map((section: any) => (
+          <div class={section.title === "Contact Us" ? "order-last sm:order-none" : ""}>
+            {section.href ? (
+              <a
+                href={section.href}
+                class="text-white font-bold mb-6 text-sm uppercase tracking-wider hover:text-primary-light transition block inline-flex items-center gap-2 group"
+              >
+                {section.title}
+                <svg
+                  class="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            ) : (
+              <div class="text-white font-bold mb-6 text-sm uppercase tracking-wider" role="heading" aria-level="2">
+                {section.title}
+              </div>
+            )}
+
+            {"groups" in section && section.groups ? (
+              <div class="space-y-1">
+                {section.groups.map((group: any, index: number) => (
+                  <div class="accordion-group">
+                    <button
+                      class="accordion-toggle w-full text-left flex items-center justify-between text-white hover:text-primary-light text-xs font-semibold uppercase tracking-wider py-2.5 px-3 rounded-lg hover:bg-white/5 transition-all"
+                      data-accordion={`group-${index}`}
+                      aria-expanded={index === 0 ? "true" : "false"}
+                    >
+                      <span>{group.title}</span>
+                      <svg
+                        class="accordion-icon w-4 h-4 transition-transform duration-300 flex-shrink-0"
+                        style={index === 0 ? "" : "transform: rotate(-90deg)"}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                    <ul
+                      class="accordion-content space-y-1.5 overflow-hidden transition-all duration-300 pl-3"
+                      data-accordion-content={`group-${index}`}
+                      style={
+                        index === 0
+                          ? "max-height: 500px; opacity: 1; margin-top: 0.5rem;"
+                          : "max-height: 0; opacity: 0;"
+                      }
+                    >
+                      {group.links.map((link: any) => (
+                        <li>
+                          <a
+                            href={link.href}
+                            class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group"
+                          >
+                            <span class="w-0 group-hover:w-1.5 h-1.5 rounded-full bg-primary-light transition-all mr-0 group-hover:mr-2" />
+                            {link.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul class="space-y-1.5">
+                {section.links.map((link: any) => (
+                  <li class={link.child ? "pl-4" : ""}>
+                    <a
+                      href={link.href}
+                      class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group"
+                    >
+                      <span class="w-0 group-hover:w-1.5 h-1.5 rounded-full bg-primary-light transition-all mr-0 group-hover:mr-2" />
+                      {link.text}
+                      {link.hasChildren && (
+                        <svg
+                          class="w-4 h-4 ml-2 flex-shrink-0"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/20 pt-8">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm"
+      >
+        <div
+          class="flex flex-wrap justify-center md:justify-start items-center gap-6"
+        >
+          {
+            secondaryLinks.length > 0 && (
+              <>
+                {secondaryLinks.map((link, index) => (
+                  <>
+                    {index > 0 && <span class="text-white/30">|</span>}
+                    <a
+                      href={link.href}
+                      class="text-white hover:text-primary-light transition"
+                    >
+                      {link.text}
+                    </a>
+                  </>
+                ))}
+              </>
+            )
+          }
+        </div>
+
+        <div class="text-white">
+          <span>
+            {siteConfig.business.name} · {currentYear} · All rights reserved.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function initFooterAccordions() {
+    const accordionToggles = document.querySelectorAll(".accordion-toggle");
+
+    accordionToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const targetId = toggle.getAttribute("data-accordion");
+        const content = document.querySelector(
+          `[data-accordion-content="${targetId}"]`
+        );
+        const icon = toggle.querySelector(".accordion-icon");
+        const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+
+        if (isExpanded) {
+          toggle.setAttribute("aria-expanded", "false");
+          if (content) {
+            (content as HTMLElement).style.maxHeight = "0";
+            (content as HTMLElement).style.opacity = "0";
+            (content as HTMLElement).style.marginTop = "0";
+          }
+          if (icon) {
+            (icon as HTMLElement).style.transform = "rotate(-90deg)";
+          }
+        } else {
+          accordionToggles.forEach((otherToggle) => {
+            if (otherToggle !== toggle) {
+              const otherId = otherToggle.getAttribute("data-accordion");
+              const otherContent = document.querySelector(
+                `[data-accordion-content="${otherId}"]`
+              );
+              const otherIcon = otherToggle.querySelector(".accordion-icon");
+
+              otherToggle.setAttribute("aria-expanded", "false");
+              if (otherContent) {
+                (otherContent as HTMLElement).style.maxHeight = "0";
+                (otherContent as HTMLElement).style.opacity = "0";
+                (otherContent as HTMLElement).style.marginTop = "0";
+              }
+              if (otherIcon) {
+                (otherIcon as HTMLElement).style.transform = "rotate(-90deg)";
+              }
+            }
+          });
+
+          toggle.setAttribute("aria-expanded", "true");
+          if (content) {
+            (content as HTMLElement).style.maxHeight = "500px";
+            (content as HTMLElement).style.opacity = "1";
+            (content as HTMLElement).style.marginTop = "0.5rem";
+          }
+          if (icon) {
+            (icon as HTMLElement).style.transform = "rotate(0deg)";
+          }
+        }
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initFooterAccordions);
+  } else {
+    initFooterAccordions();
+  }
+  document.addEventListener("astro:after-swap", initFooterAccordions);
+</script>
+
+<style>
+  footer {
+    color: white !important;
+  }
+
+  footer * {
+    color: white !important;
+  }
+
+  footer a {
+    text-decoration: none !important;
+    color: white !important;
+  }
+
+  footer a:hover {
+    color: #5eead4 !important;
+  }
+
+  footer h4,
+  footer span,
+  footer p,
+  footer button {
+    color: white !important;
+  }
+
+  .accordion-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white !important;
+  }
+
+  .accordion-toggle:focus {
+    outline: 2px solid rgba(161, 194, 189, 0.5);
+    outline-offset: 2px;
+  }
+
+  .accordion-content {
+    transition:
+      max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .accordion-icon {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

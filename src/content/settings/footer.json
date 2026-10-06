@@ -1,0 +1,62 @@
+{
+  "description": "Premium marketing solutions including website design, social media management, and indoor billboard advertising.",
+  "columns": [
+    {
+      "type": "accordion",
+      "title": "Solutions",
+      "href": "/solutions",
+      "sections": [
+        {
+          "label": "Foundational",
+          "items": [
+            { "label": "Website Design", "href": "/solutions/foundational/website-design" },
+            { "label": "Google Business Profile", "href": "/solutions/foundational/google-business-profile" },
+            { "label": "Social Media Management", "href": "/solutions/foundational/social-media-management" },
+            { "label": "Design Services", "href": "/solutions/foundational/design-services" }
+          ]
+        },
+        {
+          "label": "Lead Generation",
+          "items": [
+            { "label": "Pay-Per-Click", "href": "/solutions/lead-gen/pay-per-click" },
+            { "label": "Social Media Advertising", "href": "/solutions/lead-gen/social-media-advertising" }
+          ]
+        },
+        {
+          "label": "Branding & Awareness",
+          "items": [
+            { "label": "Connected TV (OTT Ads)", "href": "/solutions/branding-awareness/connected-tv" },
+            { "label": "Display (Geofencing)", "href": "/solutions/branding-awareness/display-geofencing" },
+            { "label": "Streaming Audio", "href": "/solutions/branding-awareness/streaming-audio" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "links",
+      "title": "Indoor Billboards",
+      "links": [
+        { "label": "Screen Advertising", "href": "/indoor-billboards/screen-advertising" },
+        { "label": "Become a Venue Partner", "href": "/indoor-billboards/become-a-venue-partner" },
+        { "label": "Locations", "href": "/indoor-billboards/locations" }
+      ]
+    },
+    {
+      "type": "links",
+      "title": "Company",
+      "links": [
+        { "label": "About", "href": "/about-us", "hasChildren": true },
+        { "label": "Case Studies", "href": "/about-us/case-studies", "child": true },
+        { "label": "Contact", "href": "/contact-us" }
+      ]
+    },
+    {
+      "type": "contact",
+      "title": "Contact Us"
+    }
+  ],
+  "bottomLinks": [
+    { "label": "Terms", "href": "/terms" },
+    { "label": "Privacy Policy", "href": "/privacy" }
+  ]
+}

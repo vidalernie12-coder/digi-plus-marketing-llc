@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8FAFC"/>
+  <rect x="50" y="50" width="300" height="200" rx="8" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+  
+  <!-- Browser window mockup -->
+  <rect x="50" y="50" width="300" height="40" rx="8" fill="#F1F5F9"/>
+  <circle cx="70" cy="70" r="6" fill="#EF4444"/>
+  <circle cx="90" cy="70" r="6" fill="#F59E0B"/>
+  <circle cx="110" cy="70" r="6" fill="#10B981"/>
+  
+  <!-- Content area -->
+  <rect x="70" y="110" width="260" height="20" rx="4" fill="#3B82F6"/>
+  <rect x="70" y="140" width="180" height="12" rx="2" fill="#94A3B8"/>
+  <rect x="70" y="160" width="220" height="12" rx="2" fill="#94A3B8"/>
+  
+  <!-- Design elements -->
+  <rect x="70" y="190" width="80" height="40" rx="4" fill="#E0E7FF"/>
+  <rect x="160" y="190" width="80" height="40" rx="4" fill="#DBEAFE"/>
+  <rect x="250" y="190" width="80" height="40" rx="4" fill="#F0F9FF"/>
+  
+  <!-- Design tools -->
+  <circle cx="320" cy="120" r="15" fill="#8B5CF6" opacity="0.2"/>
+  <path d="M312 120 L320 112 L328 120 L320 128 Z" fill="#8B5CF6"/>
+  
+  <text x="200" y="280" text-anchor="middle" fill="#64748B" font-family="Arial, sans-serif" font-size="14">UI/UX Design</text>
+</svg>

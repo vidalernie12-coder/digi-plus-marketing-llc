@@ -1,0 +1,40 @@
+---
+import PageLayout from "~/layouts/PageLayout.astro";
+import SectionRenderer from "~/components/sections/SectionRenderer.astro";
+
+import payPerClickData from "~/data/pages/pay-per-click.json";
+import socialMediaAdvertisingData from "~/data/pages/social-media-advertising.json";
+import { localizeData } from "~/config/site";
+import { buildPageMeta } from "~/lib/pageMeta";
+
+const dataMap: Record<string, any> = localizeData({
+  "pay-per-click": payPerClickData,
+  "social-media-advertising": socialMediaAdvertisingData,
+});
+
+const SERVICE_TYPE: Record<string, string> = {
+  "pay-per-click": "Pay Per Click Advertising",
+  "social-media-advertising": "Social Media Advertising",
+};
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "pay-per-click" } },
+    { params: { slug: "social-media-advertising" } },
+  ];
+}
+
+const { slug } = Astro.params;
+const entry = dataMap[slug!];
+
+const { metadata, extraSchemas } = buildPageMeta(entry, {
+  service: {
+    url: `/solutions/lead-gen/${slug}`,
+    serviceType: SERVICE_TYPE[slug!],
+  },
+});
+---
+
+<PageLayout metadata={metadata} extraSchemas={extraSchemas}>
+  <SectionRenderer sections={entry.sections} />
+</PageLayout>

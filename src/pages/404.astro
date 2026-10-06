@@ -1,0 +1,55 @@
+---
+import PageLayout from "~/layouts/PageLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const metadata = {
+  title: "Page Not Found (404)",
+  description:
+    "Sorry, we couldn't find the page you were looking for. The page may have been moved or deleted.",
+  noindex: true,
+};
+---
+
+<PageLayout metadata={metadata} showGlobalCTA={false}>
+  <section
+    class="-mt-16 sm:-mt-24 pt-28 sm:pt-40 pb-16 md:pb-24 bg-neutral-dark min-h-screen"
+  >
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- 404 -->
+      <h1
+        class="text-8xl sm:text-9xl font-extrabold text-primary leading-none mb-4"
+      >
+        404
+      </h1>
+
+      <h2 class="text-3xl sm:text-4xl font-bold text-primary mb-4">
+        Page Not Found
+      </h2>
+
+      <p
+        class="text-base sm:text-lg text-gray-500 mb-10 max-w-xl mx-auto leading-relaxed"
+      >
+        Sorry, we couldn't find the page you're looking for. The page may have
+        been moved or deleted.
+      </p>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary-dark text-white text-sm sm:text-base font-bold rounded-full hover:bg-primary-darker transition-colors"
+        >
+          <Icon name="tabler:home" class="w-5 h-5" />
+          <span>Go Home</span>
+        </a>
+        <a
+          href="/contact-us"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-primary text-sm sm:text-base font-bold rounded-full border border-gray-300 hover:border-primary-light transition-colors"
+        >
+          <Icon name="tabler:mail" class="w-5 h-5" />
+          <span>Contact Us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

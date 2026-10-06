@@ -1,0 +1,177 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  faqs: FAQ[];
+  background?: "white" | "light";
+}
+
+const { title, description, faqs, background = "white" } = Astro.props;
+
+const bgClasses = {
+  white: "bg-white",
+  light: "bg-neutral",
+};
+---
+
+<section
+  class={`py-16 md:py-24 ${bgClasses[background]} relative overflow-hidden fade-in-section`}
+>
+  <!-- Decorative elements -->
+  <div
+    class="absolute top-20 right-10 w-64 h-64 bg-primary-light/5 rounded-full blur-3xl"
+  >
+  </div>
+  <div
+    class="absolute bottom-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary-light/30 mb-6"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 text-primary"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <path d="M12 17h.01"></path>
+        </svg>
+        <span class="text-sm font-bold uppercase tracking-wider text-primary"
+          >Got Questions?</span
+        >
+      </div>
+      <h2 class="section-title text-primary mb-4">{title}</h2>
+      {
+        description && (
+          <p class="section-description text-primary-dark">{description}</p>
+        )
+      }
+    </div>
+
+    <!-- FAQ Grid -->
+    <div class="grid grid-cols-1 gap-6 stagger">
+      {
+        faqs.map((faq, index) => (
+          <div class="faq-item group">
+            <button
+              class="faq-question w-full text-left p-4 sm:p-6 bg-white rounded-2xl border-2 border-primary-light/20 hover:border-primary-light hover:shadow-lg transition-all duration-300"
+              aria-expanded="false"
+              data-faq-index={index}
+            >
+              <div class="flex items-start gap-3 sm:gap-4">
+                {/* Number badge */}
+                <div class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-sm sm:text-lg">
+                  {(index + 1).toString().padStart(2, "0")}
+                </div>
+
+                {/* Question */}
+                <div class="flex-1 pt-0.5 sm:pt-1">
+                  <h3 class="text-sm sm:text-lg md:text-xl font-bold text-primary group-hover:text-primary-dark transition-colors">
+                    {faq.question}
+                  </h3>
+                </div>
+
+                {/* Icon */}
+                <svg
+                  class="faq-icon flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 text-primary-light transition-transform duration-300 mt-0.5 sm:mt-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </div>
+            </button>
+
+            {/* Answer */}
+            <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="px-4 sm:px-6 pb-6 pt-4 ml-11 sm:ml-14">
+                <div class="pl-6 border-l-4 border-primary-light/30">
+                  <div
+                    class="text-sm sm:text-base md:text-lg text-primary-dark leading-relaxed"
+                    set:html={faq.answer}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFAQs() {
+    const faqButtons = document.querySelectorAll(".faq-question");
+
+    faqButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const faqItem = button.closest(".faq-item");
+        const answer = faqItem?.querySelector(".faq-answer") as HTMLElement;
+        const icon = button.querySelector(".faq-icon");
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        // Close all other FAQs
+        faqButtons.forEach((otherButton) => {
+          if (otherButton !== button) {
+            const otherItem = otherButton.closest(".faq-item");
+            const otherAnswer = otherItem?.querySelector(
+              ".faq-answer"
+            ) as HTMLElement;
+            const otherIcon = otherButton.querySelector(".faq-icon");
+
+            otherButton.setAttribute("aria-expanded", "false");
+            if (otherAnswer) {
+              otherAnswer.style.maxHeight = "0px";
+            }
+            otherIcon?.classList.remove("rotate-45");
+          }
+        });
+
+        // Toggle current FAQ
+        if (isExpanded) {
+          button.setAttribute("aria-expanded", "false");
+          if (answer) {
+            answer.style.maxHeight = "0px";
+          }
+          icon?.classList.remove("rotate-45");
+        } else {
+          button.setAttribute("aria-expanded", "true");
+          if (answer) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+          }
+          icon?.classList.add("rotate-45");
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  initFAQs();
+
+  // Reinitialize after page transitions
+  document.addEventListener("astro:after-swap", initFAQs);
+</script>

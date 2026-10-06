@@ -1,0 +1,376 @@
+---
+import { siteConfig } from "~/config/site";
+
+interface Props {
+  enabled?: boolean; // When false, the modal is not rendered at all
+  title?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  image?: string; // Left-panel image (falls back to the venue-partner image)
+  delay?: number; // Delay in milliseconds before showing popup (set to 0 or negative to disable auto-show)
+  showOnce?: boolean; // Only show once per session
+  triggerId?: string; // ID of button that will trigger the popup
+}
+
+const {
+  enabled = true,
+  title = "Get Your Free Marketing Consultation",
+  description = "Discover how indoor billboard advertising and digital marketing can grow your Denver business. Schedule a free consultation with our experts today.",
+  ctaText = "Schedule Free Consultation",
+  ctaLink = "/contact-us",
+  image = "/images/venue-partner.avif",
+  delay = 0, // Changed default to 0 to disable auto-show by default
+  showOnce = false, // Changed to false so it can be opened multiple times
+  triggerId = "",
+} = Astro.props;
+---
+{
+  enabled && (
+
+<div
+  id="popup-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm"
+  data-delay={delay}
+  data-show-once={showOnce}
+  data-trigger-id={triggerId}
+>
+  <!-- Modal Container -->
+  <div
+    class="relative w-full max-w-sm md:max-w-4xl mx-4 my-4 max-h-[90vh] overflow-y-auto overflow-x-hidden bg-white rounded-2xl shadow-2xl animate-scale-in"
+  >
+    <!-- Close Button -->
+    <button
+      id="close-popup"
+      class="absolute top-3 right-3 md:top-4 md:right-4 z-20 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white shadow-lg hover:bg-gray-100 hover:shadow-xl hover:scale-110 hover:rotate-90 transition-all duration-200"
+      aria-label="Close popup"
+    >
+      <svg
+        class="w-5 h-5 text-gray-700 hover:text-gray-900 transition-colors"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Two Column Layout -->
+    <div class="flex flex-col md:flex-row">
+      <!-- Left Side - Image -->
+      <div class="md:w-2/5 relative bg-primary-dark hidden md:block overflow-hidden">
+        <img
+          src={image}
+          alt="Marketing consultation"
+          width="400"
+          height="600"
+          class="w-full h-64 md:h-full object-cover blur-[2px] scale-105"
+          loading="lazy"
+          decoding="async"
+        />
+        <div
+          class="absolute inset-0 bg-primary-dark/90"
+        >
+        </div>
+        <div class="absolute bottom-8 left-8 right-8">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full mb-3"
+          >
+            <span class="w-2 h-2 bg-primary-light rounded-full animate-pulse"></span>
+            <span
+              class="text-xs font-bold text-primary uppercase tracking-wide"
+              >Limited Time Offer</span
+            >
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-white leading-tight">
+            Grow Your Business
+          </h3>
+        </div>
+      </div>
+
+      <!-- Right Side - Content -->
+      <div
+        class="w-full md:w-3/5 px-6 py-7 md:px-10 md:py-12 flex flex-col justify-center space-y-4 md:space-y-7"
+      >
+        <!-- Logo -->
+        <div class="flex justify-center pt-6 md:pt-0">
+          <img
+            src={siteConfig.logo.src}
+            alt={siteConfig.logo.alt}
+            height="72"
+            loading="lazy"
+            decoding="async"
+            class="h-16 md:h-20 w-auto shrink-0"
+          />
+        </div>
+
+        <!-- Headline -->
+        <div class="space-y-2 md:space-y-3 text-center">
+          <h2
+            class="text-xl md:text-3xl font-bold text-gray-900 leading-tight text-balance"
+          >
+            {title}
+          </h2>
+          <p class="text-sm md:text-lg text-gray-600 leading-relaxed text-pretty">
+            {description}
+          </p>
+        </div>
+
+        <!-- Benefits List -->
+        <ul class="space-y-2.5 md:space-y-4">
+          <li class="flex items-center gap-3 md:gap-4">
+            <div
+              class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-green-100 flex items-center justify-center"
+            >
+              <svg
+                class="w-3 h-3 md:w-4 md:h-4 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm md:text-base text-gray-700 font-medium"
+              >Free 30-minute strategy session</span
+            >
+          </li>
+          <li class="flex items-center gap-3 md:gap-4">
+            <div
+              class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-green-100 flex items-center justify-center"
+            >
+              <svg
+                class="w-3 h-3 md:w-4 md:h-4 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm md:text-base text-gray-700 font-medium"
+              >Custom campaign recommendations</span
+            >
+          </li>
+          <li class="flex items-center gap-3 md:gap-4">
+            <div
+              class="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-full bg-green-100 flex items-center justify-center"
+            >
+              <svg
+                class="w-3 h-3 md:w-4 md:h-4 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <span class="text-sm md:text-base text-gray-700 font-medium"
+              >No commitment or pressure</span
+            >
+          </li>
+        </ul>
+
+        <!-- CTA Button -->
+        <a
+          href={ctaLink}
+          class="block w-full px-6 py-3.5 md:px-8 md:py-5 bg-white text-primary-dark text-center font-bold text-base md:text-lg rounded-lg shadow-lg hover:bg-primary-dark hover:text-white hover:shadow-2xl hover:scale-105 transition-all duration-300 border-2 border-primary-dark"
+        >
+          {ctaText}
+        </a>
+
+        <!-- Trust Indicators -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs md:text-sm text-gray-600 pt-1 md:pt-2"
+        >
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 text-primary-light"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-semibold">20+ Years Experience</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-4 h-4 md:w-5 md:h-5 text-primary-light"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-semibold">Denver Experts</span>
+          </div>
+        </div>
+
+        <!-- Secondary Action -->
+        <button
+          id="close-popup-bottom"
+          class="block w-full text-sm md:text-base text-gray-500 text-center underline hover:text-gray-700 hover:no-underline transition-all duration-300"
+        >
+          No thanks, I'll browse first
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  )
+}
+
+<script is:inline>
+  document.addEventListener("astro:page-load", function () {
+    function showPopup() {
+      const popup = document.getElementById("popup-modal");
+      if (!popup) return;
+
+      popup.classList.remove("hidden");
+      popup.classList.add("flex");
+      document.body.style.overflow = "hidden";
+
+      // Mark as shown for auto-show prevention
+      const showOnce = popup.getAttribute("data-show-once") === "true";
+      if (showOnce) {
+        sessionStorage.setItem("popup-shown", "true");
+      }
+    }
+
+    function closePopup() {
+      const popup = document.getElementById("popup-modal");
+      if (!popup) return;
+
+      popup.classList.add("hidden");
+      popup.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function initPopup() {
+      const popup = document.getElementById("popup-modal");
+      if (!popup) return;
+
+      const showOnce = popup.getAttribute("data-show-once") === "true";
+      const storageKey = "popup-shown";
+      const triggerId = popup.getAttribute("data-trigger-id");
+      const alreadyShown = showOnce && sessionStorage.getItem(storageKey);
+
+      // Setup close buttons
+      const closeBtn = document.getElementById("close-popup");
+      const closeBottomBtn = document.getElementById("close-popup-bottom");
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", closePopup);
+      }
+
+      if (closeBottomBtn) {
+        closeBottomBtn.addEventListener("click", closePopup);
+      }
+
+      // Close on backdrop click
+      popup.addEventListener("click", function (e) {
+        if (e.target === popup) {
+          closePopup();
+        }
+      });
+
+      // Close on Escape key
+      const escapeHandler = function (e) {
+        if (e.key === "Escape" && !popup.classList.contains("hidden")) {
+          closePopup();
+        }
+      };
+      document.addEventListener("keydown", escapeHandler);
+
+      // Setup trigger button if specified
+      if (triggerId) {
+        const triggerBtn = document.getElementById(triggerId);
+        if (triggerBtn) {
+          triggerBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            showPopup();
+          });
+        }
+      }
+
+      // Show popup after a short delay (only if delay is positive, on desktop, and not already shown)
+      const delay = parseInt(popup.getAttribute("data-delay")) || 0;
+      const isDesktop = window.innerWidth >= 768;
+      if (delay > 0 && isDesktop && !alreadyShown) {
+        setTimeout(function () {
+          // Check again in case window was resized
+          if (window.innerWidth >= 768) {
+            showPopup();
+          }
+        }, delay);
+      }
+    }
+
+    initPopup();
+  });
+</script>
+
+<style>
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+
+  /* Optimize rendering performance */
+  section {
+    will-change: auto;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Override global button styles for modal close button */
+  #close-popup,
+  #close-popup-bottom {
+    position: absolute !important;
+    overflow: visible !important;
+  }
+
+  #close-popup,
+  #close-popup svg {
+    transform: none !important;
+  }
+
+  #close-popup:hover {
+    transform: scale(1.1) !important;
+  }
+
+  #close-popup:active {
+    transform: scale(0.95) !important;
+  }
+
+  #close-popup-bottom {
+    position: static !important;
+    transform: none !important;
+  }
+</style>

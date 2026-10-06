@@ -1,0 +1,79 @@
+---
+import PageLayout from "~/layouts/PageLayout.astro";
+import Hero from "~/components/sections/Hero.astro";
+import { localizeMetadata } from "~/config/site";
+
+import arvadaData from "~/data/locations/arvada.json";
+import auroraData from "~/data/locations/aurora.json";
+import centennialData from "~/data/locations/centennial.json";
+import lakewoodData from "~/data/locations/lakewood.json";
+import { localizeData } from "~/config/site";
+
+const dataMap: Record<string, any> = localizeData({
+  "arvada": arvadaData,
+  "aurora": auroraData,
+  "centennial": centennialData,
+  "lakewood": lakewoodData,
+});
+
+const locations = Object.entries(dataMap).map(([slug, data]) => ({
+  slug,
+  ...data,
+}));
+
+const sortedLocations = locations.sort((a, b) =>
+  a.title.localeCompare(b.title)
+);
+
+const metadata = localizeMetadata({
+  title: "Service Locations | {business}",
+  description:
+    "We provide digital marketing and advertising services across the {city} metro area. Find your location.",
+});
+---
+
+<PageLayout metadata={metadata}>
+  <Hero
+    tagline="Service Areas"
+    title="Serving Businesses Across Denver Metro"
+    subtitle="Local marketing expertise in your neighborhood. Select your location to learn more about our services in your area."
+  />
+
+  <section class="py-16 md:py-20 bg-white fade-in-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger">
+        {
+          sortedLocations.map((location) => (
+            <a
+              href={`/locations/${location.slug}`}
+              class="group relative bg-white border-2 border-gray-200 rounded-xl overflow-hidden hover:border-primary hover:shadow-xl transition-all duration-300"
+            >
+              <div class="p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                  {location.city || location.location || location.title}
+                </h3>
+                <p class="text-gray-600 mb-4">{location.description}</p>
+                <span class="inline-flex items-center text-primary font-semibold group-hover:translate-x-2 transition-transform">
+                  Learn More
+                  <svg
+                    class="ml-2 w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</PageLayout>

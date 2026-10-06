@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  videoUrl: string;
+  eyebrow?: string;
+  background?: "white" | "primary" | "primary-dark" | "light";
+}
+
+const {
+  title,
+  description,
+  videoUrl,
+  eyebrow,
+  background = "white",
+} = Astro.props;
+
+const bgClasses = {
+  white: "bg-white",
+  light: "bg-neutral",
+  primary: "bg-primary",
+  "primary-dark": "bg-primary",
+};
+
+const textColorClasses = {
+  white: "text-primary",
+  light: "text-primary",
+  primary: "text-white",
+  "primary-dark": "text-white",
+};
+
+const descriptionColorClasses = {
+  white: "text-primary-dark",
+  light: "text-primary-dark",
+  primary: "text-neutral",
+  "primary-dark": "text-neutral",
+};
+---
+
+<section class={`py-16 md:py-24 ${bgClasses[background]} fade-in-section`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Content Column -->
+      <div class="lg:order-1">
+        <div class="space-y-6">
+          {
+            eyebrow && (
+              <div
+                class={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${background === "primary" || background === "primary-dark" ? "bg-white/10 border border-white/20" : "bg-primary/5 border border-primary-light/30"}`}
+              >
+                <span
+                  class={`w-2 h-2 rounded-full ${background === "primary" || background === "primary-dark" ? "bg-white" : "bg-primary-light"}`}
+                />
+                <span
+                  class={`section-eyebrow ${background === "primary" || background === "primary-dark" ? "text-white" : "text-primary"}`}
+                >
+                  {eyebrow}
+                </span>
+              </div>
+            )
+          }
+
+          <h2 class={`section-title ${textColorClasses[background]}`}>
+            {title}
+          </h2>
+
+          <!-- Accent line -->
+          <div
+            class={`w-20 h-1 ${background === "primary" || background === "primary-dark" ? "bg-white/30" : "bg-primary-light"}`}
+          >
+          </div>
+
+          <div
+            class={`section-description ${descriptionColorClasses[background]}`}
+          >
+            {description}
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Column -->
+      <div class="lg:order-2">
+        <div class="relative group">
+          <!-- Decorative background -->
+          <div
+            class={`absolute -inset-4 rounded-3xl ${background === "primary" || background === "primary-dark" ? "bg-white/5" : "bg-primary/5"}`}
+          >
+          </div>
+
+          <!-- Video container -->
+          <div
+            class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] bg-black"
+          >
+            <video controls class="w-full h-auto" preload="metadata">
+              <source src={videoUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- Corner accent -->
+          <div
+            class={`absolute -bottom-6 -right-6 w-32 h-32 rounded-full ${background === "primary" || background === "primary-dark" ? "bg-white/5" : "bg-primary-light/20"} blur-2xl`}
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

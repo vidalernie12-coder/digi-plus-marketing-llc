@@ -1,0 +1,16 @@
+---
+import type { MetaData } from "~/types";
+import BaseLayout from "./BaseLayout.astro";
+
+export interface Props {
+  metadata?: MetaData;
+  showGlobalCTA?: boolean;
+  extraSchemas?: any[];
+}
+
+const { metadata = {}, showGlobalCTA = true, extraSchemas = [] } = Astro.props;
+---
+
+<BaseLayout metadata={metadata} showGlobalCTA={showGlobalCTA} extraSchemas={extraSchemas}>
+  <slot />
+</BaseLayout>

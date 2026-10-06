@@ -1,0 +1,266 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "../ui/Button.astro";
+
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+  link?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  ctaText: string;
+  ctaLink: string;
+  features: Feature[];
+  background?: string;
+}
+
+const { title, description, image, ctaText, ctaLink, features } = Astro.props;
+---
+
+<section class="boost-visibility fade-in-section">
+  <div class="container">
+    <div class="boost-visibility__grid">
+      <!-- Left Column: Image -->
+      <div class="boost-visibility__image-wrapper">
+        <img
+          src={image}
+          alt={title}
+          width="600"
+          height="400"
+          class="boost-visibility__image"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Right Column: Content -->
+      <div class="boost-visibility__content">
+        <h2 class="boost-visibility__title">{title}</h2>
+        <p class="boost-visibility__description" set:html={description}></p>
+
+        <!-- Features Grid -->
+        <div class="boost-visibility__features">
+          {
+            features.map((feature) =>
+              feature.link ? (
+                <a href={feature.link} class="feature-card">
+                  <div class="feature-card__icon">
+                    <Icon name={feature.icon} size={32} />
+                  </div>
+                  <div class="feature-card__content">
+                    <h3 class="feature-card__title">{feature.title}</h3>
+                    <p class="feature-card__description">
+                      {feature.description}
+                    </p>
+                  </div>
+                </a>
+              ) : (
+                <div class="feature-card">
+                  <div class="feature-card__icon">
+                    <Icon name={feature.icon} size={32} />
+                  </div>
+                  <div class="feature-card__content">
+                    <h3 class="feature-card__title">{feature.title}</h3>
+                    <p class="feature-card__description">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+              )
+            )
+          }
+        </div>
+
+        <!-- CTA Button -->
+        <div class="boost-visibility__cta">
+          <Button href={ctaLink} variant="primary" size="lg">
+            {ctaText}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .boost-visibility {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .boost-visibility__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .boost-visibility__image-wrapper {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .boost-visibility__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+  }
+
+  .boost-visibility__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .boost-visibility__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .boost-visibility__description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-primary-dark);
+    margin: 0;
+  }
+
+  .boost-visibility__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--color-neutral-dark);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-primary-light);
+  }
+
+  .feature-card__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    border-radius: 8px;
+    color: white;
+  }
+
+  .feature-card__content {
+    flex: 1;
+  }
+
+  .feature-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .feature-card__description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-primary-dark);
+    margin: 0;
+  }
+
+  .boost-visibility__cta {
+    margin-top: 1rem;
+  }
+
+  /* Tablet */
+  @media (max-width: 968px) {
+    .boost-visibility {
+      padding: 4rem 0;
+    }
+
+    .boost-visibility__grid {
+      gap: 3rem;
+    }
+
+    .boost-visibility__title {
+      font-size: 2rem;
+    }
+
+    .boost-visibility__description {
+      font-size: 1rem;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .boost-visibility {
+      padding: 3rem 0;
+    }
+
+    .boost-visibility__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .boost-visibility__image-wrapper {
+      position: relative;
+      top: 0;
+    }
+
+    .boost-visibility__title {
+      font-size: 1.5rem;
+    }
+
+    .boost-visibility__description {
+      font-size: 0.9375rem;
+    }
+
+    .feature-card {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .feature-card__icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .feature-card__title {
+      font-size: 1rem;
+    }
+
+    .feature-card__description {
+      font-size: 0.875rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+    }
+  }
+</style>

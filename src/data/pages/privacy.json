@@ -1,0 +1,49 @@
+{
+  "navOrder": 17,
+  "navLabel": "Privacy Policy",
+  "title": "Privacy Policy",
+  "description": "Privacy Policy for Acme Inc.",
+  "keywords": "privacy policy",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Legal",
+        "title": "Privacy Policy",
+        "subtitle": "Last updated: January 12, 2026",
+        "buttonText": "",
+        "buttonHref": "",
+        "image": "",
+        "imageAlt": ""
+      }
+    }
+  ],
+  "legalSections": [
+    {
+      "title": "1. Information We Collect",
+      "content": "We collect information you provide directly to us, including name, contact information, and business details."
+    },
+    {
+      "title": "2. How We Use Your Information",
+      "content": "We use the information we collect to provide and improve our services, process transactions, and send promotional communications."
+    },
+    {
+      "title": "3. Information Sharing",
+      "content": "We do not sell your personal information. We may share your information with service providers who assist in our operations."
+    },
+    {
+      "title": "4. Data Security",
+      "content": "We implement appropriate security measures to protect your personal information."
+    },
+    {
+      "title": "5. Contact Us",
+      "content": "If you have questions about this Privacy Policy, please contact us."
+    }
+  ],
+  "metadata": {
+    "title": "Privacy Policy",
+    "description": "Read the {business} Privacy Policy to learn how we collect, use, and protect your personal information when you visit and interact with our website.",
+    "keywords": "privacy policy {business}, personal information collection, data protection, website privacy, user privacy",
+    "noindex": true
+  }
+}

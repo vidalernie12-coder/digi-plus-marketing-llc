@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash([ -f \"$img.avif\" ])",
+      "Bash(curl -s \"http://localhost:4321/solutions/branding-awareness/connected-tv\")",
+      "Bash(npx playwright *)",
+      "Bash(node _shot.mjs)",
+      "Bash(node _diag.mjs)"
+    ]
+  }
+}

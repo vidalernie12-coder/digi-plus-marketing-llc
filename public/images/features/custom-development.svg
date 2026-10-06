@@ -1,0 +1,28 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8FAFC"/>
+  <rect x="50" y="50" width="300" height="200" rx="8" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Terminal header -->
+  <rect x="50" y="50" width="300" height="30" rx="8" fill="#0F172A"/>
+  <circle cx="70" cy="65" r="4" fill="#EF4444"/>
+  <circle cx="85" cy="65" r="4" fill="#F59E0B"/>
+  <circle cx="100" cy="65" r="4" fill="#10B981"/>
+  
+  <!-- Code lines -->
+  <text x="70" y="105" fill="#10B981" font-family="monospace" font-size="12">function createWebsite() {</text>
+  <text x="90" y="125" fill="#F8FAFC" font-family="monospace" font-size="12">const design = new Design();</text>
+  <text x="90" y="145" fill="#F8FAFC" font-family="monospace" font-size="12">const features = [];</text>
+  <text x="90" y="165" fill="#3B82F6" font-family="monospace" font-size="12">return website.build();</text>
+  <text x="70" y="185" fill="#10B981" font-family="monospace" font-size="12">}</text>
+  
+  <!-- Cursor -->
+  <rect x="200" y="175" width="2" height="15" fill="#F8FAFC">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+  
+  <!-- Code brackets -->
+  <text x="70" y="210" fill="#8B5CF6" font-family="monospace" font-size="12">&lt;/&gt;</text>
+  <text x="100" y="210" fill="#64748B" font-family="monospace" font-size="10">Custom Development</text>
+  
+  <text x="200" y="280" text-anchor="middle" fill="#64748B" font-family="Arial, sans-serif" font-size="14">Custom Development</text>
+</svg>

@@ -1,0 +1,140 @@
+{
+  "navItems": [
+    {
+      "type": "link",
+      "title": "Home",
+      "href": "/"
+    },
+    {
+      "type": "dropdown",
+      "title": "About Us",
+      "href": "/about-us",
+      "items": [
+        {
+          "title": "Case Studies",
+          "description": "Real results and success stories from local businesses.",
+          "href": "/about-us/case-studies",
+          "icon": "tabler:chart-arrows-vertical"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "title": "Indoor Billboards",
+      "items": [
+        {
+          "title": "Screen Advertising",
+          "description": "High-impact advertising in premium indoor locations across Denver.",
+          "href": "/indoor-billboards/screen-advertising",
+          "icon": "tabler:device-tv"
+        },
+        {
+          "title": "Become a Venue Partner",
+          "description": "Join our network of premium venues to reach engaged audiences.",
+          "href": "/indoor-billboards/become-a-venue-partner",
+          "icon": "tabler:building-store"
+        },
+        {
+          "title": "Locations",
+          "description": "Our network of indoor digital billboards across Denver metro.",
+          "href": "/indoor-billboards/locations",
+          "icon": "tabler:map-pin"
+        }
+      ]
+    },
+    {
+      "type": "megamenu",
+      "title": "Solutions",
+      "href": "/solutions",
+      "sections": [
+        {
+          "label": "Foundational",
+          "items": [
+            {
+              "title": "Website Design",
+              "description": "Custom websites that convert visitors into customers.",
+              "href": "/solutions/foundational/website-design",
+              "icon": "tabler:palette"
+            },
+            {
+              "title": "Google Business Profile",
+              "description": "Optimize your local presence and get found by customers.",
+              "href": "/solutions/foundational/google-business-profile",
+              "icon": "tabler:brand-google"
+            },
+            {
+              "title": "Social Media Management",
+              "description": "Build and engage your audience with strategic social media content.",
+              "href": "/solutions/foundational/social-media-management",
+              "icon": "tabler:share"
+            },
+            {
+              "title": "Design Services",
+              "description": "Professional design services to elevate your brand identity.",
+              "href": "/solutions/foundational/design-services",
+              "icon": "tabler:tools"
+            }
+          ]
+        },
+        {
+          "label": "Lead Gen",
+          "items": [
+            {
+              "title": "Pay-Per-Click",
+              "description": "Targeted campaigns that generate quality leads and maximize exposure.",
+              "href": "/solutions/lead-gen/pay-per-click",
+              "icon": "tabler:click"
+            },
+            {
+              "title": "Social Media Advertising",
+              "description": "Targeted social media ads that drive calls, clicks, and leads.",
+              "href": "/solutions/lead-gen/social-media-advertising",
+              "icon": "tabler:ad"
+            }
+          ]
+        },
+        {
+          "label": "Branding & Awareness",
+          "items": [
+            {
+              "title": "Connected TV (OTT Ads)",
+              "description": "Reach audiences on streaming platforms with targeted TV advertising.",
+              "href": "/solutions/branding-awareness/connected-tv",
+              "icon": "tabler:device-tv"
+            },
+            {
+              "title": "Display (Geofencing)",
+              "description": "Location-based display advertising that targets customers where they are.",
+              "href": "/solutions/branding-awareness/display-geofencing",
+              "icon": "tabler:focus-2"
+            },
+            {
+              "title": "Streaming Audio",
+              "description": "Strategic streaming audio ads that captivate at the perfect moment.",
+              "href": "/solutions/branding-awareness/streaming-audio",
+              "icon": "tabler:headphones"
+            }
+          ]
+        }
+      ],
+      "featured": [
+        {
+          "title": "Website Design",
+          "description": "Custom websites that convert visitors into customers.",
+          "href": "/solutions/foundational/website-design",
+          "thumbnail": "/images/website-design.avif"
+        },
+        {
+          "title": "Screen Advertising",
+          "description": "High-impact advertising in premium indoor locations.",
+          "href": "/indoor-billboards/screen-advertising",
+          "thumbnail": "/images/indoor-billboard.avif"
+        }
+      ]
+    }
+  ],
+  "ctaButton": {
+    "text": "Contact Us",
+    "href": "/contact-us"
+  }
+}

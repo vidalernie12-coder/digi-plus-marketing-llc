@@ -1,0 +1,608 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface FormField {
+  id: string;
+  name: string;
+  label: string;
+  type:
+    | "text"
+    | "email"
+    | "tel"
+    | "number"
+    | "textarea"
+    | "select"
+    | "checkbox"
+    | "radio";
+  placeholder?: string;
+  required?: boolean;
+  options?: string[];
+  rows?: number;
+  pattern?: string;
+  helpText?: string;
+  width?: "full" | "half";
+}
+
+interface ContactInfo {
+  icon: string;
+  label: string;
+  value: string;
+  link?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  eyebrow?: string;
+  fields: FormField[];
+  submitText?: string;
+  submitAction?: string;
+  method?: "POST" | "GET";
+  successMessage?: string;
+  background?: "white" | "light" | "primary";
+  contactInfo?: ContactInfo[];
+  image?: string;
+}
+
+const {
+  title = "Get In Touch",
+  subtitle,
+  description,
+  eyebrow,
+  fields = [],
+  submitText = "Send Message",
+  submitAction = "/api/contact",
+  method = "POST",
+  successMessage = "Thank you! We'll be in touch soon.",
+  background = "light",
+  contactInfo = [],
+  image,
+} = Astro.props;
+
+const bgClasses = {
+  white: "bg-white",
+  light: "bg-neutral",
+  primary: "bg-primary",
+};
+
+const textColorClasses = {
+  white: "text-primary",
+  light: "text-primary",
+  primary: "text-white",
+};
+
+const descriptionColorClasses = {
+  white: "text-primary-dark",
+  light: "text-primary-dark",
+  primary: "text-neutral",
+};
+---
+
+<section
+  class={`py-16 md:py-24 ${bgClasses[background]} relative overflow-hidden fade-in-section`}
+>
+  <!-- Decorative background elements -->
+  {
+    background !== "primary" && (
+      <div class="absolute inset-0 opacity-40">
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-primary-light/30 rounded-full blur-3xl" />
+        <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+      </div>
+    )
+  }
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Image + Form Card Layout -->
+    {image ? (
+      <div class="max-w-6xl mx-auto">
+        <div
+          class={`relative rounded-2xl shadow-2xl overflow-hidden ${
+            background === "primary"
+              ? "bg-white/10 backdrop-blur-sm border border-white/20"
+              : "bg-white"
+          }`}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- Left: Image -->
+            <div class="relative lg:min-h-[450px]">
+              <img
+                src={image}
+                alt={title || "Contact"}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/5 lg:to-transparent" />
+            </div>
+
+            <!-- Right: Form -->
+            <div class="relative py-8 px-10 lg:py-10 lg:px-12 flex flex-col justify-center">
+              {/* Form Title */}
+              {
+                title && (
+                  <div class="mb-5">
+                    <h2 class={`text-2xl sm:text-3xl md:text-4xl font-bold mb-2 ${textColorClasses[background]}`}>
+                      {title}
+                    </h2>
+                    {description && (
+                      <p class={`text-sm ${descriptionColorClasses[background]}`}>
+                        {description}
+                      </p>
+                    )}
+                  </div>
+                )
+              }
+
+              <form
+                action={submitAction}
+                method={method}
+                class="space-y-4"
+                id="contact-form"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {
+                    fields.map((field) => {
+                      const isFullWidth =
+                        field.width === "full" || field.type === "textarea";
+                      return (
+                        <div class={isFullWidth ? "md:col-span-2" : ""}>
+                          {/* Label */}
+                          {field.label && field.type !== "checkbox" && (
+                        <label
+                          for={field.id}
+                          class={`block text-sm font-bold mb-2 ${
+                            background === "primary"
+                              ? "text-white"
+                              : "text-primary"
+                          }`}
+                        >
+                          {field.label}
+                          {field.required && (
+                            <span class="text-accent ml-1">*</span>
+                          )}
+                        </label>
+                      )}
+
+                      {/* Text Input */}
+                      {(field.type === "text" ||
+                        field.type === "email" ||
+                        field.type === "tel" ||
+                        field.type === "number") && (
+                        <div class="relative group">
+                          <input
+                            type={field.type}
+                            id={field.id}
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            pattern={field.pattern}
+                            class={`w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none bg-white ${
+                              background === "primary"
+                                ? "border-2 border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:shadow-lg focus:shadow-white/10"
+                                : "border-2 border-gray-200 text-primary placeholder:text-gray-400 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
+                            }`}
+                          />
+                          <div
+                            class={`absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none opacity-0 group-focus-within:opacity-100 transition-opacity ${
+                              background === "primary"
+                                ? "text-white"
+                                : "text-primary"
+                            }`}
+                          >
+                            <div class="w-2 h-2 rounded-full bg-current" />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Textarea */}
+                      {field.type === "textarea" && (
+                        <textarea
+                          id={field.id}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          required={field.required}
+                          rows={field.rows || 4}
+                          class={`w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none resize-none bg-white ${
+                            background === "primary"
+                              ? "border-2 border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:shadow-lg focus:shadow-white/10"
+                              : "border-2 border-gray-200 text-primary placeholder:text-gray-400 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
+                          }`}
+                        />
+                      )}
+
+                      {/* Select */}
+                      {field.type === "select" && field.options && (
+                        <select
+                          id={field.id}
+                          name={field.name}
+                          required={field.required}
+                          class={`w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none bg-white ${
+                            background === "primary"
+                              ? "border-2 border-white/20 text-white focus:border-white/40"
+                              : "border-2 border-gray-200 text-primary focus:border-primary"
+                          }`}
+                        >
+                          <option value="">Select an option</option>
+                          {field.options.map((option) => (
+                            <option value={option}>{option}</option>
+                          ))}
+                        </select>
+                      )}
+
+                      {/* Checkbox */}
+                      {field.type === "checkbox" && (
+                        <div class="flex items-start group">
+                          <input
+                            type="checkbox"
+                            id={field.id}
+                            name={field.name}
+                            required={field.required}
+                            class="mt-1 h-5 w-5 text-primary border-2 border-gray-300 rounded focus:ring-primary cursor-pointer"
+                          />
+                          <label
+                            for={field.id}
+                            class={`ml-3 text-sm cursor-pointer transition ${
+                              background === "primary"
+                                ? "text-white group-hover:text-neutral"
+                                : "text-primary-dark group-hover:text-primary"
+                            }`}
+                          >
+                            {field.label}
+                            {field.required && (
+                              <span class="text-accent ml-1">*</span>
+                            )}
+                          </label>
+                        </div>
+                      )}
+
+                      {/* Radio */}
+                      {field.type === "radio" && field.options && (
+                        <div class="space-y-3">
+                          {field.options.map((option, idx) => (
+                            <div class="flex items-center group">
+                              <input
+                                type="radio"
+                                id={`${field.id}-${idx}`}
+                                name={field.name}
+                                value={option}
+                                required={field.required}
+                                class="h-5 w-5 text-primary border-2 border-gray-300 focus:ring-primary cursor-pointer"
+                              />
+                              <label
+                                for={`${field.id}-${idx}`}
+                                class={`ml-3 text-sm cursor-pointer transition ${
+                                  background === "primary"
+                                    ? "text-white group-hover:text-neutral"
+                                    : "text-primary-dark group-hover:text-primary"
+                                }`}
+                              >
+                                {option}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Help Text */}
+                      {field.helpText && (
+                        <p
+                          class={`mt-2 text-xs flex items-center gap-1 ${background === "primary" ? "text-white/60" : "text-gray-500"}`}
+                        >
+                          <Icon name="tabler:info-circle" class="w-3.5 h-3.5" />
+                          {field.helpText}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })
+              }
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-3">
+              <button
+                type="submit"
+                id="submit-button"
+                class={`w-full group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0 ${
+                  background === "primary"
+                    ? "bg-white text-primary hover:bg-neutral"
+                    : "bg-primary text-white hover:bg-primary-dark"
+                }`}
+              >
+                <span>{submitText}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Success Message -->
+            <div
+              id="success-message"
+              class="hidden p-6 bg-green-50 border-2 border-green-200 rounded-xl text-center animate-fade-in"
+            >
+              <div class="flex items-center justify-center gap-3 mb-3">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+                >
+                  <Icon name="tabler:check" class="w-7 h-7 text-white" />
+                </div>
+              </div>
+              <p class="font-bold text-lg text-green-800 mb-1">Success!</p>
+              <p class="text-sm text-green-700">{successMessage}</p>
+            </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="max-w-6xl mx-auto">
+        <div class="relative rounded-2xl shadow-2xl overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-2">
+            <!-- Left: Info Panel -->
+            <div class="bg-primary px-10 py-12 lg:py-14 flex flex-col justify-center">
+              {title && (
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
+                  {title}
+                </h2>
+              )}
+              {subtitle && (
+                <p class="text-lg font-medium text-white/90 mb-4">{subtitle}</p>
+              )}
+              {description && (
+                <p class="text-sm text-white/75 leading-relaxed mb-8">{description}</p>
+              )}
+              {contactInfo && contactInfo.length > 0 && (
+                <ul class="space-y-4">
+                  {contactInfo.map((item) => (
+                    <li>
+                      {item.link ? (
+                        <a
+                          href={item.link}
+                          class="flex items-center gap-3 group"
+                        >
+                          <span class="flex items-center justify-center w-9 h-9 rounded-lg border border-white/20 text-white shrink-0">
+                            <Icon name={item.icon} class="w-5 h-5" />
+                          </span>
+                          <span class="text-sm font-semibold text-white group-hover:text-white/80 transition">
+                            {item.value}
+                          </span>
+                        </a>
+                      ) : (
+                        <div class="flex items-center gap-3">
+                          <span class="flex items-center justify-center w-9 h-9 rounded-lg border border-white/20 text-white shrink-0">
+                            <Icon name={item.icon} class="w-5 h-5" />
+                          </span>
+                          <span class="text-sm font-semibold text-white">{item.value}</span>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <!-- Right: Form -->
+            <div class="bg-white py-10 px-10 lg:py-12 lg:px-12 flex flex-col justify-center">
+              <form
+                action={submitAction}
+                method={method}
+                class="space-y-4"
+                id="contact-form"
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {fields.map((field) => {
+                    const isFullWidth = field.width === "full" || field.type === "textarea";
+                    return (
+                      <div class={isFullWidth ? "md:col-span-2" : ""}>
+                        {field.label && field.type !== "checkbox" && (
+                          <label
+                            for={field.id}
+                            class="block text-sm font-bold mb-2 text-primary"
+                          >
+                            {field.label}
+                            {field.required && <span class="text-accent ml-1">*</span>}
+                          </label>
+                        )}
+
+                        {(field.type === "text" || field.type === "email" || field.type === "tel" || field.type === "number") && (
+                          <input
+                            type={field.type}
+                            id={field.id}
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            pattern={field.pattern}
+                            class="w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none bg-white border-2 border-gray-200 text-primary placeholder:text-gray-400 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
+                          />
+                        )}
+
+                        {field.type === "textarea" && (
+                          <textarea
+                            id={field.id}
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            rows={field.rows || 4}
+                            class="w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none resize-none bg-white border-2 border-gray-200 text-primary placeholder:text-gray-400 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
+                          />
+                        )}
+
+                        {field.type === "select" && field.options && (
+                          <select
+                            id={field.id}
+                            name={field.name}
+                            required={field.required}
+                            class="w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none bg-white border-2 border-gray-200 text-primary focus:border-primary"
+                          >
+                            <option value="">Select an option</option>
+                            {field.options.map((option) => (
+                              <option value={option}>{option}</option>
+                            ))}
+                          </select>
+                        )}
+
+                        {field.type === "checkbox" && (
+                          <div class="flex items-start group">
+                            <input
+                              type="checkbox"
+                              id={field.id}
+                              name={field.name}
+                              required={field.required}
+                              class="mt-1 h-5 w-5 text-primary border-2 border-gray-300 rounded focus:ring-primary cursor-pointer"
+                            />
+                            <label
+                              for={field.id}
+                              class="ml-3 text-sm cursor-pointer transition text-primary-dark group-hover:text-primary"
+                            >
+                              {field.label}
+                              {field.required && <span class="text-accent ml-1">*</span>}
+                            </label>
+                          </div>
+                        )}
+
+                        {field.type === "radio" && field.options && (
+                          <div class="space-y-3">
+                            {field.options.map((option, idx) => (
+                              <div class="flex items-center group">
+                                <input
+                                  type="radio"
+                                  id={`${field.id}-${idx}`}
+                                  name={field.name}
+                                  value={option}
+                                  required={field.required}
+                                  class="h-5 w-5 text-primary border-2 border-gray-300 focus:ring-primary cursor-pointer"
+                                />
+                                <label
+                                  for={`${field.id}-${idx}`}
+                                  class="ml-3 text-sm cursor-pointer transition text-primary-dark group-hover:text-primary"
+                                >
+                                  {option}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {field.helpText && (
+                          <p class="mt-2 text-xs flex items-center gap-1 text-gray-500">
+                            <Icon name="tabler:info-circle" class="w-3.5 h-3.5" />
+                            {field.helpText}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div class="pt-3">
+                  <button
+                    type="submit"
+                    id="submit-button"
+                    class="w-full group inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-0.5 active:scale-100 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:translate-y-0 bg-primary text-white hover:bg-primary-dark"
+                  >
+                    <span>{submitText}</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div
+                  id="success-message"
+                  class="hidden p-6 bg-green-50 border-2 border-green-200 rounded-xl text-center animate-fade-in"
+                >
+                  <div class="flex items-center justify-center gap-3 mb-3">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                      <Icon name="tabler:check" class="w-7 h-7 text-white" />
+                    </div>
+                  </div>
+                  <p class="font-bold text-lg text-green-800 mb-1">Success!</p>
+                  <p class="text-sm text-green-700">{successMessage}</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  function initForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const successMessage = document.getElementById("success-message");
+    const submitButton = document.getElementById(
+      "submit-button"
+    ) as HTMLButtonElement;
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        submitButton.disabled = true;
+        const originalHTML = submitButton.innerHTML;
+        submitButton.innerHTML = `
+          <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Sending...</span>
+        `;
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        try {
+          console.log("Form data:", data);
+          await new Promise((resolve) => setTimeout(resolve, 1500));
+
+          form.classList.add("hidden");
+          successMessage?.classList.remove("hidden");
+
+          setTimeout(() => {
+            form.reset();
+            form.classList.remove("hidden");
+            successMessage?.classList.add("hidden");
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalHTML;
+          }, 4000);
+        } catch (error) {
+          console.error("Form submission error:", error);
+          alert("There was an error submitting the form. Please try again.");
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalHTML;
+        }
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initForm);
+  } else {
+    initForm();
+  }
+
+  document.addEventListener("astro:after-swap", initForm);
+</script>

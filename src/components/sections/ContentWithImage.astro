@@ -1,0 +1,167 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  ctaText?: string;
+  ctaLink?: string;
+  eyebrow?: string;
+  background?: "white" | "primary" | "primary-dark" | "light" | "gray";
+  imagePosition?: "left" | "right";
+}
+
+const {
+  title,
+  description,
+  image,
+  ctaText,
+  ctaLink,
+  eyebrow,
+  background = "white",
+  imagePosition = "left",
+} = Astro.props;
+
+const bgClasses = {
+  white: "bg-white",
+  light: "bg-neutral",
+  gray: "bg-gray-50",
+  primary: "bg-primary",
+  "primary-dark": "bg-primary",
+};
+
+const textColorClasses = {
+  white: "text-primary",
+  light: "text-primary",
+  gray: "text-primary",
+  primary: "text-white",
+  "primary-dark": "text-white",
+};
+
+const descriptionColorClasses = {
+  white: "text-primary-dark",
+  light: "text-primary-dark",
+  gray: "text-primary-dark",
+  primary: "text-neutral",
+  "primary-dark": "text-neutral",
+};
+---
+
+<section class={`py-16 md:py-24 ${bgClasses[background]} relative overflow-hidden fade-in-section`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start`}
+    >
+      <!-- Content Column -->
+      <div class={imagePosition === "left" ? "lg:order-2" : "lg:order-1"}>
+        <div class="space-y-6">
+          {
+            eyebrow && (
+              <div
+                class={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${background === "white" || background === "light" || background === "gray" ? "bg-primary/5 border border-primary-light/30" : "bg-white/10 border border-white/20"}`}
+              >
+                <span
+                  class={`w-2 h-2 rounded-full ${background === "white" || background === "light" || background === "gray" ? "bg-primary-light" : "bg-white"}`}
+                />
+                <span
+                  class={`section-eyebrow ${background === "white" || background === "light" || background === "gray" ? "text-primary" : "text-white"}`}
+                >
+                  {eyebrow}
+                </span>
+              </div>
+            )
+          }
+
+          <h2 class={`section-title ${textColorClasses[background]}`}>
+            {title}
+          </h2>
+
+          <!-- Accent line -->
+          <div
+            class={`w-20 h-1 ${background === "white" || background === "light" || background === "gray" ? "bg-primary-light" : "bg-white/30"}`}
+          >
+          </div>
+
+          <div
+            class={`section-description ${descriptionColorClasses[background]}`}
+            set:html={description}
+          />
+
+          {
+            ctaText && ctaLink && (
+              <div class="pt-4">
+                <Button
+                  href={ctaLink}
+                  variant={
+                    background === "white" || background === "light" || background === "gray"
+                      ? "primary"
+                      : "secondary"
+                  }
+                  size="lg"
+                >
+                  {ctaText}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Button>
+              </div>
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Image Column -->
+      <div class={`${imagePosition === "left" ? "lg:order-1" : "lg:order-2"} image-sticky-wrapper`}>
+        <div class="relative group">
+          <!-- Background shape -->
+          <div
+            class={`absolute inset-0 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6 ${background === "white" || background === "light" || background === "gray" ? "bg-primary-light/30" : "bg-white/20"}`}
+          >
+          </div>
+
+          {/* Image container */}
+          <div
+            class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]"
+          >
+            <img
+              src={image}
+              alt={title}
+              width="600"
+              height="400"
+              class="w-full h-auto max-h-[800px] object-cover"
+              loading="lazy"
+            />
+
+            <!-- Corner accent -->
+            <div
+              class={`absolute top-0 right-0 w-32 h-32 ${background === "white" || background === "light" || background === "gray" ? "bg-primary" : "bg-white"} opacity-30`}
+              style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .image-sticky-wrapper {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+    }
+  }
+</style>
