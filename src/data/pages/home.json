@@ -135,7 +135,7 @@
       "value": {
         "variant": "simple",
         "title": "Full-Service Digital Marketing from {city} Pros",
-        "description": "Beyond <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, our <strong>{city} marketing pros</strong> provide full-scale digital marketing to help your business show up, stand out, and grow. Whether you're just getting started or need help scaling your outreach, we've got the tools and the team to support you.",
+        "description": "Beyond <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, our {city} marketing pros provide full-scale digital marketing to help your business show up, stand out, and grow. Whether you're just getting started or need help scaling your outreach, we've got the tools and the team to support you.",
         "image": "/images/boost-visibility.avif",
         "imagePosition": "right",
         "buttonText": "View All Marketing Solutions",
@@ -166,7 +166,7 @@
         "variant": "two-column",
         "badge": "Your Trusted {city} Marketing Partners",
         "title": "Why {city} Businesses Choose Our Marketing Pros",
-        "description": "We're not just another agency. We're <strong>{city} marketing pros</strong> and locals who understand the market, know the neighborhoods, and have the relationships that get results. Our clients choose us because we deliver measurable outcomes, transparent reporting, and personalized service that treats your business like our own. From <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>web design</a></strong> to <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC campaigns</a></strong>, we've got you covered.",
+        "description": "We're not just another agency. We're {city} marketing pros and locals who understand the market, know the neighborhoods, and have the relationships that get results. Our clients choose us because we deliver measurable outcomes, transparent reporting, and personalized service that treats your business like our own. From <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>web design</a></strong> to <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC campaigns</a></strong>, we've got you covered.",
         "image": "/images/marketing-partners.avif",
         "imagePosition": "right",
         "buttonText": "Get Started Today",
@@ -181,7 +181,7 @@
         "variant": "bold",
         "image": "/images/local-marketing-experts.avif",
         "title": "Partner with {city}'s Local Advertising & Digital Marketing Pros",
-        "description": "Whether you're looking for <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, a new <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong>, or a complete <strong>digital marketing</strong> strategy in <strong>{city}</strong>, we're here to help. Contact us today for a free consultation and let's discuss how we can grow your business.",
+        "description": "Whether you're looking for <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, a new <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong>, or a complete digital marketing strategy in {city}, we're here to help. Contact us today for a free consultation and let's discuss how we can grow your business.",
         "buttonText": "Schedule Free Consultation",
         "buttonHref": "/contact-us"
       }

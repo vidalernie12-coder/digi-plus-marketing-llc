@@ -31,7 +31,7 @@
       "value": {
         "variant": "card",
         "title": "Your Site is Your Cornerstone of Your Online Presence",
-        "description": "Your website is the foundation of all your digital marketing efforts. It's where <strong><a href='/solutions/foundational/social-media-management' style='text-decoration: none; color: inherit;'>social media</a></strong> followers land, where ads drive traffic, and where customers learn about your business. A strong website amplifies everything else you do online, from <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>local SEO</a></strong> to <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>paid advertising</a></strong> and email campaigns. Without a solid website, you're building on shaky ground. <br><br><strong>Want to amplify your reach?</strong> Pair your website with our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor billboard advertising</a></strong> to dominate both online and offline.",
+        "description": "Your website is the foundation of all your digital marketing efforts. It's where <strong><a href='/solutions/foundational/social-media-management' style='text-decoration: none; color: inherit;'>social media</a></strong> followers land, where ads drive traffic, and where customers learn about your business. A strong website amplifies everything else you do online, from <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>local SEO</a></strong> to <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>paid advertising</a></strong> and email campaigns. Without a solid website, you're building on shaky ground. <br><br>Want to amplify your reach? Pair your website with our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor billboard advertising</a></strong> to dominate both online and offline.",
         "buttonText": "Get Started Today",
         "buttonHref": "/contact-us"
       }
@@ -40,7 +40,7 @@
       "discriminant": "features",
       "value": {
         "title": "Website Solutions: Guiding You from Start to Finish",
-        "description": "Whatever stage you're at, we have the expertise to take your website to the next level. <strong>Looking to drive more traffic?</strong> Check out our <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC advertising services</a></strong> to get immediate results.",
+        "description": "Whatever stage you're at, we have the expertise to take your website to the next level. Looking to drive more traffic? Check out our <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC advertising services</a></strong> to get immediate results.",
         "columns": 3,
         "variant": "default",
         "features": [
@@ -154,7 +154,7 @@
           },
           {
             "question": "Do I need to provide content for my website?",
-            "answer": "We can work with whatever you have! If you have existing content, great. If not, we can help write it or recommend professional copywriters. <strong>Need help with visuals?</strong> Check out our <strong><a href='/solutions/foundational/design-services' style='text-decoration: none; color: inherit;'>design services</a></strong> for professional graphics and branding."
+            "answer": "We can work with whatever you have! If you have existing content, great. If not, we can help write it or recommend professional copywriters. Need help with visuals? Check out our <strong><a href='/solutions/foundational/design-services' style='text-decoration: none; color: inherit;'>design services</a></strong> for professional graphics and branding."
           },
           {
             "question": "Do you provide hosting and maintenance?",

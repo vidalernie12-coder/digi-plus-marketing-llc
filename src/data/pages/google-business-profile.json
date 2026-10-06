@@ -20,7 +20,7 @@
       "value": {
         "variant": "two-column",
         "title": "Google Business Profile Management",
-        "description": "Our Google Business Profile Management service offers a dedicated account specialists who expertly optimize your profile. They will handle everything from weekly posts to photo uploads. With us, your Google presence will be professionally managed, leaving you to focus on what you do best - running your business. <strong>Looking to maximize your online visibility?</strong> Pair GBP management with a professional <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong> for the ultimate digital presence.",
+        "description": "Our Google Business Profile Management service offers a dedicated account specialists who expertly optimize your profile. They will handle everything from weekly posts to photo uploads. With us, your Google presence will be professionally managed, leaving you to focus on what you do best - running your business. Looking to maximize your online visibility? Pair GBP management with a professional <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong> for the ultimate digital presence.",
         "image": "/images/google-business-profile-content.jpg",
         "imagePosition": "left",
         "background": "primary-dark"
@@ -40,7 +40,7 @@
       "discriminant": "features",
       "value": {
         "title": "Boosting Visibility With Google Business Profile",
-        "description": "Whatever stage you're at, we have the expertise to take your Google Business Profile to the next level. <strong>Want to amplify your local presence?</strong> Combine GBP optimization with our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor billboard advertising</a></strong> to dominate your local market.",
+        "description": "Whatever stage you're at, we have the expertise to take your Google Business Profile to the next level. Want to amplify your local presence? Combine GBP optimization with our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor billboard advertising</a></strong> to dominate your local market.",
         "columns": 3,
         "variant": "default",
         "features": [
