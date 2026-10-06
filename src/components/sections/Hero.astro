@@ -5,6 +5,19 @@ interface Action {
   variant?: "primary" | "secondary";
 }
 
+// Attribution for third-party photos (e.g. Wikimedia Commons): title, author,
+// source and license, plus a note of any changes made to the original.
+interface ImageCredit {
+  title: string;
+  sourceUrl: string;
+  author: string;
+  authorUrl?: string;
+  license: string;
+  licenseUrl?: string;
+  source?: string; // e.g. "Wikimedia Commons"
+  changes?: string; // e.g. "resized"
+}
+
 interface Props {
   title?: string;
   tagline?: string;
@@ -16,6 +29,8 @@ interface Props {
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
   image?: string;
+  imageAlt?: string;
+  imageCredit?: ImageCredit;
   background?: string;
   actions?: Action[];
 }
@@ -31,6 +46,8 @@ const {
   secondaryCtaText,
   secondaryCtaLink,
   image,
+  imageAlt,
+  imageCredit,
   actions = [],
 } = Astro.props;
 
@@ -160,26 +177,35 @@ const displayDescription = description || subtitle;
       <!-- Image Column -->
       {
         image && (
-          <div class="relative group">
-            {/* Background shape */}
-            <div class="absolute inset-0 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6 bg-primary-light/30" />
+          <figure class="m-0">
+            <div class="relative group">
+              {/* Background shape */}
+              <div class="absolute inset-0 rounded-3xl transform rotate-3 transition-transform duration-500 group-hover:rotate-6 bg-primary-light/30" />
 
-            {/* Image container */}
-            <div class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
-              <img
-                src={image}
-                alt={title || "Hero image"}
-                class="w-full h-auto max-h-[500px] object-cover"
-                loading="eager"
-              />
+              {/* Image container */}
+              <div class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+                <img
+                  src={image}
+                  alt={imageAlt || title || "Hero image"}
+                  class="w-full h-auto max-h-[500px] object-cover"
+                  loading="eager"
+                />
 
-              {/* Corner accent */}
-              <div
-                class="absolute top-0 right-0 w-32 h-32 bg-primary opacity-30"
-                style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
-              />
+                {/* Corner accent */}
+                <div
+                  class="absolute top-0 right-0 w-32 h-32 bg-primary opacity-30"
+                  style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+                />
+              </div>
             </div>
-          </div>
+
+            {imageCredit && (
+              <figcaption class="mt-5 text-xs leading-relaxed text-gray-500">
+                {/* Kept on single lines so no stray whitespace lands before the commas. */}
+                Photo: <a href={imageCredit.sourceUrl} target="_blank" rel="noopener" class="underline hover:text-primary">"{imageCredit.title}"</a> by {imageCredit.authorUrl ? <a href={imageCredit.authorUrl} target="_blank" rel="noopener" class="underline hover:text-primary">{imageCredit.author}</a> : imageCredit.author}, {imageCredit.licenseUrl ? <a href={imageCredit.licenseUrl} target="_blank" rel="noopener license" class="underline hover:text-primary">{imageCredit.license}</a> : imageCredit.license}, via {imageCredit.source || "Wikimedia Commons"}{imageCredit.changes ? ` (${imageCredit.changes})` : ""}
+              </figcaption>
+            )}
+          </figure>
         )
       }
     </div>

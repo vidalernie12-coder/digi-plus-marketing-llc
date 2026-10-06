@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { smartGridStyle } from "~/lib/smartGrid";
 
 interface Card {
   title: string;
@@ -17,6 +18,9 @@ interface Props {
 }
 
 const { title, description, ctaText, ctaLink, cards = [] } = Astro.props;
+
+// Smart grid: 2 columns from sm, up to 4 on desktop, balanced by card count.
+const gridStyle = smartGridStyle(cards.length, { sm: 2, lg: 4 });
 ---
 
 <section class="services-grid-section fade-in-section">
@@ -32,7 +36,7 @@ const { title, description, ctaText, ctaLink, cards = [] } = Astro.props;
     }
 
     <!-- Service Grid -->
-    <div class="services-grid stagger">
+    <div class="services-grid smart-grid stagger" style={gridStyle}>
       {
         cards.map((card) =>
           card.link ? (
@@ -155,24 +159,10 @@ const { title, description, ctaText, ctaLink, cards = [] } = Astro.props;
     text-decoration: underline;
   }
 
-  /* Services Grid */
+  /* Services Grid — columns come from the global .smart-grid rules */
   .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-    gap: 2rem;
+    --sg-gap: 2rem;
     margin-bottom: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .services-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .services-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 
   /* Service Card */
@@ -392,7 +382,7 @@ const { title, description, ctaText, ctaLink, cards = [] } = Astro.props;
     }
 
     .services-grid {
-      gap: 1.5rem;
+      --sg-gap: 1.5rem;
     }
 
     .card-inner {

@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { smartGridStyle } from "~/lib/smartGrid";
 
 interface Feature {
   title: string;
@@ -27,17 +28,11 @@ const {
   ctaLink,
 } = Astro.props;
 
-// Determine grid columns based on feature count (max 3 columns)
-const getGridCols = (count: number) => {
-  if (count === 1) return "grid-cols-1 max-w-md mx-auto";
-  if (count === 2) return "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto";
-  if (count === 3) return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-  if (count === 4) return "grid-cols-1 md:grid-cols-2"; // 2x2 grid, full width
-  // For 5+ features, use 3 columns (will wrap naturally)
-  return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-};
-
-const gridCols = getGridCols(features.length);
+// Smart grid: up to 2 columns on tablet and 3 on desktop, balanced by count
+// (4 → 2×2, 5 → 3 + 2 centered). One or two cards stay at a readable width.
+const gridStyle = smartGridStyle(features.length, { md: 2, lg: 3 });
+const gridWidth =
+  features.length === 1 ? "max-w-md mx-auto" : features.length === 2 ? "max-w-4xl mx-auto" : "";
 
 const bgClasses = {
   white: "bg-white",
@@ -96,7 +91,7 @@ const descriptionColorClasses = {
     </div>
 
     <!-- Features Grid -->
-    <div class={`grid ${gridCols} gap-8`}>
+    <div class={`smart-grid ${gridWidth}`} style={gridStyle}>
       {
         features.map((feature) => (
           <div

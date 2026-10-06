@@ -13,8 +13,18 @@
         "subtitle": "Montclair customers have plenty of choices. We make sure they choose you, online and around town.",
         "buttonText": "Talk to Our Team",
         "buttonHref": "/contact-us",
-        "image": "/images/venue-partner-content.avif",
-        "imageAlt": "Busy Montclair restaurant with a digital menu screen"
+        "image": "/images/montclair-hero.avif",
+        "imageAlt": "Shops and storefronts along a street in Upper Montclair, New Jersey",
+        "imageCredit": {
+          "title": "Street in Upper Montclair, NJ (2006)",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Street_in_Upper_Montclair,_NJ_(2006).jpg",
+          "author": "Blondhairblueeyed",
+          "authorUrl": "https://en.wikipedia.org/wiki/User:Blondhairblueeyed",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "source": "Wikimedia Commons",
+          "changes": "resized"
+        }
       }
     },
     {

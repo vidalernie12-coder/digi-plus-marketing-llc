@@ -112,6 +112,8 @@ const mapLocations = (locs: any[] = []) =>
             title={v.title}
             subtitle={v.subtitle || v.description}
             image={v.image}
+            imageAlt={v.imageAlt}
+            imageCredit={v.imageCredit}
             actions={
               (v.buttonText || v.ctaText) && (v.buttonHref || v.ctaLink)
                 ? [

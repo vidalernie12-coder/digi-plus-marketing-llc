@@ -112,7 +112,7 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Links Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
       {
         hydratedLinks.map((section: any) => (
           <div class={section.title === "Contact Us" ? "order-last sm:order-none" : ""}>
@@ -180,7 +180,7 @@ const currentYear = new Date().getFullYear();
                         <li>
                           <a
                             href={link.href}
-                            class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group"
+                            class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group max-w-full [overflow-wrap:anywhere]"
                           >
                             <span class="w-0 group-hover:w-1.5 h-1.5 rounded-full bg-primary-light transition-all mr-0 group-hover:mr-2" />
                             {link.text}
@@ -197,7 +197,7 @@ const currentYear = new Date().getFullYear();
                   <li class={link.child ? "pl-4" : ""}>
                     <a
                       href={link.href}
-                      class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group"
+                      class="text-white hover:text-primary-light transition text-sm py-1.5 px-2 rounded block hover:bg-white/5 inline-flex items-center group max-w-full [overflow-wrap:anywhere]"
                     >
                       <span class="w-0 group-hover:w-1.5 h-1.5 rounded-full bg-primary-light transition-all mr-0 group-hover:mr-2" />
                       {link.text}

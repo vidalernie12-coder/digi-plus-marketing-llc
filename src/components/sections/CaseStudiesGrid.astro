@@ -4,6 +4,7 @@
 // max-w-7xl container, the border-l-4 border-primary-light card DNA). It takes
 // data props only; the route fetches and passes them in.
 import type { CaseStudy } from "~/lib/case-studies";
+import { smartGridStyle } from "~/lib/smartGrid";
 
 interface Props {
   studies: CaseStudy[];
@@ -28,6 +29,10 @@ const {
 // Filtering is client-side (this page is statically pre-rendered), so all cards
 // render up front and a script toggles them — see the <script> at the bottom.
 const filters = ["All", ...categories];
+
+// Smart grid: up to 2 columns on tablet, 3 on desktop; filtered-out cards drop
+// out of the flow and any short row stays centered.
+const gridStyle = smartGridStyle(studies.length, { md: 2, lg: 3 });
 ---
 
 <section class="py-16 md:py-24 bg-neutral fade-in-section">
@@ -89,7 +94,8 @@ const filters = ["All", ...categories];
       ) : (
         <>
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          class="smart-grid"
+          style={gridStyle}
           data-cs-grid
         >
           {studies.map((cs) => (

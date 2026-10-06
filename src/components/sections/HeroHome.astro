@@ -30,17 +30,22 @@ const {
   image,
   galleryImages = [],
 } = Astro.props;
+
+// The gallery only shows from lg up, so below that the text is the last thing
+// in the hero; reserve the gallery's spacing for lg+ to avoid an empty gap.
+const hasGallery = galleryImages.length > 0;
+const hasCta = Boolean((ctaText && ctaLink) || (secondaryCtaText && secondaryCtaLink));
 ---
 
 <section
-  class="pb-12 md:pb-20 relative overflow-hidden -mt-16 sm:-mt-24 pt-28 sm:pt-40 md:min-h-0 flex flex-col justify-center"
+  class={`${hasGallery ? "pb-12 sm:pb-16 lg:pb-20" : "pb-12 md:pb-20"} relative overflow-hidden -mt-16 sm:-mt-24 pt-28 sm:pt-40 md:min-h-0 flex flex-col justify-center`}
 >
   <!-- White Background - extends behind navbar -->
   <div class="absolute inset-0 top-[-64px] sm:top-[-96px] bg-white -z-10"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-12 relative">
+  <div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative ${hasGallery ? "lg:mb-12" : "mb-8 md:mb-12"}`}>
     <!-- Content -->
-    <div class="pb-6 sm:pb-8 md:pb-12">
+    <div class={hasGallery ? "lg:pb-12" : "pb-6 sm:pb-8 md:pb-12"}>
       <div class="max-w-4xl text-center mx-auto">
         {
           eyebrow && (
@@ -62,7 +67,7 @@ const {
 
         {
           description && (
-            <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-8 sm:mb-10 leading-relaxed max-w-2xl mx-auto">
+            <p class={`text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto ${hasCta ? "mb-8 sm:mb-10" : ""}`}>
               {description}
             </p>
           )

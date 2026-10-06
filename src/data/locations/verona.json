@@ -13,8 +13,17 @@
         "subtitle": "Verona runs on regulars and word of mouth. We help more of your neighbors hear about you, and keep coming back.",
         "buttonText": "Get a Free Consultation",
         "buttonHref": "/contact-us",
-        "image": "/images/community-advertising.avif",
-        "imageAlt": "Verona small business owners celebrating a grand opening"
+        "image": "/images/verona-hero.avif",
+        "imageAlt": "The boathouse on Verona Lake in Verona Park, Verona, New Jersey",
+        "imageCredit": {
+          "title": "Verona Park Boasthouse",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Verona_Park_Boasthouse.JPG",
+          "author": "Soccera2g at English Wikipedia",
+          "authorUrl": "https://en.wikipedia.org/wiki/User:Soccera2g",
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "changes": "resized"
+        }
       }
     },
     {

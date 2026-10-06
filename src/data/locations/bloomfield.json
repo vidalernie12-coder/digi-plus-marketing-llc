@@ -13,8 +13,17 @@
         "subtitle": "Based on Pulaski Street, we put Bloomfield businesses on screens around town and at the top of local search.",
         "buttonText": "Meet With Our Bloomfield Team",
         "buttonHref": "/contact-us",
-        "image": "/images/indoor-billboard-content.avif",
-        "imageAlt": "Indoor digital billboard screens inside a local Bloomfield venue"
+        "image": "/images/bloomfield-hero.avif",
+        "imageAlt": "Museum of the Historical Society of Bloomfield on Broad Street in the Bloomfield Green Historic District",
+        "imageCredit": {
+          "title": "Bloomfield Historic District - Museum of the Historical Society of Bloomfield",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bloomfield_Historic_District_-_Museum_of_the_Historical_Society_of_Bloomfield.jpg",
+          "author": "Sandy visionquest",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "source": "Wikimedia Commons",
+          "changes": "resized"
+        }
       }
     },
     {

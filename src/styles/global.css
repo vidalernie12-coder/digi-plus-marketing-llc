@@ -332,6 +332,52 @@ footer a:active {
 }
 
 /* ============================================
+   SMART GRID
+   Card grid whose column count per breakpoint comes from the number of cards
+   (see src/lib/smartGrid.ts, which sets --sg-cols-{base,sm,md,lg,xl} inline).
+   Flex-wrap + centering means a short last row sits in the middle.
+   ============================================ */
+.smart-grid {
+  --sg-gap: 2rem;
+  --sg-cols: var(--sg-cols-base, 1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--sg-gap);
+}
+
+.smart-grid > * {
+  --sg-width: calc((100% - (var(--sg-cols) - 1) * var(--sg-gap)) / var(--sg-cols));
+  flex: 0 0 var(--sg-width);
+  max-width: var(--sg-width);
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .smart-grid {
+    --sg-cols: var(--sg-cols-sm, var(--sg-cols-base, 1));
+  }
+}
+
+@media (min-width: 768px) {
+  .smart-grid {
+    --sg-cols: var(--sg-cols-md, var(--sg-cols-sm, var(--sg-cols-base, 1)));
+  }
+}
+
+@media (min-width: 1024px) {
+  .smart-grid {
+    --sg-cols: var(--sg-cols-lg, var(--sg-cols-md, var(--sg-cols-sm, var(--sg-cols-base, 1))));
+  }
+}
+
+@media (min-width: 1280px) {
+  .smart-grid {
+    --sg-cols: var(--sg-cols-xl, var(--sg-cols-lg, var(--sg-cols-md, var(--sg-cols-sm, var(--sg-cols-base, 1)))));
+  }
+}
+
+/* ============================================
    BUTTON HOVER EFFECTS
    Enhanced button animations
    ============================================ */
