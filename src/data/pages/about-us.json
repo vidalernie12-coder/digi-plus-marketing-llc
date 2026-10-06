@@ -21,7 +21,7 @@
         "badge": "Who We Are",
         "variant": "image-card",
         "title": "Empowering {city} Businesses",
-        "description": "With 20 years of corporate experience working with industry leaders, we've brought our expertise to {city}. We're passionate about helping local businesses thrive through innovative <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>digital billboard advertising</a></strong>, <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong>, and <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>multichannel campaigns</a></strong>.<br><br>Our team combines strategic thinking with creative execution to deliver marketing solutions that actually work. We understand that every business is unique, which is why we take the time to learn about your goals, your audience, and your challenges before recommending any strategy. From small local shops to growing enterprises, we've helped {city} businesses increase their visibility, engage their customers, and drive real results.<br><br>Beyond business, we're committed to our community, building relationships and supporting local non-profits and charitable organizations. We believe in giving back to the community that has given us so much. Together, let's build something great, our strategy, your brand!",
+        "description": "Based at 41 Pulaski St in {city}, we bring big-agency marketing expertise to local businesses across {city}, Montclair, and Verona. We're passionate about helping local businesses thrive through innovative <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>digital billboard advertising</a></strong>, <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong>, and <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>multichannel campaigns</a></strong>.<br><br>Our team combines strategic thinking with creative execution to deliver marketing solutions that actually work. We understand that every business is unique, which is why we take the time to learn about your goals, your audience, and your challenges before recommending any strategy. From small local shops to growing enterprises, we've helped {city} businesses increase their visibility, engage their customers, and drive real results.<br><br>Beyond business, we're committed to our community, building relationships and supporting local non-profits and charitable organizations. We believe in giving back to the community that has given us so much. Together, let's build something great, our strategy, your brand!",
         "image": "/images/about-us-team.avif",
         "imagePosition": "left",
         "background": "gray"
@@ -74,23 +74,19 @@
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
         "variant": "full",
-        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "mapUrl": "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s41+Pulaski+St,+Bloomfield,+NJ+07003!6i12",
         "locations": [
           {
-            "name": "Aurora",
-            "href": "/locations/aurora"
+            "name": "Bloomfield",
+            "href": "/"
           },
           {
-            "name": "Arvada",
-            "href": "/locations/arvada"
+            "name": "Montclair",
+            "href": "/locations/montclair"
           },
           {
-            "name": "Lakewood",
-            "href": "/locations/lakewood"
-          },
-          {
-            "name": "Centennial",
-            "href": "/locations/centennial"
+            "name": "Verona",
+            "href": "/locations/verona"
           }
         ]
       }

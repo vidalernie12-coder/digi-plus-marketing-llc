@@ -1,29 +1,29 @@
 {
-  "navOrder": 2,
-  "title": "Marketing Agency Aurora CO | Digital Marketing",
-  "city": "Aurora",
-  "description": "Top marketing agency in Aurora, CO. Digital marketing, social media management, website design, SEO, and PPC services for Aurora businesses.",
-  "keywords": "marketing agency Aurora CO, digital marketing Aurora, Aurora marketing services",
+  "navOrder": 1,
+  "title": "Marketing Agency Montclair NJ | Digital Marketing",
+  "city": "Montclair",
+  "description": "Local marketing agency serving Montclair, NJ. Indoor digital billboards, website design, social media management, SEO, and PPC for Montclair businesses.",
+  "keywords": "marketing agency Montclair NJ, digital marketing Montclair, Montclair marketing services",
   "sections": [
     {
       "discriminant": "hero",
       "value": {
         "badge": "Premium Marketing Solutions",
-        "title": "Local Advertising and Digital Marketing Pros in Aurora, CO",
-        "subtitle": "Helping Aurora Businesses Get Noticed, On Screens and Online",
+        "title": "Local Advertising and Digital Marketing Pros in Montclair, NJ",
+        "subtitle": "Helping Montclair Businesses Get Noticed, On Screens and Online",
         "buttonText": "Contact Our Advertising Experts",
         "buttonHref": "/contact-us",
-        "image": "/images/aurora.avif",
-        "imageAlt": "Aurora Colorado cityscape and local businesses"
+        "image": "/images/locations.avif",
+        "imageAlt": "Local businesses in Montclair, New Jersey"
       }
     },
     {
       "discriminant": "content",
       "value": {
-        "title": "Your Local Marketing Partner in Aurora",
-        "description": "We're a full-service digital marketing agency dedicated to helping Aurora businesses succeed online. Whether you need a new website, social media management, or advertising campaigns, we provide personalized strategies that deliver real results.",
-        "image": "/images/aurora.avif",
-        "imageAlt": "Aurora business district and marketing opportunities",
+        "title": "Your Local Marketing Partner in Montclair",
+        "description": "From the shops and restaurants along Bloomfield Avenue and Church Street to the storefronts of Upper Montclair, local businesses compete for attention every day. Based right next door in Bloomfield, we help Montclair businesses stand out with indoor digital billboards, custom websites, social media management, and targeted ad campaigns built around your goals.",
+        "image": "/images/locations.avif",
+        "imageAlt": "Montclair business district and marketing opportunities",
         "imagePosition": "right",
         "buttonText": "Get Started",
         "buttonHref": "/contact-us"
@@ -33,18 +33,18 @@
       "discriminant": "features",
       "value": {
         "badge": "Why Choose Us",
-        "title": "Digital Marketing Experts Serving Aurora",
+        "title": "Digital Marketing Experts Serving Montclair",
         "columns": 4,
         "features": [
           {
             "icon": "target",
             "title": "Increased Foot Traffic",
-            "description": "Drive more visitors to your storefronts through indoor digital signage."
+            "description": "Drive more visitors to your storefront through indoor digital signage."
           },
           {
             "icon": "megaphone",
             "title": "Higher Brand Visibility",
-            "description": "Get seen in high-traffic venues and across digital platforms."
+            "description": "Get seen in high-traffic local venues and across digital platforms."
           },
           {
             "icon": "share",
@@ -63,7 +63,7 @@
       "discriminant": "valueCards",
       "value": {
         "badge": "Our Process",
-        "title": "How We Work With Aurora Businesses",
+        "title": "How We Work With Montclair Businesses",
         "variant": "cards",
         "cards": [
           {
@@ -97,12 +97,12 @@
       "discriminant": "cta",
       "value": {
         "variant": "bold",
-        "title": "Ready to Grow Your Aurora Business?",
+        "title": "Ready to Grow Your Montclair Business?",
         "description": "Whether you're a startup or an established business, we have the marketing solutions to help you reach more customers.",
         "buttonText": "Schedule A Free Consultation",
         "buttonHref": "/contact-us",
-        "image": "/images/aurora.avif",
-        "imageAlt": "Aurora Colorado cityscape and local businesses"
+        "image": "/images/locations.avif",
+        "imageAlt": "Local businesses in Montclair, New Jersey"
       }
     },
     {
@@ -112,12 +112,12 @@
         "title": "Common Questions About Our Services",
         "faqs": [
           {
-            "question": "Do you only work with businesses in Aurora?",
-            "answer": "While we specialize in serving Aurora businesses, we work with clients throughout the Denver metro area."
+            "question": "Do you only work with businesses in Montclair?",
+            "answer": "No. We're based in Bloomfield and work with businesses in Montclair, Verona, and throughout Essex County."
           },
           {
             "question": "What types of businesses do you work with?",
-            "answer": "We work with businesses of all sizes and industries, from local shops to professional services."
+            "answer": "We work with businesses of all sizes and industries, from local shops and restaurants to professional services."
           },
           {
             "question": "How much do your services cost?",
@@ -130,28 +130,23 @@
       "discriminant": "locations",
       "value": {
         "badge": "Service Areas",
-        "title": "Serving Aurora and Surrounding Areas",
+        "title": "Serving Montclair and Surrounding Areas",
         "variant": "overlay",
         "locations": [
           {
-            "name": "Denver",
+            "name": "Bloomfield",
             "href": "/",
-            "description": "Downtown Denver"
+            "description": "Our home base"
           },
           {
-            "name": "Lakewood",
-            "href": "/locations/lakewood",
-            "description": "West Denver Metro"
+            "name": "Montclair",
+            "href": "/locations/montclair",
+            "description": "Essex County, NJ"
           },
           {
-            "name": "Centennial",
-            "href": "/locations/centennial",
-            "description": "South Denver Metro"
-          },
-          {
-            "name": "Arvada",
-            "href": "/locations/arvada",
-            "description": "Northwest Denver"
+            "name": "Verona",
+            "href": "/locations/verona",
+            "description": "Essex County, NJ"
           }
         ]
       }
@@ -160,18 +155,18 @@
       "discriminant": "cta",
       "value": {
         "variant": "banner",
-        "title": "Ready to reach Aurora customers?",
-        "description": "Contact us today for a free consultation about Aurora advertising opportunities.",
+        "title": "Ready to reach Montclair customers?",
+        "description": "Contact us today for a free consultation about Montclair advertising opportunities.",
         "buttonText": "Get Free Quote",
         "buttonHref": "/contact-us",
-        "image": "/images/aurora.avif",
-        "imageAlt": "Aurora Colorado cityscape and local businesses"
+        "image": "/images/locations.avif",
+        "imageAlt": "Local businesses in Montclair, New Jersey"
       }
     }
   ],
   "metadata": {
     "title": "{location} Digital Signage & Marketing | {business}",
-    "description": "We connect businesses in {location} through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
-    "keywords": "Aurora digital marketing, marketing agency Aurora Colorado, Aurora business advertising, website design Aurora, social media marketing Aurora, SEO Aurora Colorado"
+    "description": "We connect businesses in {location}, NJ through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
+    "keywords": "Montclair digital marketing, marketing agency Montclair New Jersey, Montclair business advertising, website design Montclair, social media marketing Montclair, SEO Montclair NJ"
   }
 }

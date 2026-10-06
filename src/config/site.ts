@@ -7,34 +7,35 @@ import siteData from "../content/settings/site.json";
 
 const defaults = {
   business: {
-    name: "Acme Marketing",
-    fullName: "Acme Marketing",
-    tagline: "Helping Businesses Get Noticed On Screens and Online",
+    name: "Digi Plus Marketing",
+    fullName: "Digi Plus Marketing LLC",
+    tagline: "Helping Bloomfield Businesses Get Noticed On Screens and Online",
     description:
-      "Full-service local marketing agency offering indoor digital billboards, website design, SEO, PPC, and social media management.",
+      "Bloomfield, NJ marketing agency offering indoor digital billboards, website design, SEO, PPC, and social media management for businesses in Bloomfield, Montclair, and Verona.",
   },
   location: {
-    city: "Denver",
-    state: "CO",
-    stateFull: "Colorado",
-    address: "Denver, CO",
-    fullAddress: "Denver, CO",
+    city: "Bloomfield",
+    state: "NJ",
+    stateFull: "New Jersey",
+    address: "41 Pulaski St",
+    fullAddress: "41 Pulaski St, Bloomfield, NJ 07003",
+    postalCode: "07003",
   },
   contact: {
-    email: "hello@acme-marketing.example",
-    phone: "9034201090",
-    phoneFormatted: "903-420-1090",
+    email: "ernievidal@dgplusnj.com",
+    phone: "9739416773",
+    phoneFormatted: "(973) 941-6773",
   },
   colors: {
-    primary: "#1a2b5c",
-    secondary: "#00bba9",
-    tertiary: "#00bba9",
+    primary: "#0d3b3b",
+    secondary: "#14b8a6",
+    tertiary: "#082323",
     quaternary: "#ffffff",
   },
   logo: {
-    src: "/logo/progressive-section.svg",
-    whiteSrc: "/logo/progressive-section-white.svg",
-    alt: "Progressive Section Template Logo",
+    src: "/logo/digi-plus-marketing.svg",
+    whiteSrc: "/logo/digi-plus-marketing-white.svg",
+    alt: "Digi Plus Marketing logo",
   },
   social: {
     facebook: "",
@@ -44,14 +45,14 @@ const defaults = {
     youtube: "",
   },
   seo: {
-    siteName: "Acme Marketing",
-    defaultTitle: "Acme Marketing | Digital Signage and Marketing",
+    siteName: "Digi Plus Marketing",
+    defaultTitle: "Digi Plus Marketing | Digital Signage & Marketing in Bloomfield, NJ",
     defaultDescription:
-      "Full-service local marketing agency offering indoor digital billboards, website design, SEO, PPC, and social media management.",
-    keywords: "digital marketing, indoor billboards, website design, SEO, PPC",
-    siteUrl: "https://progressive-section-template.vercel.app",
-    ogImage: "/logo/progressive-section.svg",
-    twitterHandle: "@acme-marketing",
+      "Bloomfield, NJ marketing agency offering indoor digital billboards, website design, SEO, PPC, and social media management for businesses in Bloomfield, Montclair, and Verona.",
+    keywords: "Bloomfield NJ marketing agency, digital marketing Bloomfield, indoor billboards New Jersey, website design, SEO, PPC",
+    siteUrl: "https://dgplusnj.com",
+    ogImage: "/og-image.png",
+    twitterHandle: "",
   },
   analytics: { googleAnalyticsId: "" },
 };
@@ -98,6 +99,9 @@ export const siteConfig = {
       defaults.location.stateFull,
     address: siteData.location?.address || defaults.location.address,
     fullAddress: siteData.location?.fullAddress || defaults.location.fullAddress,
+    postalCode:
+      (siteData.location as { postalCode?: string })?.postalCode ||
+      defaults.location.postalCode,
   },
 
   contact: {
@@ -152,6 +156,7 @@ export function getLocationText(text: string) {
     .replaceAll("{city}", siteConfig.location.city)
     .replaceAll("{state}", siteConfig.location.state)
     .replaceAll("{stateFull}", siteConfig.location.stateFull)
+    .replaceAll("{fullAddress}", siteConfig.location.fullAddress)
     .replaceAll("{business}", siteConfig.business.name)
     .replaceAll("{email}", siteConfig.contact.email)
     .replaceAll("{phone}", siteConfig.contact.phone)

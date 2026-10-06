@@ -2,7 +2,7 @@
   "navOrder": 17,
   "navLabel": "Privacy Policy",
   "title": "Privacy Policy",
-  "description": "Privacy Policy for Acme Inc.",
+  "description": "Privacy Policy for Digi Plus Marketing LLC.",
   "keywords": "privacy policy",
   "sections": [
     {
@@ -37,7 +37,7 @@
     },
     {
       "title": "5. Contact Us",
-      "content": "If you have questions about this Privacy Policy, please contact us."
+      "content": "If you have questions about this Privacy Policy, please contact Digi Plus Marketing LLC at {email}, call {phoneFormatted}, or write to us at {fullAddress}."
     }
   ],
   "metadata": {

@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { siteConfig } from "~/config/site";
 
 interface Benefit {
   title: string;
@@ -13,8 +14,8 @@ interface Props {
 }
 
 const {
-  title = "Digital Marketing Experts Near You Serving Aurora",
-  description = "Looking to grow your business in Aurora? Our local digital marketing agency specializes in helping businesses stand out through targeted strategies that drive results. Whether you're looking to increase foot traffic, grow your online presence, or run high-converting ad campaigns, we offer tailored solutions backed by experience and data.",
+  title = `Digital Marketing Experts Near You Serving ${siteConfig.location.city}`,
+  description = `Looking to grow your business in ${siteConfig.location.city}? Our local digital marketing agency specializes in helping businesses stand out through targeted strategies that drive results. Whether you're looking to increase foot traffic, grow your online presence, or run high-converting ad campaigns, we offer tailored solutions backed by experience and data.`,
   benefits = [],
 } = Astro.props;
 ---

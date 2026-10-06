@@ -2,26 +2,20 @@
 import PageLayout from "~/layouts/PageLayout.astro";
 import SectionRenderer from "~/components/sections/SectionRenderer.astro";
 
-import arvadaData from "~/data/locations/arvada.json";
-import auroraData from "~/data/locations/aurora.json";
-import centennialData from "~/data/locations/centennial.json";
-import lakewoodData from "~/data/locations/lakewood.json";
+import montclairData from "~/data/locations/montclair.json";
+import veronaData from "~/data/locations/verona.json";
 import { localizeData } from "~/config/site";
 import { buildPageMeta } from "~/lib/pageMeta";
 
 const dataMap: Record<string, any> = localizeData({
-  arvada: arvadaData,
-  aurora: auroraData,
-  centennial: centennialData,
-  lakewood: lakewoodData,
+  montclair: montclairData,
+  verona: veronaData,
 });
 
 export function getStaticPaths() {
   return [
-    { params: { slug: "arvada" } },
-    { params: { slug: "aurora" } },
-    { params: { slug: "centennial" } },
-    { params: { slug: "lakewood" } },
+    { params: { slug: "montclair" } },
+    { params: { slug: "verona" } },
   ];
 }
 

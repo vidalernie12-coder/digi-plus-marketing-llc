@@ -1,12 +1,10 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "~/config/site";
-import arvadaData from "~/data/locations/arvada.json";
-import auroraData from "~/data/locations/aurora.json";
-import centennialData from "~/data/locations/centennial.json";
-import lakewoodData from "~/data/locations/lakewood.json";
+import montclairData from "~/data/locations/montclair.json";
+import veronaData from "~/data/locations/verona.json";
 
-const locations = [arvadaData, auroraData, centennialData, lakewoodData]
-  .map((d: any) => d.location)
+const locations = [montclairData, veronaData]
+  .map((d: any) => d.city || d.location)
   .filter(Boolean) as string[];
 
 const body = () => `# ${siteConfig.business.name} - Digital Marketing & Indoor Billboard Advertising

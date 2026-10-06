@@ -39,6 +39,8 @@ const {
   noindex,
   nofollow,
 } = localizedMetadata;
+// Social crawlers need an absolute og:image URL.
+const absoluteImage = image ? new URL(image, siteConfig.seo.siteUrl).href : image;
 
 // ─── Auto Breadcrumbs ────────────────────────────────────────────────────────
 // Intermediate segments are linked only when a real landing page exists at that
@@ -105,7 +107,7 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
     {/* Open Graph */}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {image && <meta property="og:image" content={image} />}
+    {absoluteImage && <meta property="og:image" content={absoluteImage} />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={siteConfig.seo.siteName} />
@@ -114,7 +116,7 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {image && <meta name="twitter:image" content={image} />}
+    {absoluteImage && <meta name="twitter:image" content={absoluteImage} />}
     {siteConfig.seo.twitterHandle && <meta name="twitter:site" content={siteConfig.seo.twitterHandle} />}
 
     {/* JSON-LD schemas — one script per entity */}

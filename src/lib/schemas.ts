@@ -31,8 +31,10 @@ export function organizationSchema() {
     email: siteConfig.contact.email,
     address: {
       "@type": "PostalAddress",
+      streetAddress: siteConfig.location.address,
       addressLocality: siteConfig.location.city,
       addressRegion: siteConfig.location.state,
+      postalCode: siteConfig.location.postalCode,
       addressCountry: "US",
     },
     priceRange: "$",

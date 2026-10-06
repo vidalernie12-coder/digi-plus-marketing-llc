@@ -2,7 +2,7 @@
   "navOrder": 18,
   "navLabel": "Terms of Service",
   "title": "Terms of Service",
-  "description": "Terms of Service for Acme Inc.",
+  "description": "Terms of Service for Digi Plus Marketing LLC.",
   "keywords": "terms of service",
   "sections": [
     {
@@ -37,7 +37,7 @@
     },
     {
       "title": "5. Contact Us",
-      "content": "If you have questions about these Terms of Service, please contact us."
+      "content": "If you have questions about these Terms of Service, please contact Digi Plus Marketing LLC at {email}, call {phoneFormatted}, or write to us at {fullAddress}."
     }
   ],
   "metadata": {

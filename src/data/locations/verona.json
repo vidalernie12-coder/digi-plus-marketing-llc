@@ -1,29 +1,29 @@
 {
-  "navOrder": 4,
-  "title": "Marketing Agency Lakewood CO | Digital Marketing",
-  "city": "Lakewood",
-  "description": "Trusted marketing agency in Lakewood, CO. Digital marketing, social media management, website design, SEO, and PPC services for Lakewood businesses.",
-  "keywords": "marketing agency Lakewood CO, digital marketing Lakewood, Lakewood marketing services",
+  "navOrder": 2,
+  "title": "Marketing Agency Verona NJ | Digital Marketing",
+  "city": "Verona",
+  "description": "Local marketing agency serving Verona, NJ. Indoor digital billboards, website design, social media management, SEO, and PPC for Verona businesses.",
+  "keywords": "marketing agency Verona NJ, digital marketing Verona, Verona marketing services",
   "sections": [
     {
       "discriminant": "hero",
       "value": {
         "badge": "Premium Marketing Solutions",
-        "title": "Local Advertising and Digital Marketing Pros in Lakewood, CO",
-        "subtitle": "Helping Lakewood Businesses Get Noticed, On Screens and Online",
+        "title": "Local Advertising and Digital Marketing Pros in Verona, NJ",
+        "subtitle": "Helping Verona Businesses Get Noticed, On Screens and Online",
         "buttonText": "Contact Our Advertising Experts",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
-        "imageAlt": "Lakewood Colorado cityscape and local businesses"
+        "image": "/images/community-advertising.avif",
+        "imageAlt": "Local businesses in Verona, New Jersey"
       }
     },
     {
       "discriminant": "content",
       "value": {
-        "title": "Your Local Marketing Partner in Lakewood",
-        "description": "We're a full-service digital marketing agency dedicated to helping Lakewood businesses succeed online. Whether you need a new website, social media management, or advertising campaigns, we provide personalized strategies that deliver real results.",
-        "image": "/images/lakewood.avif",
-        "imageAlt": "Lakewood business district and marketing opportunities",
+        "title": "Your Local Marketing Partner in Verona",
+        "description": "Verona's tight-knit business community thrives on local customers who keep coming back. Just a few minutes away in Bloomfield, our team helps Verona businesses get in front of their neighbors with indoor digital billboards, custom websites, social media management, and targeted ad campaigns, all with personalized service and transparent reporting.",
+        "image": "/images/community-advertising.avif",
+        "imageAlt": "Verona business district and marketing opportunities",
         "imagePosition": "right",
         "buttonText": "Get Started",
         "buttonHref": "/contact-us"
@@ -33,18 +33,18 @@
       "discriminant": "features",
       "value": {
         "badge": "Why Choose Us",
-        "title": "Digital Marketing Experts Serving Lakewood",
+        "title": "Digital Marketing Experts Serving Verona",
         "columns": 4,
         "features": [
           {
             "icon": "target",
             "title": "Increased Foot Traffic",
-            "description": "Drive more visitors to your storefronts through indoor digital signage."
+            "description": "Drive more visitors to your storefront through indoor digital signage."
           },
           {
             "icon": "megaphone",
             "title": "Higher Brand Visibility",
-            "description": "Get seen in high-traffic venues and across digital platforms."
+            "description": "Get seen in high-traffic local venues and across digital platforms."
           },
           {
             "icon": "share",
@@ -63,7 +63,7 @@
       "discriminant": "valueCards",
       "value": {
         "badge": "Our Process",
-        "title": "How We Work With Lakewood Businesses",
+        "title": "How We Work With Verona Businesses",
         "variant": "cards",
         "cards": [
           {
@@ -97,12 +97,12 @@
       "discriminant": "cta",
       "value": {
         "variant": "bold",
-        "title": "Ready to Grow Your Lakewood Business?",
+        "title": "Ready to Grow Your Verona Business?",
         "description": "Whether you're a startup or an established business, we have the marketing solutions to help you reach more customers.",
         "buttonText": "Schedule A Free Consultation",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
-        "imageAlt": "Lakewood Colorado cityscape and local businesses"
+        "image": "/images/community-advertising.avif",
+        "imageAlt": "Local businesses in Verona, New Jersey"
       }
     },
     {
@@ -112,12 +112,12 @@
         "title": "Common Questions About Our Services",
         "faqs": [
           {
-            "question": "Do you only work with businesses in Lakewood?",
-            "answer": "While we specialize in serving Lakewood businesses, we work with clients throughout the Denver metro area."
+            "question": "Do you only work with businesses in Verona?",
+            "answer": "No. We're based in Bloomfield and work with businesses in Verona, Montclair, and throughout Essex County."
           },
           {
             "question": "What types of businesses do you work with?",
-            "answer": "We work with businesses of all sizes and industries, from local shops to professional services."
+            "answer": "We work with businesses of all sizes and industries, from local shops and restaurants to professional services."
           },
           {
             "question": "How much do your services cost?",
@@ -130,28 +130,23 @@
       "discriminant": "locations",
       "value": {
         "badge": "Service Areas",
-        "title": "Serving Lakewood and Surrounding Areas",
+        "title": "Serving Verona and Surrounding Areas",
         "variant": "overlay",
         "locations": [
           {
-            "name": "Denver",
+            "name": "Bloomfield",
             "href": "/",
-            "description": "Downtown Denver"
+            "description": "Our home base"
           },
           {
-            "name": "Aurora",
-            "href": "/locations/aurora",
-            "description": "East Denver Metro"
+            "name": "Montclair",
+            "href": "/locations/montclair",
+            "description": "Essex County, NJ"
           },
           {
-            "name": "Arvada",
-            "href": "/locations/arvada",
-            "description": "Northwest Denver"
-          },
-          {
-            "name": "Centennial",
-            "href": "/locations/centennial",
-            "description": "South Denver Metro"
+            "name": "Verona",
+            "href": "/locations/verona",
+            "description": "Essex County, NJ"
           }
         ]
       }
@@ -160,18 +155,18 @@
       "discriminant": "cta",
       "value": {
         "variant": "banner",
-        "title": "Ready to reach Lakewood customers?",
-        "description": "Contact us today for a free consultation about Lakewood advertising opportunities.",
+        "title": "Ready to reach Verona customers?",
+        "description": "Contact us today for a free consultation about Verona advertising opportunities.",
         "buttonText": "Get Free Quote",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
-        "imageAlt": "Lakewood Colorado cityscape and local businesses"
+        "image": "/images/community-advertising.avif",
+        "imageAlt": "Local businesses in Verona, New Jersey"
       }
     }
   ],
   "metadata": {
     "title": "{location} Digital Signage & Marketing | {business}",
-    "description": "We connect businesses in {location} through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
-    "keywords": "Lakewood digital marketing, marketing agency Lakewood Colorado, Lakewood business advertising, website design Lakewood, social media marketing Lakewood, SEO Lakewood Colorado"
+    "description": "We connect businesses in {location}, NJ through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
+    "keywords": "Verona digital marketing, marketing agency Verona New Jersey, Verona business advertising, website design Verona, social media marketing Verona, SEO Verona NJ"
   }
 }

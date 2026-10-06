@@ -1,5 +1,5 @@
 # =============================================================================
-# Pages CMS config for progressive-section-template
+# Pages CMS config for digi-plus-marketing-llc
 # https://pagescms.org/docs/configuration
 # =============================================================================
 #
@@ -174,8 +174,8 @@ content:
         type: object
         fields:
           - { name: city, label: City, type: string, required: true }
-          - { name: state, label: "State (abbrev., e.g. CO)", type: string, required: false }
-          - { name: stateFull, label: "State (full, e.g. Colorado)", type: string, required: false }
+          - { name: state, label: "State (abbrev., e.g. NJ)", type: string, required: false }
+          - { name: stateFull, label: "State (full, e.g. New Jersey)", type: string, required: false }
           - { name: address, label: Address, type: string, required: false }
           - { name: fullAddress, label: Full Address, type: string, required: false }
       - name: contact
