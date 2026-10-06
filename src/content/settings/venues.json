@@ -1,0 +1,63 @@
+{
+  "title": "Our Locations",
+  "subtitle": "New venues added as the network grows",
+  "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
+  "venues": [
+    {
+      "name": "Mind Body Spirit Personal Training",
+      "address": "17 James St #1, Bloomfield, NJ 07003",
+      "category": "Gym",
+      "lat": 40.806,
+      "lng": -74.192238
+    },
+    {
+      "name": "Vito's Pizza",
+      "address": "350 John F Kennedy Dr N, Bloomfield, NJ 07003",
+      "category": "Pizza Restaurant",
+      "lat": 40.790358,
+      "lng": -74.193439
+    },
+    {
+      "name": "Omni Management Corp - West Orange",
+      "address": "56 Main St, West Orange, NJ 07052",
+      "category": "Tax Preparation",
+      "lat": 40.777451,
+      "lng": -74.239552
+    },
+    {
+      "name": "Plaza Fitness",
+      "address": "11 Westinghouse Plaza, Bloomfield, NJ 07003",
+      "category": "Physical Fitness Program",
+      "lat": 40.782698,
+      "lng": -74.197946
+    },
+    {
+      "name": "Omni Management Corp - Bloomfield",
+      "address": "50 Dodd St, Bloomfield, NJ 07003",
+      "category": "Tax consultant",
+      "lat": 40.782749,
+      "lng": -74.199566
+    },
+    {
+      "name": "Frankie's Car Wash",
+      "address": "305 Broad St, Bloomfield, NJ 07003",
+      "category": "Car Wash",
+      "lat": 40.804099,
+      "lng": -74.19339
+    },
+    {
+      "name": "Pink J Nails",
+      "address": "5 James St, Bloomfield, NJ 07003",
+      "category": "Nail Salon",
+      "lat": 40.806164,
+      "lng": -74.192726
+    },
+    {
+      "name": "Soma Fitness Center",
+      "address": "554 Bloomfield Ave, Bloomfield, NJ 07003",
+      "category": "Fitness center",
+      "lat": 40.792457,
+      "lng": -74.197503
+    }
+  ]
+}

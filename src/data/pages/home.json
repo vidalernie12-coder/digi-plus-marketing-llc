@@ -179,7 +179,7 @@
       "discriminant": "cta",
       "value": {
         "variant": "bold",
-        "image": "/images/home.avif",
+        "image": "/images/local-marketing-experts.avif",
         "title": "Partner with {city}'s Local Advertising & Digital Marketing Pros",
         "description": "Whether you're looking for <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, a new <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong>, or a complete <strong>digital marketing</strong> strategy in <strong>{city}</strong>, we're here to help. Contact us today for a free consultation and let's discuss how we can grow your business.",
         "buttonText": "Schedule Free Consultation",
@@ -219,7 +219,7 @@
         "locations": [
           {
             "name": "Bloomfield",
-            "href": "/"
+            "href": "/locations/bloomfield"
           },
           {
             "name": "Montclair",

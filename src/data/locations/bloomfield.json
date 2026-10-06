@@ -1,0 +1,129 @@
+{
+  "navOrder": 1,
+  "title": "Advertising & Digital Marketing in Bloomfield, NJ",
+  "city": "Bloomfield",
+  "description": "Our home base. Indoor digital billboards inside Bloomfield gyms, restaurants, and salons, plus websites, Google Business Profile, social media, and PPC for Bloomfield businesses.",
+  "keywords": "Bloomfield NJ marketing agency, indoor billboards Bloomfield, Bloomfield advertising, digital marketing Bloomfield NJ",
+  "sections": [
+    {
+      "discriminant": "hero",
+      "value": {
+        "badge": "Our Home Base",
+        "title": "Bloomfield's Hometown Advertising & Digital Marketing Team",
+        "subtitle": "Based on Pulaski Street, we put Bloomfield businesses on screens around town and at the top of local search.",
+        "buttonText": "Meet With Our Bloomfield Team",
+        "buttonHref": "/contact-us",
+        "image": "/images/indoor-billboard-content.avif",
+        "imageAlt": "Indoor digital billboard screens inside a local Bloomfield venue"
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "badge": "Indoor Billboards in Bloomfield",
+        "title": "Your Ad on Screens Bloomfield Already Walks Past",
+        "description": "Our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor digital billboard network</a></strong> runs inside everyday Bloomfield businesses, from fitness studios on James Street and Westinghouse Plaza to a Bloomfield Avenue gym, a pizzeria, a nail salon, and a car wash on Broad Street. Your motion ad plays on repeat while customers work out, wait, and eat, so your brand becomes part of their weekly routine.",
+        "image": "/images/screen-network-3.avif",
+        "buttonText": "See Our Venue Locations",
+        "buttonHref": "/indoor-billboards/locations",
+        "features": [
+          { "icon": "check", "text": "Screens in gyms, salons, restaurants, and service businesses" },
+          { "icon": "check", "text": "High dwell time: people stay, watch, and remember" },
+          { "icon": "check", "text": "Non-skippable motion ads we design for you" },
+          { "icon": "check", "text": "Update your message anytime for sales and events" }
+        ]
+      }
+    },
+    {
+      "discriminant": "featuresWithButton",
+      "value": {
+        "title": "Get Found by Bloomfield Customers Online",
+        "description": "When someone in Bloomfield searches for what you sell, these are the services that put you in front of them first.",
+        "buttonText": "View All Marketing Solutions",
+        "buttonHref": "/solutions",
+        "features": [
+          {
+            "icon": "google",
+            "title": "Google Business Profile",
+            "description": "Show up in the map pack when Bloomfield residents search \"near me\" with an optimized, active profile.",
+            "href": "/solutions/foundational/google-business-profile"
+          },
+          {
+            "icon": "palette",
+            "title": "Website Design",
+            "description": "A fast, mobile-ready site that turns local searches into calls and visits.",
+            "href": "/solutions/foundational/website-design"
+          },
+          {
+            "icon": "share",
+            "title": "Social Media Management",
+            "description": "Consistent posts and creative that keep your business in Bloomfield feeds.",
+            "href": "/solutions/foundational/social-media-management"
+          },
+          {
+            "icon": "target",
+            "title": "Pay-Per-Click",
+            "description": "Targeted Google Ads that reach Bloomfield searchers the moment they're ready to buy.",
+            "href": "/solutions/lead-gen/pay-per-click"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "badge": "Local, In-Person Support",
+        "title": "Your Marketing Team Is Right Here on Pulaski Street",
+        "description": "We're not a call center two states away. Our office is at {fullAddress}, so we can meet you at your business, see your space, and plan a campaign around the customers who actually walk through your door.<br><br>From your first free consultation to monthly check-ins, you work with the same local team that knows Bloomfield Center, Broad Street, and the Bloomfield Avenue corridor as well as you do.",
+        "image": "/images/about-us-partner.avif",
+        "imagePosition": "left",
+        "background": "gray",
+        "buttonText": "Schedule a Free Consultation",
+        "buttonHref": "/contact-us"
+      }
+    },
+    {
+      "discriminant": "faq",
+      "value": {
+        "badge": "FAQs",
+        "title": "Bloomfield Marketing Questions",
+        "faqs": [
+          {
+            "question": "Where are your screens in Bloomfield?",
+            "answer": "Our indoor billboards run in Bloomfield venues including fitness studios, a gym on Bloomfield Avenue, a pizzeria, a nail salon, and a car wash. See the full, current list on our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>locations page</a></strong>."
+          },
+          {
+            "question": "Can we meet in person?",
+            "answer": "Yes. Our office is at {fullAddress}, and we're happy to meet at your business. Call {phoneFormatted} to set up a time."
+          },
+          {
+            "question": "My Bloomfield business has steady foot traffic. Can I host a screen?",
+            "answer": "Possibly! Venue partners enjoy discounted advertising, cross-network promotion, and screen time to promote their own specials. Learn more on our <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>Become a Venue Partner</a></strong> page."
+          },
+          {
+            "question": "Can I combine screen ads with online marketing?",
+            "answer": "Absolutely. Most Bloomfield clients pair indoor billboards with a Google Business Profile or social media so customers who see the screen can easily find them online."
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "locations",
+      "value": {
+        "badge": "Service Areas",
+        "title": "Also Serving Nearby Towns",
+        "variant": "overlay",
+        "locations": [
+          { "name": "Bloomfield", "href": "/locations/bloomfield" },
+          { "name": "Montclair", "href": "/locations/montclair" },
+          { "name": "Verona", "href": "/locations/verona" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "title": "Bloomfield, NJ Indoor Billboards & Digital Marketing | {business}",
+    "description": "Indoor digital billboards inside Bloomfield gyms, restaurants, and salons, plus local SEO, websites, social media, and PPC from our Pulaski Street team.",
+    "keywords": "Bloomfield NJ marketing agency, indoor billboards Bloomfield NJ, digital signage advertising Bloomfield, Google Business Profile Bloomfield, website design Bloomfield NJ, local advertising Bloomfield"
+  }
+}

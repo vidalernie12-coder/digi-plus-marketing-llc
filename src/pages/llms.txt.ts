@@ -1,9 +1,10 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "~/config/site";
+import bloomfieldData from "~/data/locations/bloomfield.json";
 import montclairData from "~/data/locations/montclair.json";
 import veronaData from "~/data/locations/verona.json";
 
-const locations = [montclairData, veronaData]
+const locations = [bloomfieldData, montclairData, veronaData]
   .map((d: any) => d.city || d.location)
   .filter(Boolean) as string[];
 

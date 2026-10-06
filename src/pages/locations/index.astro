@@ -3,11 +3,13 @@ import PageLayout from "~/layouts/PageLayout.astro";
 import Hero from "~/components/sections/Hero.astro";
 import { localizeMetadata } from "~/config/site";
 
+import bloomfieldData from "~/data/locations/bloomfield.json";
 import montclairData from "~/data/locations/montclair.json";
 import veronaData from "~/data/locations/verona.json";
 import { localizeData } from "~/config/site";
 
 const dataMap: Record<string, any> = localizeData({
+  "bloomfield": bloomfieldData,
   "montclair": montclairData,
   "verona": veronaData,
 });

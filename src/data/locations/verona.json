@@ -1,60 +1,76 @@
 {
-  "navOrder": 2,
-  "title": "Marketing Agency Verona NJ | Digital Marketing",
+  "navOrder": 3,
+  "title": "Small-Business Marketing in Verona, NJ",
   "city": "Verona",
-  "description": "Local marketing agency serving Verona, NJ. Indoor digital billboards, website design, social media management, SEO, and PPC for Verona businesses.",
-  "keywords": "marketing agency Verona NJ, digital marketing Verona, Verona marketing services",
+  "description": "Practical, budget-friendly marketing for Verona's local businesses along Bloomfield Avenue and Pompton Avenue: local search, social media, geofencing, and more.",
+  "keywords": "Verona NJ marketing, Verona small business marketing, Verona advertising, digital marketing Verona NJ",
   "sections": [
     {
       "discriminant": "hero",
       "value": {
-        "badge": "Premium Marketing Solutions",
-        "title": "Local Advertising and Digital Marketing Pros in Verona, NJ",
-        "subtitle": "Helping Verona Businesses Get Noticed, On Screens and Online",
-        "buttonText": "Contact Our Advertising Experts",
+        "badge": "Verona, NJ",
+        "title": "Small-Town Marketing That Works for Verona Businesses",
+        "subtitle": "Verona runs on regulars and word of mouth. We help more of your neighbors hear about you, and keep coming back.",
+        "buttonText": "Get a Free Consultation",
         "buttonHref": "/contact-us",
         "image": "/images/community-advertising.avif",
-        "imageAlt": "Local businesses in Verona, New Jersey"
+        "imageAlt": "Verona small business owners celebrating a grand opening"
       }
     },
     {
       "discriminant": "content",
       "value": {
-        "title": "Your Local Marketing Partner in Verona",
-        "description": "Verona's tight-knit business community thrives on local customers who keep coming back. Just a few minutes away in Bloomfield, our team helps Verona businesses get in front of their neighbors with indoor digital billboards, custom websites, social media management, and targeted ad campaigns, all with personalized service and transparent reporting.",
-        "image": "/images/community-advertising.avif",
-        "imageAlt": "Verona business district and marketing opportunities",
-        "imagePosition": "right",
-        "buttonText": "Get Started",
-        "buttonHref": "/contact-us"
+        "badge": "Marketing Sized for Verona",
+        "title": "Reach the Customers Who Live Right Around You",
+        "description": "In a close-knit town like Verona, your best customers are usually a few minutes away: commuting down Bloomfield Avenue, running errands on Pompton Avenue, or spending a weekend at Verona Park. We focus your budget on reaching those people, not the whole state.",
+        "image": "/images/geofencing.avif",
+        "buttonText": "See How Geofencing Works",
+        "buttonHref": "/solutions/branding-awareness/display-geofencing",
+        "features": [
+          { "icon": "check", "text": "Hyper-local targeting around Verona and nearby towns" },
+          { "icon": "check", "text": "Budgets that fit a small business" },
+          { "icon": "check", "text": "Simple monthly reports in plain English" },
+          { "icon": "check", "text": "A real local team, just down the road in Bloomfield" }
+        ]
       }
     },
     {
       "discriminant": "features",
       "value": {
-        "badge": "Why Choose Us",
-        "title": "Digital Marketing Experts Serving Verona",
-        "columns": 4,
+        "badge": "How We Help",
+        "title": "Ways We Help Verona Businesses Grow",
+        "description": "Pick one service or combine a few. We'll recommend what fits your goals and budget.",
+        "columns": 3,
         "features": [
           {
-            "icon": "target",
-            "title": "Increased Foot Traffic",
-            "description": "Drive more visitors to your storefront through indoor digital signage."
+            "icon": "google",
+            "title": "Get Found on Google",
+            "description": "An optimized Google Business Profile so you show up when Verona residents search for what you offer."
           },
           {
-            "icon": "megaphone",
-            "title": "Higher Brand Visibility",
-            "description": "Get seen in high-traffic local venues and across digital platforms."
+            "icon": "mappin",
+            "title": "Geofencing",
+            "description": "Send mobile ads to people near your shop, a competitor's, or a local event."
           },
           {
             "icon": "share",
-            "title": "Improved Online Presence",
-            "description": "Strengthen your digital footprint with professionally managed social media."
+            "title": "Social Media Management",
+            "description": "Regular posts and engaging content that keep your business top of mind with neighbors."
           },
           {
-            "icon": "dollar",
-            "title": "More Qualified Leads",
-            "description": "Attract high-intent customers with targeted PPC campaigns."
+            "icon": "monitor",
+            "title": "Website Design",
+            "description": "A clean, mobile-friendly website that makes it easy to call, book, or visit."
+          },
+          {
+            "icon": "tv",
+            "title": "Indoor Billboards Nearby",
+            "description": "Run motion ads in our screen network in neighboring West Orange and Bloomfield."
+          },
+          {
+            "icon": "headphones",
+            "title": "Streaming Audio & CTV",
+            "description": "Reach Verona households on the streaming music, podcasts, and TV apps they use every day."
           }
         ]
       }
@@ -62,33 +78,27 @@
     {
       "discriminant": "valueCards",
       "value": {
-        "badge": "Our Process",
-        "title": "How We Work With Verona Businesses",
+        "badge": "Getting Started",
+        "title": "Three Easy Steps to Get Started",
         "variant": "cards",
         "cards": [
           {
             "icon": "message",
-            "title": "Step 1: Discovery Call",
-            "description": "We start with a free consultation to understand your business.",
-            "image": "/images/discovery-call.avif"
+            "title": "1. Free Consultation",
+            "description": "Tell us about your business, your customers, and your goals. No pressure and no jargon.",
+            "image": "/images/free-consultation.avif"
           },
           {
-            "icon": "palette",
-            "title": "Step 2: Custom Strategy",
-            "description": "We create a tailored marketing plan for your business.",
-            "image": "/images/custom-strategy.avif"
-          },
-          {
-            "icon": "rocket",
-            "title": "Step 3: Execution & Launch",
-            "description": "Our team handles all the work, from design to launch.",
-            "image": "/images/campaign-launch.avif"
+            "icon": "chess",
+            "title": "2. A Plan That Fits",
+            "description": "We recommend the right mix of services for your budget, and explain exactly what you'll get.",
+            "image": "/images/management.avif"
           },
           {
             "icon": "trending",
-            "title": "Step 4: Ongoing Optimization",
-            "description": "We monitor performance and continuously improve results.",
-            "image": "/images/tracking.avif"
+            "title": "3. Launch & Report",
+            "description": "We handle the setup and creative, then send clear reports so you can see what's working.",
+            "image": "/images/reporting.avif"
           }
         ]
       }
@@ -96,32 +106,30 @@
     {
       "discriminant": "cta",
       "value": {
-        "variant": "bold",
-        "title": "Ready to Grow Your Verona Business?",
-        "description": "Whether you're a startup or an established business, we have the marketing solutions to help you reach more customers.",
-        "buttonText": "Schedule A Free Consultation",
-        "buttonHref": "/contact-us",
-        "image": "/images/community-advertising.avif",
-        "imageAlt": "Local businesses in Verona, New Jersey"
+        "variant": "card",
+        "title": "Growing a Verona Business? Let's Talk.",
+        "description": "One quick call is all it takes to find out which marketing will bring you the most new customers.",
+        "buttonText": "Call {phoneFormatted}",
+        "buttonHref": "tel:{phone}"
       }
     },
     {
       "discriminant": "faq",
       "value": {
         "badge": "FAQs",
-        "title": "Common Questions About Our Services",
+        "title": "Verona Marketing Questions",
         "faqs": [
           {
-            "question": "Do you only work with businesses in Verona?",
-            "answer": "No. We're based in Bloomfield and work with businesses in Verona, Montclair, and throughout Essex County."
+            "question": "Is this kind of marketing affordable for a small Verona business?",
+            "answer": "Yes. We build plans around your budget, and many Verona businesses start with just one service, like a Google Business Profile or social media, before adding more."
           },
           {
-            "question": "What types of businesses do you work with?",
-            "answer": "We work with businesses of all sizes and industries, from local shops and restaurants to professional services."
+            "question": "Are your indoor billboard screens in Verona?",
+            "answer": "Not yet. Our screen network currently runs in neighboring West Orange and in Bloomfield. Verona businesses can advertise on those screens today, and Verona venues with steady foot traffic can apply to <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>host a screen</a></strong>."
           },
           {
-            "question": "How much do your services cost?",
-            "answer": "Every business has different needs. Contact us for a free consultation and personalized quote."
+            "question": "Can you promote our event at Verona Park or in town?",
+            "answer": "Yes. Geofencing and social media ads can target people near an event location and in the surrounding area before and during the event."
           }
         ]
       }
@@ -130,43 +138,19 @@
       "discriminant": "locations",
       "value": {
         "badge": "Service Areas",
-        "title": "Serving Verona and Surrounding Areas",
+        "title": "Serving Verona and Neighboring Towns",
         "variant": "overlay",
         "locations": [
-          {
-            "name": "Bloomfield",
-            "href": "/",
-            "description": "Our home base"
-          },
-          {
-            "name": "Montclair",
-            "href": "/locations/montclair",
-            "description": "Essex County, NJ"
-          },
-          {
-            "name": "Verona",
-            "href": "/locations/verona",
-            "description": "Essex County, NJ"
-          }
+          { "name": "Bloomfield", "href": "/locations/bloomfield" },
+          { "name": "Montclair", "href": "/locations/montclair" },
+          { "name": "Verona", "href": "/locations/verona" }
         ]
-      }
-    },
-    {
-      "discriminant": "cta",
-      "value": {
-        "variant": "banner",
-        "title": "Ready to reach Verona customers?",
-        "description": "Contact us today for a free consultation about Verona advertising opportunities.",
-        "buttonText": "Get Free Quote",
-        "buttonHref": "/contact-us",
-        "image": "/images/community-advertising.avif",
-        "imageAlt": "Local businesses in Verona, New Jersey"
       }
     }
   ],
   "metadata": {
-    "title": "{location} Digital Signage & Marketing | {business}",
-    "description": "We connect businesses in {location}, NJ through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
-    "keywords": "Verona digital marketing, marketing agency Verona New Jersey, Verona business advertising, website design Verona, social media marketing Verona, SEO Verona NJ"
+    "title": "Verona, NJ Advertising & Digital Marketing | {business}",
+    "description": "Budget-friendly marketing for Verona, NJ small businesses: Google Business Profile, geofencing, social media, websites, and nearby indoor billboards.",
+    "keywords": "Verona NJ marketing, small business marketing Verona, Verona advertising agency, geofencing Verona NJ, Google Business Profile Verona, website design Verona NJ"
   }
 }

@@ -1,94 +1,96 @@
 {
-  "navOrder": 1,
-  "title": "Marketing Agency Montclair NJ | Digital Marketing",
+  "navOrder": 2,
+  "title": "Marketing for Montclair, NJ Businesses",
   "city": "Montclair",
-  "description": "Local marketing agency serving Montclair, NJ. Indoor digital billboards, website design, social media management, SEO, and PPC for Montclair businesses.",
-  "keywords": "marketing agency Montclair NJ, digital marketing Montclair, Montclair marketing services",
+  "description": "Help for Montclair's restaurants, shops, and service businesses to stand out downtown, on Church Street, Walnut Street, and in Upper Montclair, with local search, social media, and targeted ads.",
+  "keywords": "Montclair NJ marketing agency, Montclair restaurant marketing, Montclair social media marketing, Montclair advertising",
   "sections": [
     {
       "discriminant": "hero",
       "value": {
-        "badge": "Premium Marketing Solutions",
-        "title": "Local Advertising and Digital Marketing Pros in Montclair, NJ",
-        "subtitle": "Helping Montclair Businesses Get Noticed, On Screens and Online",
-        "buttonText": "Contact Our Advertising Experts",
+        "badge": "Montclair, NJ",
+        "title": "Marketing for Montclair's Restaurants, Shops & Service Businesses",
+        "subtitle": "Montclair customers have plenty of choices. We make sure they choose you, online and around town.",
+        "buttonText": "Talk to Our Team",
         "buttonHref": "/contact-us",
-        "image": "/images/locations.avif",
-        "imageAlt": "Local businesses in Montclair, New Jersey"
+        "image": "/images/venue-partner-content.avif",
+        "imageAlt": "Busy Montclair restaurant with a digital menu screen"
       }
     },
     {
       "discriminant": "content",
       "value": {
-        "title": "Your Local Marketing Partner in Montclair",
-        "description": "From the shops and restaurants along Bloomfield Avenue and Church Street to the storefronts of Upper Montclair, local businesses compete for attention every day. Based right next door in Bloomfield, we help Montclair businesses stand out with indoor digital billboards, custom websites, social media management, and targeted ad campaigns built around your goals.",
-        "image": "/images/locations.avif",
-        "imageAlt": "Montclair business district and marketing opportunities",
+        "badge": "The Montclair Challenge",
+        "title": "Standing Out in a Town Full of Great Businesses",
+        "description": "Montclair has several busy business districts: downtown along Bloomfield Avenue and Church Street, Walnut Street, Watchung Plaza, and Upper Montclair. Each one has its own crowd, and its own competition. A sign out front isn't enough when the restaurant next door has hundreds of reviews and posts every day.<br><br>We help Montclair businesses win the search, the scroll, and the second look, with marketing tuned to the neighborhood you're in and the customers you want.",
+        "image": "/images/social-media-management-hero.avif",
         "imagePosition": "right",
-        "buttonText": "Get Started",
-        "buttonHref": "/contact-us"
-      }
-    },
-    {
-      "discriminant": "features",
-      "value": {
-        "badge": "Why Choose Us",
-        "title": "Digital Marketing Experts Serving Montclair",
-        "columns": 4,
-        "features": [
-          {
-            "icon": "target",
-            "title": "Increased Foot Traffic",
-            "description": "Drive more visitors to your storefront through indoor digital signage."
-          },
-          {
-            "icon": "megaphone",
-            "title": "Higher Brand Visibility",
-            "description": "Get seen in high-traffic local venues and across digital platforms."
-          },
-          {
-            "icon": "share",
-            "title": "Improved Online Presence",
-            "description": "Strengthen your digital footprint with professionally managed social media."
-          },
-          {
-            "icon": "dollar",
-            "title": "More Qualified Leads",
-            "description": "Attract high-intent customers with targeted PPC campaigns."
-          }
-        ]
+        "background": "primary-dark"
       }
     },
     {
       "discriminant": "valueCards",
       "value": {
-        "badge": "Our Process",
-        "title": "How We Work With Montclair Businesses",
-        "variant": "cards",
+        "badge": "Who We Help",
+        "title": "Built for Montclair's Main Street Businesses",
+        "variant": "overlay",
         "cards": [
           {
-            "icon": "message",
-            "title": "Step 1: Discovery Call",
-            "description": "We start with a free consultation to understand your business.",
-            "image": "/images/discovery-call.avif"
+            "icon": "tools",
+            "title": "Restaurants & Cafés",
+            "description": "Fill tables with an up-to-date Google profile, mouth-watering social content, and digital menus and promos that make diners hungry for more.",
+            "image": "/images/menu.avif"
           },
           {
             "icon": "palette",
-            "title": "Step 2: Custom Strategy",
-            "description": "We create a tailored marketing plan for your business.",
-            "image": "/images/custom-strategy.avif"
+            "title": "Shops & Boutiques",
+            "description": "Give your brand a polished, consistent look across your website, social pages, and print, so window shoppers become regulars.",
+            "image": "/images/business-card.avif"
           },
           {
-            "icon": "rocket",
-            "title": "Step 3: Execution & Launch",
-            "description": "Our team handles all the work, from design to launch.",
-            "image": "/images/campaign-launch.avif"
+            "icon": "users",
+            "title": "Professional & Personal Services",
+            "description": "Salons, studios, accountants, and contractors win more appointments with strong reviews, local search visibility, and lead-generating ads.",
+            "image": "/images/track-record.avif"
           },
           {
-            "icon": "trending",
-            "title": "Step 4: Ongoing Optimization",
-            "description": "We monitor performance and continuously improve results.",
-            "image": "/images/tracking.avif"
+            "icon": "sparkles",
+            "title": "Grand Openings & Events",
+            "description": "Launching something new? We build the buzz with social ads, geofencing, and eye-catching creative aimed at Montclair locals.",
+            "image": "/images/community-advertising.avif"
+          }
+        ]
+      }
+    },
+    {
+      "discriminant": "content",
+      "value": {
+        "variant": "simple",
+        "title": "The Digital Services Montclair Businesses Lean On",
+        "description": "Montclair shoppers research before they visit. These four services make sure you're who they find.",
+        "image": "/images/google-business-profile.avif",
+        "buttonText": "Explore All Solutions",
+        "buttonHref": "/solutions",
+        "features": [
+          {
+            "icon": "google",
+            "text": "Google Business Profile. Photos, posts, and review management that win \"near me\" searches.",
+            "href": "/solutions/foundational/google-business-profile"
+          },
+          {
+            "icon": "share2",
+            "text": "Social Media Management. Scroll-stopping content that matches Montclair's style.",
+            "href": "/solutions/foundational/social-media-management"
+          },
+          {
+            "icon": "target",
+            "text": "Social Media Ads. Reach Montclair residents by interest, age, and neighborhood.",
+            "href": "/solutions/lead-gen/social-media-advertising"
+          },
+          {
+            "icon": "monitor",
+            "text": "Website Design. A beautiful, fast site that converts browsers into bookings.",
+            "href": "/solutions/foundational/website-design"
           }
         ]
       }
@@ -97,31 +99,31 @@
       "discriminant": "cta",
       "value": {
         "variant": "bold",
-        "title": "Ready to Grow Your Montclair Business?",
-        "description": "Whether you're a startup or an established business, we have the marketing solutions to help you reach more customers.",
-        "buttonText": "Schedule A Free Consultation",
+        "title": "Let's Make Your Montclair Business the Obvious Choice",
+        "description": "Book a free consultation and we'll show you exactly how customers find businesses like yours in Montclair today.",
+        "buttonText": "Book a Free Consultation",
         "buttonHref": "/contact-us",
         "image": "/images/locations.avif",
-        "imageAlt": "Local businesses in Montclair, New Jersey"
+        "imageAlt": "Local business owner with an indoor digital screen"
       }
     },
     {
       "discriminant": "faq",
       "value": {
         "badge": "FAQs",
-        "title": "Common Questions About Our Services",
+        "title": "Montclair Marketing Questions",
         "faqs": [
           {
-            "question": "Do you only work with businesses in Montclair?",
-            "answer": "No. We're based in Bloomfield and work with businesses in Montclair, Verona, and throughout Essex County."
+            "question": "Do you have indoor billboard screens in Montclair?",
+            "answer": "Our screen network currently runs in venues in neighboring Bloomfield and West Orange, just minutes from downtown Montclair and visited by plenty of Montclair residents. We're always adding venues, so if your Montclair business has steady foot traffic, consider <strong><a href='/indoor-billboards/become-a-venue-partner' style='text-decoration: none; color: inherit;'>becoming a venue partner</a></strong>."
           },
           {
-            "question": "What types of businesses do you work with?",
-            "answer": "We work with businesses of all sizes and industries, from local shops and restaurants to professional services."
+            "question": "Which marketing should a Montclair restaurant start with?",
+            "answer": "Start with your Google Business Profile, since it's where most diners decide. Then add social media to keep regulars coming back, and social ads when you want to fill slower nights."
           },
           {
-            "question": "How much do your services cost?",
-            "answer": "Every business has different needs. Contact us for a free consultation and personalized quote."
+            "question": "Can you target specific Montclair neighborhoods?",
+            "answer": "Yes. Social media ads and <strong><a href='/solutions/branding-awareness/display-geofencing' style='text-decoration: none; color: inherit;'>geofencing</a></strong> can focus on specific areas like Upper Montclair or the downtown district, so your budget goes toward the customers most likely to visit."
           }
         ]
       }
@@ -130,43 +132,19 @@
       "discriminant": "locations",
       "value": {
         "badge": "Service Areas",
-        "title": "Serving Montclair and Surrounding Areas",
+        "title": "Serving Montclair and Neighboring Towns",
         "variant": "overlay",
         "locations": [
-          {
-            "name": "Bloomfield",
-            "href": "/",
-            "description": "Our home base"
-          },
-          {
-            "name": "Montclair",
-            "href": "/locations/montclair",
-            "description": "Essex County, NJ"
-          },
-          {
-            "name": "Verona",
-            "href": "/locations/verona",
-            "description": "Essex County, NJ"
-          }
+          { "name": "Bloomfield", "href": "/locations/bloomfield" },
+          { "name": "Montclair", "href": "/locations/montclair" },
+          { "name": "Verona", "href": "/locations/verona" }
         ]
-      }
-    },
-    {
-      "discriminant": "cta",
-      "value": {
-        "variant": "banner",
-        "title": "Ready to reach Montclair customers?",
-        "description": "Contact us today for a free consultation about Montclair advertising opportunities.",
-        "buttonText": "Get Free Quote",
-        "buttonHref": "/contact-us",
-        "image": "/images/locations.avif",
-        "imageAlt": "Local businesses in Montclair, New Jersey"
       }
     }
   ],
   "metadata": {
-    "title": "{location} Digital Signage & Marketing | {business}",
-    "description": "We connect businesses in {location}, NJ through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
-    "keywords": "Montclair digital marketing, marketing agency Montclair New Jersey, Montclair business advertising, website design Montclair, social media marketing Montclair, SEO Montclair NJ"
+    "title": "Montclair, NJ Marketing for Local Businesses | {business}",
+    "description": "Marketing for Montclair restaurants, shops, and service businesses: Google Business Profile, social media, targeted ads, and websites from a team next door in Bloomfield.",
+    "keywords": "Montclair NJ marketing agency, Montclair restaurant marketing, social media marketing Montclair, Google Business Profile Montclair, website design Montclair NJ, Upper Montclair advertising"
   }
 }
