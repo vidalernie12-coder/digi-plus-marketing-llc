@@ -168,12 +168,13 @@ const gridStyle = smartGridStyle(cards.length, { sm: 2, lg: 4 });
     margin-bottom: 3rem;
   }
 
-  /* Service Card */
+  /* Service Card — no explicit height so the flex row can stretch every card
+     to the tallest one; the inner panel then fills that height. */
   .service-card {
     position: relative;
     text-decoration: none;
-    display: block;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     animation: fadeInUp 0.8s ease-out backwards;
   }
 
@@ -196,7 +197,7 @@ const gridStyle = smartGridStyle(cards.length, { sm: 2, lg: 4 });
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1.25rem;
     padding: 2rem 1.5rem;
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
