@@ -4,7 +4,7 @@ This document explains how to update content on this Astro website. Follow these
 
 ---
 
-## 📁 Project Structure
+## 📁 Project Structures
 
 ```
 /
