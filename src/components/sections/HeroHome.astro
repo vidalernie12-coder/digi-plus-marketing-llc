@@ -35,13 +35,20 @@ const {
 // in the hero; reserve the gallery's spacing for lg+ to avoid an empty gap.
 const hasGallery = galleryImages.length > 0;
 const hasCta = Boolean((ctaText && ctaLink) || (secondaryCtaText && secondaryCtaLink));
+// Below lg the hero is only text, so give it a viewport-based min height
+// (content is vertically centered) instead of collapsing to a thin strip.
 ---
 
 <section
-  class={`${hasGallery ? "pb-12 sm:pb-16 lg:pb-20" : "pb-12 md:pb-20"} relative overflow-hidden -mt-16 sm:-mt-24 pt-28 sm:pt-40 md:min-h-0 flex flex-col justify-center`}
+  class={`${hasGallery ? "pb-12 sm:pb-16 lg:pb-20" : "pb-12 md:pb-20"} relative overflow-hidden -mt-16 sm:-mt-24 pt-28 sm:pt-40 min-h-[65svh] md:min-h-[50svh] lg:min-h-0 flex flex-col justify-center`}
 >
-  <!-- White Background - extends behind navbar -->
-  <div class="absolute inset-0 top-[-64px] sm:top-[-96px] bg-white -z-10"></div>
+  <!-- Brand gradient background (soft lavender + warm orange glow) with slowly
+       drifting color blobs - extends behind navbar -->
+  <div class="hero-bg absolute inset-0 top-[-64px] sm:top-[-96px] -z-10" aria-hidden="true">
+    <span class="hero-blob hero-blob--purple"></span>
+    <span class="hero-blob hero-blob--orange"></span>
+    <span class="hero-blob hero-blob--lavender"></span>
+  </div>
 
   <div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative ${hasGallery ? "lg:mb-12" : "mb-8 md:mb-12"}`}>
     <!-- Content -->
@@ -115,9 +122,7 @@ const hasCta = Boolean((ctaText && ctaLink) || (secondaryCtaText && secondaryCta
   <!-- Sliding Image Gallery -->
   {
     galleryImages && galleryImages.length > 0 && (
-      <div class="hidden lg:block overflow-hidden relative">
-        <div class="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-r from-white to-transparent z-30 pointer-events-none" />
-        <div class="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-24 lg:w-32 bg-gradient-to-l from-white to-transparent z-30 pointer-events-none" />
+      <div class="gallery-mask hidden lg:block overflow-hidden relative">
         <div class="gallery-track">
           <div class="gallery-slide">
             {galleryImages.map((img) => (
@@ -244,6 +249,92 @@ const hasCta = Boolean((ctaText && ctaLink) || (secondaryCtaText && secondaryCta
     display: none !important;
   }
 
+  /* Hero background: layered brand-tinted gradients instead of flat white */
+  .hero-bg {
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 70% 55% at 8% 0%, rgba(75, 46, 92, 0.14), transparent 70%),
+      radial-gradient(ellipse 55% 50% at 95% 10%, rgba(223, 124, 70, 0.16), transparent 70%),
+      linear-gradient(180deg, #faf6fc 0%, #f4ecf8 55%, #fbf1ea 100%);
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    opacity: 0.55;
+    will-change: transform;
+    animation: hero-drift 22s ease-in-out infinite alternate;
+  }
+
+  .hero-blob--purple {
+    width: 34rem;
+    height: 34rem;
+    left: -10rem;
+    top: 2rem;
+    background: #c9b3d8;
+  }
+
+  .hero-blob--orange {
+    width: 28rem;
+    height: 28rem;
+    right: -8rem;
+    top: 6rem;
+    background: #f7c6a4;
+    animation-duration: 26s;
+    animation-delay: -6s;
+  }
+
+  .hero-blob--lavender {
+    width: 30rem;
+    height: 30rem;
+    left: 35%;
+    bottom: -14rem;
+    background: #e3d3ee;
+    animation-duration: 30s;
+    animation-delay: -12s;
+  }
+
+  @media (max-width: 767px) {
+    .hero-blob {
+      filter: blur(50px);
+    }
+    .hero-blob--purple {
+      width: 20rem;
+      height: 20rem;
+      left: -8rem;
+    }
+    .hero-blob--orange {
+      width: 16rem;
+      height: 16rem;
+      right: -6rem;
+    }
+    .hero-blob--lavender {
+      width: 18rem;
+      height: 18rem;
+      left: 20%;
+      bottom: -8rem;
+    }
+  }
+
+  @keyframes hero-drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(3rem, -2rem, 0) scale(1.08);
+    }
+    100% {
+      transform: translate3d(-2rem, 2rem, 0) scale(0.95);
+    }
+  }
+
+  /* Fade the gallery edges into whatever is behind it */
+  .gallery-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
   .cta-button:hover {
     -webkit-transform: translateZ(0) scale(1.05);
     transform: translateZ(0) scale(1.05);
@@ -315,7 +406,8 @@ const hasCta = Boolean((ctaText && ctaLink) || (secondaryCtaText && secondaryCta
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .gallery-track {
+    .gallery-track,
+    .hero-blob {
       animation: none;
     }
   }

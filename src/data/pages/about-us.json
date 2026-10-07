@@ -22,7 +22,9 @@
         "variant": "image-card",
         "title": "Empowering {city} Businesses",
         "description": "At {business} we're passionate about empowering local businesses to thrive in the digital age. We understand that in today's competitive digital landscape, effective marketing strategies are essential for your success. That's where we come in.<br><br>Our journey began with a simple yet powerful idea: to harness the potential of <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>indoor digital billboards</a></strong> and help local businesses reach their full potential. With a focus on innovation, creativity, and results, we've become a trusted partner for businesses across {city}, {state}.<br><br>While we specialize in indoor digital billboards, our expertise extends far beyond that. From <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong> to robust <strong><a href='/solutions' style='text-decoration: none; color: inherit;'>multichannel campaigns</a></strong>, we offer a full suite of services designed to elevate your brand and drive results.<br><br>Our strategy, your brand. Together, let's build something great.",
-        "image": "/images/about-us-team.avif",
+        "image": "/logo/dg-plus-marketing.webp",
+        "imageAlt": "DG+ Marketing logo",
+        "imageFit": "contain",
         "imagePosition": "left",
         "background": "gray"
       }

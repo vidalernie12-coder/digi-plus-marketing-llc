@@ -515,6 +515,13 @@ content:
                       - { name: description, label: Description, type: rich-text, required: false, description: "Renders as HTML. Use the Source tab for styled links." }
                       - { name: image, label: Image, type: image, required: false }
                       - { name: imageAlt, label: Image Alt Text, type: string, required: false }
+                      - name: imageFit
+                        label: Image Fit
+                        type: select
+                        required: false
+                        description: "cover = photo fills the card; contain = whole image on a white card (use for logos)."
+                        options:
+                          values: [cover, contain]
                       - name: imagePosition
                         label: Image Position
                         type: select

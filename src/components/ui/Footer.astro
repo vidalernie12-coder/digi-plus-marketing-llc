@@ -45,19 +45,21 @@ const hydratedLinks = footerConfig.columns.map((col: any) => {
   return col;
 });
 
-// Social icons. Rendered as non-clickable placeholders for now; wire up
-// hrefs from siteConfig.social once the profile URLs are available.
+// Social icons. Only platforms with a URL in siteConfig.social are shown;
+// the "Connect With Us" block is hidden until at least one is set.
 const socialIconMap: Record<string, string> = {
   facebook: "tabler:brand-facebook",
   instagram: "tabler:brand-instagram",
   linkedin: "tabler:brand-linkedin",
   youtube: "tabler:brand-youtube",
 };
-const socialLinks = Object.keys(socialIconMap).map((platform) => ({
-  href: (siteConfig.social as Record<string, string>)[platform] || "",
-  icon: socialIconMap[platform],
-  ariaLabel: platform.charAt(0).toUpperCase() + platform.slice(1),
-}));
+const socialLinks = Object.keys(socialIconMap)
+  .map((platform) => ({
+    href: (siteConfig.social as Record<string, string>)[platform] || "",
+    icon: socialIconMap[platform],
+    ariaLabel: platform.charAt(0).toUpperCase() + platform.slice(1),
+  }))
+  .filter((link) => link.href);
 
 const secondaryLinks = footerConfig.bottomLinks.map((link: any) => ({
   text: link.label,
@@ -97,12 +99,15 @@ const currentYear = new Date().getFullYear();
               </div>
               <div class="flex gap-3">
                 {socialLinks.map((link) => (
-                  <span
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={link.ariaLabel}
-                    class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white"
+                    class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition"
                   >
                     <Icon name={link.icon} class="w-4 h-4" />
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>

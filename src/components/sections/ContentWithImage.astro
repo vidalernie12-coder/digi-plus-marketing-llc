@@ -5,6 +5,9 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  imageAlt?: string;
+  // "contain" shows the whole image on a white card (for logos/graphics)
+  imageFit?: "cover" | "contain";
   ctaText?: string;
   ctaLink?: string;
   eyebrow?: string;
@@ -16,6 +19,8 @@ const {
   title,
   description,
   image,
+  imageAlt,
+  imageFit = "cover",
   ctaText,
   ctaLink,
   eyebrow,
@@ -132,23 +137,39 @@ const descriptionColorClasses = {
 
           {/* Image container */}
           <div
-            class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]"
+            class={`relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-transform duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)] ${imageFit === "contain" ? "bg-white p-10 md:p-16" : ""}`}
           >
-            <img
-              src={image}
-              alt={title}
-              width="600"
-              height="400"
-              class="w-full h-auto max-h-[800px] object-cover"
-              loading="lazy"
-            />
+            {
+              imageFit === "contain" ? (
+                <img
+                  src={image}
+                  alt={imageAlt || title}
+                  width="426"
+                  height="240"
+                  class="w-full max-w-[426px] h-auto mx-auto object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <img
+                  src={image}
+                  alt={imageAlt || title}
+                  width="600"
+                  height="400"
+                  class="w-full h-auto max-h-[800px] object-cover"
+                  loading="lazy"
+                />
+              )
+            }
 
-            <!-- Corner accent -->
-            <div
-              class={`absolute top-0 right-0 w-32 h-32 ${background === "white" || background === "light" || background === "gray" ? "bg-primary" : "bg-white"} opacity-30`}
-              style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
-            >
-            </div>
+            <!-- Corner accent (photos only; it would cover part of a logo) -->
+            {
+              imageFit !== "contain" && (
+                <div
+                  class={`absolute top-0 right-0 w-32 h-32 ${background === "white" || background === "light" || background === "gray" ? "bg-primary" : "bg-white"} opacity-30`}
+                  style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
+                />
+              )
+            }
           </div>
         </div>
       </div>

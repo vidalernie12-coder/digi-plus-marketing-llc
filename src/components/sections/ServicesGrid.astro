@@ -99,8 +99,11 @@ const gridStyle = smartGridStyle(cards.length, { sm: 2, lg: 4 });
     overflow: hidden;
   }
 
+  /* Always visible and in place: the generic slide-in offset would open a
+     gap above this section (it sits right under the tinted home hero). */
   .services-grid-section.fade-in-section {
     opacity: 1;
+    transform: none;
   }
 
   .services-grid-section::before {
