@@ -53,7 +53,9 @@ const descriptionColorClasses = {
 };
 ---
 
-<section class={`py-16 md:py-24 ${bgClasses[background]} relative overflow-hidden fade-in-section`}>
+<!-- overflow-clip (not overflow-hidden): hidden turns the section into a scroll
+     container, which stops the sticky image column from following long text -->
+<section class={`py-16 md:py-24 ${bgClasses[background]} relative overflow-clip fade-in-section`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div
       class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start`}
