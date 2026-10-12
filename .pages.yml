@@ -522,6 +522,7 @@ content:
                         description: "cover = photo fills the card; contain = whole image on a white card (use for logos)."
                         options:
                           values: [cover, contain]
+                      - { name: cornerAccent, label: Show Corner Accent, type: boolean, required: false, default: true, description: "Decorative triangle over the image's top-right corner." }
                       - name: imagePosition
                         label: Image Position
                         type: select

@@ -8,6 +8,8 @@ interface Props {
   imageAlt?: string;
   // "contain" shows the whole image on a white card (for logos/graphics)
   imageFit?: "cover" | "contain";
+  // Decorative triangle over the image's top-right corner (photos only)
+  cornerAccent?: boolean;
   ctaText?: string;
   ctaLink?: string;
   eyebrow?: string;
@@ -21,6 +23,7 @@ const {
   image,
   imageAlt,
   imageFit = "cover",
+  cornerAccent = true,
   ctaText,
   ctaLink,
   eyebrow,
@@ -165,7 +168,7 @@ const descriptionColorClasses = {
 
             <!-- Corner accent (photos only; it would cover part of a logo) -->
             {
-              imageFit !== "contain" && (
+              cornerAccent && imageFit !== "contain" && (
                 <div
                   class={`absolute top-0 right-0 w-32 h-32 ${background === "white" || background === "light" || background === "gray" ? "bg-primary" : "bg-white"} opacity-30`}
                   style="clip-path: polygon(100% 0, 0 0, 100% 100%);"
