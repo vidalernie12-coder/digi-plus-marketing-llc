@@ -24,16 +24,7 @@
         "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
         "locations": [
           {
-            "name": "Bloomfield",
-            "href": "/locations/bloomfield"
-          },
-          {
-            "name": "Montclair",
-            "href": "/locations/montclair"
-          },
-          {
-            "name": "Verona",
-            "href": "/locations/verona"
+            "name": "North Jersey Area"
           }
         ]
       }

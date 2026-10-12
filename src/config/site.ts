@@ -11,7 +11,7 @@ const defaults = {
     fullName: "Digi Plus Marketing LLC",
     tagline: "Amplify Your Brand Where It Matters Most",
     description:
-      "We are a local marketing company in Bloomfield, NJ, helping businesses in Bloomfield, Montclair, and Verona get seen with indoor digital billboards, website design, SEO, PPC, and social media.",
+      "We are a local marketing company helping businesses across North Jersey get seen with indoor digital billboards, website design, SEO, PPC, and social media.",
   },
   location: {
     city: "Bloomfield",

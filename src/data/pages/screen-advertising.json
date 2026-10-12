@@ -196,21 +196,12 @@
       "value": {
         "badge": "Service Areas",
         "title": "We Put Local Brands on the Map",
-        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
+        "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>indoor billboard network</a></strong> spans across North Jersey's most popular neighborhoods and venues",
         "variant": "full",
         "mapUrl": "https://www.google.com/maps/d/embed?mid=14VLs9bfBf5w9arWfkLlWgJ3bIyyqPJg",
         "locations": [
           {
-            "name": "Bloomfield",
-            "href": "/locations/bloomfield"
-          },
-          {
-            "name": "Montclair",
-            "href": "/locations/montclair"
-          },
-          {
-            "name": "Verona",
-            "href": "/locations/verona"
+            "name": "North Jersey Area"
           }
         ]
       }

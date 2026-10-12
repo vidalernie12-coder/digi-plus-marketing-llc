@@ -147,13 +147,9 @@
       "discriminant": "locations",
       "value": {
         "badge": "Service Areas",
-        "title": "Serving Verona and Neighboring Towns",
+        "title": "Serving the North Jersey Area",
         "variant": "overlay",
-        "locations": [
-          { "name": "Bloomfield", "href": "/locations/bloomfield" },
-          { "name": "Montclair", "href": "/locations/montclair" },
-          { "name": "Verona", "href": "/locations/verona" }
-        ]
+        "locations": [{ "name": "North Jersey Area" }]
       }
     }
   ],
