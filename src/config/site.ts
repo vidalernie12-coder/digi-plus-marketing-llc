@@ -148,6 +148,17 @@ export const siteConfig = {
   analytics: {
     googleAnalyticsId: siteData.analytics?.googleAnalyticsId || "",
   },
+
+  // Shared NTV email router (email-router/docs/integration-guide.md). The
+  // siteId and Turnstile site key come from this client's entry in the router
+  // admin; both are public values.
+  forms: {
+    emailRouterEndpoint: "https://email-router-lake.vercel.app/api/contact",
+    siteId:
+      (siteData as { forms?: { emailRouterSiteId?: string } }).forms?.emailRouterSiteId || "",
+    turnstileSiteKey:
+      (siteData as { forms?: { turnstileSiteKey?: string } }).forms?.turnstileSiteKey || "",
+  },
 };
 
 // ─── Token Replacement Helpers ──────────────────────────────────────────────

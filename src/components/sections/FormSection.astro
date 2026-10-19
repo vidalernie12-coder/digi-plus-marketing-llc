@@ -1,5 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
+import { siteConfig } from "~/config/site";
+import { HONEYPOT_FIELD, type EmailRouterConfig } from "~/lib/email-router";
 
 interface FormField {
   id: string;
@@ -39,6 +41,7 @@ interface Props {
   submitText?: string;
   submitAction?: string;
   method?: "POST" | "GET";
+  formId?: string; // Email router formId (kebab-case), e.g. "contact-us"
   successMessage?: string;
   disclaimer?: string; // Small print under the submit button (e.g. SMS consent)
   background?: "white" | "light" | "primary";
@@ -55,6 +58,7 @@ const {
   submitText = "Send Message",
   submitAction = "/api/contact",
   method = "POST",
+  formId = "contact-us",
   successMessage = "Thank you! We'll be in touch soon.",
   disclaimer,
   background = "light",
@@ -79,6 +83,21 @@ const descriptionColorClasses = {
   light: "text-primary-dark",
   primary: "text-neutral",
 };
+
+// Read by the client script below to post to the shared email router.
+const routerConfig: EmailRouterConfig = {
+  endpoint: siteConfig.forms.emailRouterEndpoint,
+  siteId: siteConfig.forms.siteId,
+  formId,
+  turnstileSiteKey: siteConfig.forms.turnstileSiteKey,
+  businessName: siteConfig.business.name,
+  primaryColor: siteConfig.colors.primary,
+  phoneFormatted: siteConfig.contact.phoneFormatted,
+  fields: fields
+    .filter((field) => field.name)
+    .map(({ name, label, type }) => ({ name, label, type })),
+};
+const routerConfigJson = JSON.stringify(routerConfig);
 ---
 
 <section
@@ -139,8 +158,9 @@ const descriptionColorClasses = {
                 method={method}
                 class="space-y-4"
                 id="contact-form"
+                data-email-router={routerConfigJson}
               >
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-form-body>
                   {
                     fields.map((field) => {
                       const isFullWidth =
@@ -203,6 +223,7 @@ const descriptionColorClasses = {
                           placeholder={field.placeholder}
                           required={field.required}
                           rows={field.rows || 4}
+                          maxlength={3000}
                           class={`w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none resize-none bg-white ${
                             background === "primary"
                               ? "border-2 border-white/20 text-white placeholder:text-white/50 focus:border-white/40 focus:shadow-lg focus:shadow-white/10"
@@ -300,7 +321,18 @@ const descriptionColorClasses = {
             </div>
 
             <!-- Submit Button -->
-            <div class="pt-3">
+            <div class="pt-3" data-form-body>
+              <!-- Honeypot: off-screen, never filled in by people -->
+              <input
+                type="text"
+                name={HONEYPOT_FIELD}
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
+              />
+              <!-- Cloudflare Turnstile bot check, rendered by the script below -->
+              <div data-turnstile class="min-h-[65px] mb-4"></div>
               <button
                 type="submit"
                 id="submit-button"
@@ -325,6 +357,11 @@ const descriptionColorClasses = {
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>
               </button>
+              <p
+                data-form-error
+                role="alert"
+                class={`hidden mt-3 text-sm font-semibold ${background === "primary" ? "text-red-200" : "text-red-700"}`}
+              ></p>
               {disclaimer && (
                 <p class={`mt-3 text-xs leading-relaxed ${background === "primary" ? "text-white/80" : "text-gray-500"}`}>
                   {disclaimer}
@@ -335,6 +372,7 @@ const descriptionColorClasses = {
             <!-- Success Message -->
             <div
               id="success-message"
+              data-form-success
               class="hidden p-6 bg-green-50 border-2 border-green-200 rounded-xl text-center animate-fade-in"
             >
               <div class="flex items-center justify-center gap-3 mb-3">
@@ -406,8 +444,9 @@ const descriptionColorClasses = {
                 method={method}
                 class="space-y-4"
                 id="contact-form"
+                data-email-router={routerConfigJson}
               >
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-form-body>
                   {fields.map((field) => {
                     const isFullWidth = field.width === "full" || field.type === "textarea";
                     return (
@@ -441,6 +480,7 @@ const descriptionColorClasses = {
                             placeholder={field.placeholder}
                             required={field.required}
                             rows={field.rows || 4}
+                            maxlength={3000}
                             class="w-full px-4 py-3.5 text-base rounded-xl transition-all outline-none resize-none bg-white border-2 border-gray-200 text-primary placeholder:text-gray-400 focus:border-primary focus:shadow-lg focus:shadow-primary/10"
                           />
                         )}
@@ -512,7 +552,18 @@ const descriptionColorClasses = {
                   })}
                 </div>
 
-                <div class="pt-3">
+                <div class="pt-3" data-form-body>
+                  <!-- Honeypot: off-screen, never filled in by people -->
+                  <input
+                    type="text"
+                    name={HONEYPOT_FIELD}
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                    class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
+                  />
+                  <!-- Cloudflare Turnstile bot check, rendered by the script below -->
+                  <div data-turnstile class="min-h-[65px] mb-4"></div>
                   <button
                     type="submit"
                     id="submit-button"
@@ -533,6 +584,7 @@ const descriptionColorClasses = {
                       <path d="m12 5 7 7-7 7"></path>
                     </svg>
                   </button>
+                  <p data-form-error role="alert" class="hidden mt-3 text-sm font-semibold text-red-700"></p>
                   {disclaimer && (
                     <p class="mt-3 text-xs leading-relaxed text-gray-500">{disclaimer}</p>
                   )}
@@ -540,6 +592,7 @@ const descriptionColorClasses = {
 
                 <div
                   id="success-message"
+              data-form-success
                   class="hidden p-6 bg-green-50 border-2 border-green-200 rounded-xl text-center animate-fade-in"
                 >
                   <div class="flex items-center justify-center gap-3 mb-3">
@@ -560,59 +613,142 @@ const descriptionColorClasses = {
 </section>
 
 <script>
-  function initForm() {
-    const form = document.getElementById("contact-form") as HTMLFormElement;
-    const successMessage = document.getElementById("success-message");
-    const submitButton = document.getElementById(
-      "submit-button"
-    ) as HTMLButtonElement;
+  import {
+    loadTurnstile,
+    submitToEmailRouter,
+    type EmailRouterConfig,
+  } from "~/lib/email-router";
 
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+  const SUCCESS_RESET_MS = 4000;
+  const SPINNER_HTML = `
+    <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    <span>Sending...</span>
+  `;
 
-        submitButton.disabled = true;
-        const originalHTML = submitButton.innerHTML;
-        submitButton.innerHTML = `
-          <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span>Sending...</span>
-        `;
+  // Turnstile widgets rendered on the current page, removed before a
+  // view-transition swap so the next page starts clean.
+  const renderedWidgets = new Set<string>();
 
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+  function errorMessageFor(status: number, phone: string) {
+    if (status === 429) return "Too many submissions. Please wait a minute and try again.";
+    if (status === 403) return "We couldn't verify your submission. Please refresh the page and try again.";
+    return `Something went wrong sending your message. Please try again, or call us at ${phone}.`;
+  }
 
-        try {
-          console.log("Form data:", data);
-          await new Promise((resolve) => setTimeout(resolve, 1500));
+  function initForm(form: HTMLFormElement) {
+    if (form.dataset.emailRouterBound) return;
+    form.dataset.emailRouterBound = "true";
 
-          form.classList.add("hidden");
-          successMessage?.classList.remove("hidden");
+    const config = JSON.parse(form.dataset.emailRouter || "{}") as EmailRouterConfig;
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const errorEl = form.querySelector<HTMLElement>("[data-form-error]");
+    const successEl = form.querySelector<HTMLElement>("[data-form-success]");
+    const bodyEls = form.querySelectorAll<HTMLElement>("[data-form-body]");
+    const turnstileEl = form.querySelector<HTMLElement>("[data-turnstile]");
+    if (!submitButton) return;
 
-          setTimeout(() => {
-            form.reset();
-            form.classList.remove("hidden");
-            successMessage?.classList.add("hidden");
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalHTML;
-          }, 4000);
-        } catch (error) {
-          console.error("Form submission error:", error);
-          alert("There was an error submitting the form. Please try again.");
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalHTML;
-        }
-      });
+    const originalHTML = submitButton.innerHTML;
+    const configured = Boolean(config.siteId && config.turnstileSiteKey);
+    let widgetId: string | undefined;
+
+    if (configured && turnstileEl) {
+      loadTurnstile()
+        .then((turnstile) => {
+          if (!turnstileEl.isConnected) return;
+          widgetId = turnstile.render(turnstileEl, {
+            sitekey: config.turnstileSiteKey,
+            theme: "light",
+          });
+          renderedWidgets.add(widgetId);
+        })
+        .catch((error) => console.error(error));
     }
+
+    const showError = (message: string) => {
+      if (!errorEl) return;
+      errorEl.textContent = message;
+      errorEl.classList.remove("hidden");
+    };
+    const clearError = () => {
+      if (!errorEl) return;
+      errorEl.textContent = "";
+      errorEl.classList.add("hidden");
+    };
+    const setBusy = (busy: boolean) => {
+      submitButton.disabled = busy;
+      submitButton.innerHTML = busy ? SPINNER_HTML : originalHTML;
+    };
+    // A Turnstile token is single-use, so every attempt needs a fresh one.
+    const resetTurnstile = () => {
+      if (widgetId) window.turnstile?.reset(widgetId);
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearError();
+
+      if (!configured) {
+        console.error(
+          "Email router not configured: set forms.emailRouterSiteId and forms.turnstileSiteKey in src/content/settings/site.json"
+        );
+        showError(errorMessageFor(0, config.phoneFormatted));
+        return;
+      }
+
+      const token = widgetId ? window.turnstile?.getResponse(widgetId) : undefined;
+      if (!token) {
+        showError("Please complete the verification check above the button, then submit again.");
+        return;
+      }
+
+      setBusy(true);
+
+      try {
+        // submissionId lets the router dedupe accidental double sends.
+        const result = await submitToEmailRouter(config, form, token, crypto.randomUUID());
+
+        if (!result.ok) {
+          showError(errorMessageFor(result.status, config.phoneFormatted));
+          resetTurnstile();
+          setBusy(false);
+          return;
+        }
+
+        bodyEls.forEach((el) => el.classList.add("hidden"));
+        successEl?.classList.remove("hidden");
+
+        setTimeout(() => {
+          form.reset();
+          resetTurnstile();
+          bodyEls.forEach((el) => el.classList.remove("hidden"));
+          successEl?.classList.add("hidden");
+          setBusy(false);
+        }, SUCCESS_RESET_MS);
+      } catch (error) {
+        console.error("Form submission error:", error);
+        showError(errorMessageFor(0, config.phoneFormatted));
+        resetTurnstile();
+        setBusy(false);
+      }
+    });
+  }
+
+  function initForms() {
+    document.querySelectorAll<HTMLFormElement>("form[data-email-router]").forEach(initForm);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initForm);
+    document.addEventListener("DOMContentLoaded", initForms);
   } else {
-    initForm();
+    initForms();
   }
 
-  document.addEventListener("astro:after-swap", initForm);
+  document.addEventListener("astro:after-swap", initForms);
+  document.addEventListener("astro:before-swap", () => {
+    renderedWidgets.forEach((id) => window.turnstile?.remove(id));
+    renderedWidgets.clear();
+  });
 </script>

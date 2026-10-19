@@ -47,5 +47,9 @@
   },
   "analytics": {
     "googleAnalyticsId": ""
+  },
+  "forms": {
+    "emailRouterSiteId": "",
+    "turnstileSiteKey": ""
   }
 }
