@@ -95,17 +95,6 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    {/* Google tag (gtag.js) — TEMPORARY: used to verify Google Search Console via Google Analytics. Remove once verified. */}
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-9G76G3VB9G"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-9G76G3VB9G');
-    </script>
-
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content={siteConfig.colors.primary} />
 
