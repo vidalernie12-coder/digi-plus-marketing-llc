@@ -38,6 +38,30 @@ const SITE_URL =
     : SETTINGS_URL) ||
   "https://example.com";
 
+// Case-study detail pages are server-rendered (prerender = false), so the
+// sitemap integration can't discover them. Fetch the published slugs at build
+// time (same endpoint as src/lib/case-studies.ts); a failed fetch leaves them
+// out rather than breaking the build. New studies appear on the next deploy.
+async function caseStudyUrls() {
+  const api =
+    process.env.PUBLIC_CASE_STUDIES_API ||
+    "https://swluvugjmdeawawvisql.functions.supabase.co/case-studies";
+  const client = process.env.PUBLIC_CLIENT_SLUG || "ntv360";
+  try {
+    const res = await fetch(`${api}?client=${encodeURIComponent(client)}`, {
+      signal: AbortSignal.timeout(10_000),
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.studies ?? []).map(
+      (/** @type {{ slug: string }} */ cs) => `${SITE_URL}/about-us/case-studies/${cs.slug}`
+    );
+  } catch {
+    return [];
+  }
+}
+const CASE_STUDY_URLS = await caseStudyUrls();
+
 // https://astro.build/config
 export default defineConfig({
   // Adapter enables on-demand (server-rendered) pages — used by the case-studies
@@ -72,7 +96,9 @@ export default defineConfig({
     mdx(),
     icon(),
     sitemap({
+      // /privacy and /terms are noindex, so they stay out of the sitemap.
       filter: (page) => !page.includes("/privacy") && !page.includes("/terms"),
+      customPages: CASE_STUDY_URLS,
     }),
     configIntegration(),
   ],

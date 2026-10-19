@@ -11,7 +11,7 @@ const { sections, legalSections = [] } = privacyData;
 const { metadata, extraSchemas } = buildPageMeta(privacyData);
 ---
 
-<PageLayout metadata={metadata} extraSchemas={extraSchemas}>
+<PageLayout metadata={{ ...metadata, noindex: true }} extraSchemas={extraSchemas}>
   <SectionRenderer sections={sections} />
 
   {

@@ -50,7 +50,7 @@ const defaults = {
     defaultDescription:
       "DG+ Marketing is a local marketing company in Bloomfield, NJ offering indoor digital billboards, website design, SEO, PPC, social media, and video advertising for businesses in Bloomfield, Montclair, and Verona.",
     keywords: "Bloomfield NJ marketing agency, digital marketing Bloomfield, indoor billboards New Jersey, website design, SEO, PPC",
-    siteUrl: "https://dgplusnj.com",
+    siteUrl: "https://www.dgplusnj.com",
     ogImage: "/og-image.png",
     twitterHandle: "",
   },

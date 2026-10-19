@@ -3,7 +3,7 @@
 // ============================================
 
 import { localizeMetadata } from "~/config/site";
-import { faqSchema, serviceSchema, localBusinessForCity } from "~/lib/schemas";
+import { faqSchema, serviceSchema, cityServiceSchema } from "~/lib/schemas";
 
 type AnyPage = {
   title?: string;
@@ -66,7 +66,7 @@ export function buildPageMeta(pageData: AnyPage, opts: PageMetaOptions = {}) {
 
   if (opts.city) {
     extraSchemas.push(
-      localBusinessForCity({
+      cityServiceSchema({
         city: opts.city.city,
         url: opts.city.url,
         description: opts.city.description || metadata.description,

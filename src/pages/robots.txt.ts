@@ -3,108 +3,48 @@ import { siteConfig } from "~/config/site";
 
 const host = siteConfig.seo.siteUrl.replace(/^https?:\/\//, "");
 
+// A crawler obeys only the most specific group that names it, so every group
+// that should crawl the site must carry the full rule set. Pages hidden from
+// search (/privacy, /terms) use a noindex meta tag instead of Disallow — a
+// blocked page can still be indexed, because the crawler never sees the tag.
 const getRobotsTxt = (sitemapURL: URL) => `# robots.txt for ${host}
-# Optimized for SEO + AI crawler discoverability
 
 User-agent: *
 Allow: /
-Disallow: /privacy
-Disallow: /terms
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_astro/
 
-Allow: /*.css
-Allow: /*.js
-Allow: /*.svg
-Allow: /*.webp
-Allow: /*.avif
-
-Sitemap: ${sitemapURL.href}
-
-# Major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-# AI / LLM crawlers — explicit allow for citation visibility
+# AI search and assistant crawlers: explicitly allowed for citation visibility
 User-agent: GPTBot
-Allow: /
-
 User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
+User-agent: Claude-SearchBot
+User-agent: Claude-User
 User-agent: PerplexityBot
-Allow: /
-
 User-agent: Perplexity-User
-Allow: /
-
 User-agent: Google-Extended
-Allow: /
-
 User-agent: Applebot-Extended
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
 User-agent: meta-externalagent
-Allow: /
-
+User-agent: CCBot
 User-agent: Bytespider
 Allow: /
 
-# SEO tools — throttle
+# SEO tools: throttled
 User-agent: AhrefsBot
-Crawl-delay: 10
-
 User-agent: SemrushBot
-Crawl-delay: 10
-
 User-agent: MJ12bot
-Crawl-delay: 10
-
 User-agent: DotBot
+Allow: /
 Crawl-delay: 10
 
-# Block aggressive scrapers
+# Aggressive scrapers: blocked
 User-agent: MauiBot
-Disallow: /
-
 User-agent: SiteSnagger
-Disallow: /
-
 User-agent: WebCopier
-Disallow: /
-
 User-agent: WebReaper
-Disallow: /
-
 User-agent: HTTrack
 Disallow: /
+
+Sitemap: ${sitemapURL.href}
 `;
 
 export const GET: APIRoute = ({ site }) => {
