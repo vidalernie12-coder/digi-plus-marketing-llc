@@ -692,7 +692,7 @@ const routerConfigJson = JSON.stringify(routerConfig);
 
       if (!configured) {
         console.error(
-          "Email router not configured: set forms.emailRouterSiteId and forms.turnstileSiteKey in src/content/settings/site.json"
+          "Email router not configured: set PUBLIC_EMAIL_ROUTER_SITE_ID and PUBLIC_TURNSTILE_SITE_KEY (.env / Vercel), or forms.emailRouterSiteId and forms.turnstileSiteKey in src/content/settings/site.json"
         );
         showError(errorMessageFor(0, config.phoneFormatted));
         return;
