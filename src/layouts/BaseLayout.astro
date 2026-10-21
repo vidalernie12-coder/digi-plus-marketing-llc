@@ -39,6 +39,8 @@ const {
   noindex,
   nofollow,
 } = localizedMetadata;
+// Google Analytics measurement ID (e.g. "G-XXXXXXXXXX"); empty = no tag.
+const gaId = siteConfig.analytics.googleAnalyticsId;
 // Social crawlers need an absolute og:image URL.
 const absoluteImage = image ? new URL(image, siteConfig.seo.siteUrl).href : image;
 
@@ -95,6 +97,26 @@ const allSchemas = [...baseSchemas, ...extraSchemas];
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {/* Google tag (gtag.js) — ID from analytics.googleAnalyticsId in site.json */}
+    {
+      gaId && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script
+            is:inline
+            set:html={`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '${gaId}');
+    `}
+          />
+        </>
+      )
+    }
+
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content={siteConfig.colors.primary} />
 
