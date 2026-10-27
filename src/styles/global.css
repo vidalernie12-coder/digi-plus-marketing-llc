@@ -5,6 +5,16 @@
   navigation: auto;
 }
 
+/* Render below-the-fold content lazily: the browser skips layout/paint for
+   these until they are near the viewport, so the first paint only processes
+   the top of the page. `auto` remembers each section's real height once seen. */
+main > section:nth-child(n + 3),
+body > section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
 /* ============================================
    GLOBAL COLOR SCHEME - TAILWIND V4
    Change these 4 colors to update the entire site
