@@ -159,6 +159,6 @@ export default defineConfig({
   },
   compressHTML: true,
   build: {
-    inlineStylesheets: "auto",
+    inlineStylesheets: "always",
   },
 });
