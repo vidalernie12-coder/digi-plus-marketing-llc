@@ -237,7 +237,11 @@ const {
 }
 
 <script is:inline>
-  document.addEventListener("astro:page-load", function () {
+  // Run once the DOM is ready (full page loads; no client-side router).
+  (function (init) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+  })(function () {
     function showPopup() {
       const popup = document.getElementById("popup-modal");
       if (!popup) return;

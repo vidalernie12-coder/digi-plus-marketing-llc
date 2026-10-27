@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Smooth cross-page transitions in supporting browsers - no JavaScript needed. */
+@view-transition {
+  navigation: auto;
+}
+
 /* ============================================
    GLOBAL COLOR SCHEME - TAILWIND V4
    Change these 4 colors to update the entire site
